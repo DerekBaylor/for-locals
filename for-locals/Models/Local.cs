@@ -1,12 +1,12 @@
 ﻿namespace for_locals.Models
 {
-    public class User
+    public class Local
     {
         public string Name { get; set; }
-        public string UserId { get; set; }
+        public int UserId { get; set; }
         public string ImgUrl { get; set; }
         public string Bio { get; set; }
-        public bool IsAdmin { get; set; }
-
+        public string IsAdmin { get; set; }
+        public string FirebaseKey { get; set; }
     }
 }

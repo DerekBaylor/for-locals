@@ -8,6 +8,5 @@
         public string ReviewText { get; set; }
         public string ImgUrl { get; set; }
         public int Score { get; set; }
-
     }
 }
