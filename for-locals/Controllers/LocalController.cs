@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using for_locals.Models;
 using for_locals.Repositories;
 
@@ -33,6 +34,65 @@ namespace for_locals.Controllers
             else
             {
                 return Ok(local);
+            }
+        }
+
+        [Authorize]
+        [HttpGet("{firebasekey}")]
+        public IActionResult GetLocalByFirebaseKey(string firebasekey)
+        {
+            var currentLocal = _localRepository.GetLocalByFirebaseKey(firebasekey);
+            if (currentLocal == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Ok(currentLocal);
+            }
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult AddLocal(Local local)
+        {
+            _localRepository.AddLocal(local);
+            return Ok(local);
+        }
+
+        [Authorize]
+        [HttpPatch("{firebasekey}")]
+        public IActionResult Put(string firebasekey, Local local)
+        {
+            if (firebasekey != local.FirebaseKey)
+            {
+                return BadRequest();
+            }
+            var currentLocal = _localRepository.GetLocalByFirebaseKey(firebasekey);
+            if (currentLocal == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                _localRepository.UpdateLocal(local);
+                return NoContent();
+            }
+        }
+
+        [Authorize]
+        [HttpDelete("{firebasekey}")]
+        public IActionResult Delete(string firebasekey)
+        {
+            var currentLocal = _localRepository.GetLocalByFirebaseKey(firebasekey);
+            if (currentLocal == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                _localRepository.DeleteLocal(currentLocal.FirebaseKey);
+                return NoContent();
             }
         }
     }
