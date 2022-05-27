@@ -8,6 +8,8 @@ namespace for_locals.Repositories
     {
         void AddReview(Review review);
         void DeleteReview(int reviewId);
-        List<Review> GetUserReviewsByBusinessId(string businessId);
+        Review GetReviewById(int ReviewId);
+        List<Review> GetUserReviewsByBusinessId(int businessId);
+        List<Review> GetAllReviews(SqlDataReader reader);
     }
 }

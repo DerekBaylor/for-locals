@@ -55,6 +55,50 @@ namespace for_locals.Repositories
             }
         }
 
+        public Review GetReviewById(int ReviewId)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                                        SELECT
+                                        UserId, 
+                                        BusinessId, 
+                                        ReviewText, 
+                                        ImgUrl, 
+                                        Score
+                                        FROM Review
+                                        ";
+
+                    cmd.Parameters.AddWithValue("@ReviewId", ReviewId);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        List<Review> reviews = new List<Review>();
+                        if (reader.Read())
+                        {
+                            Review review = new Review
+                            {
+                                UserId = reader.GetInt32(reader.GetOrdinal("UserId")),
+                                BusinessId = reader.GetInt32(reader.GetOrdinal("BusinessId")),
+                                ReviewText = reader.GetString(reader.GetOrdinal("ReviewText")),
+                                ImgUrl = reader.GetString(reader.GetOrdinal("ImgUrl")),
+                                Score = reader.GetInt32(reader.GetOrdinal("Score")),
+                            };
+                            return review;
+                        }
+                        else
+                        {
+                            return null;
+                        }
+
+                    }
+                }
+            }
+        }
+
         public void AddReview(Review review)
         {
             using (SqlConnection conn = Connection)
@@ -97,7 +141,7 @@ namespace for_locals.Repositories
             }
         }
 
-        public List<Review> GetUserReviewsByBusinessId(string businessId)
+        public List<Review> GetUserReviewsByBusinessId(int businessId)
         {
             using (SqlConnection conn = Connection)
             {
