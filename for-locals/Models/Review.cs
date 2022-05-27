@@ -2,9 +2,9 @@
 {
     public class Review
     {
-        public string ReviewId { get; set; }
-        public string UserId { get; set; }
-        public string BusinessId { get; set; }
+        public int ReviewId { get; set; }
+        public int UserId { get; set; }
+        public int BusinessId { get; set; }
         public string ReviewText { get; set; }
         public string ImgUrl { get; set; }
         public int Score { get; set; }
