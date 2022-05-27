@@ -167,7 +167,7 @@ namespace for_locals.Repositories
             }
         }
 
-        public Local GetByFirebaseKey(string firebasekey)
+        public Local GetLocalByFirebaseKey(string firebasekey)
         {
             using (SqlConnection conn = Connection)
             {
