@@ -12,9 +12,9 @@
         public string Keywords { get; set; }
         public string Industry { get; set; }
         public string Logo { get; set; }
-        public string ImgURL { get; set; }
+        public string ImgUrl { get; set; }
         public string WebUrl { get; set; }
         public int ReviewScore { get; set; }
-        public bool Verified { get; set; }
+        public string Verified { get; set; }
     }
 }

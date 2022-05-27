@@ -8,7 +8,7 @@ namespace for_locals.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LocalController : Controller
+    public class LocalController : ControllerBase
     {
         private readonly ILocalRepository _localRepository;
 
@@ -61,7 +61,7 @@ namespace for_locals.Controllers
         }
 
         [Authorize]
-        [HttpPatch("{firebasekey}")]
+        [HttpPatch("edit/{firebasekey}")]
         public IActionResult Put(string firebasekey, Local local)
         {
             if (firebasekey != local.FirebaseKey)
