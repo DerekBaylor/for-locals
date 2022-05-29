@@ -42,7 +42,7 @@ namespace for_locals.Repositories
                                         ImgUrl,
                                         WebUrl,
                                         ReviewScore,
-                                        Verified,
+                                        Verified
                                         FROM Business
                                         ";
 
@@ -54,7 +54,7 @@ namespace for_locals.Repositories
                         Business business = new Business
                         {
                             BusinessId = reader.GetInt32(reader.GetOrdinal("BusinessId")),
-                            OwnerId = reader.GetString(reader.GetOrdinal("OwnerId")),
+                            OwnerId = reader.GetInt32(reader.GetOrdinal("OwnerId")),
                             StateControlNum = reader.GetString(reader.GetOrdinal("StateControlNum")),
                             BusinessName = reader.GetString(reader.GetOrdinal("BusinessName")),
                             Phone = reader.GetString(reader.GetOrdinal("Phone")),
@@ -98,8 +98,9 @@ namespace for_locals.Repositories
                                         ImgUrl,
                                         WebUrl,
                                         ReviewScore,
-                                        Verified,
+                                        Verified
                                         FROM Business
+                                        WHERE BusinessId = @BusinessId
                                         ";
 
                     cmd.Parameters.AddWithValue("@BusinessId", BusinessId);
@@ -113,7 +114,7 @@ namespace for_locals.Repositories
                             Business business = new Business
                             {
                                 BusinessId = reader.GetInt32(reader.GetOrdinal("BusinessId")),
-                                OwnerId = reader.GetString(reader.GetOrdinal("OwnerId")),
+                                OwnerId = reader.GetInt32(reader.GetOrdinal("OwnerId")),
                                 StateControlNum = reader.GetString(reader.GetOrdinal("StateControlNum")),
                                 BusinessName = reader.GetString(reader.GetOrdinal("BusinessName")),
                                 Phone = reader.GetString(reader.GetOrdinal("Phone")),
@@ -204,7 +205,7 @@ namespace for_locals.Repositories
             }
         }
 
-        public void DeleteBusiness(int businessId)
+        public void DeleteBusiness(int BusinessId)
         {
             using (SqlConnection conn = Connection)
             {
@@ -213,9 +214,9 @@ namespace for_locals.Repositories
                 {
                     cmd.CommandText = @"
                                         DELETE FROM Business
-                                        WHERE BusinessId = @businessId
+                                        WHERE BusinessId = @BusinessId
                                         ";
-                    cmd.Parameters.AddWithValue(@"BusinessId", businessId);
+                    cmd.Parameters.AddWithValue(@"BusinessId", BusinessId);
                 }
             }
         }

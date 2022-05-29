@@ -9,7 +9,7 @@ namespace for_locals.Repositories
         void AddReview(Review review);
         void DeleteReview(int reviewId);
         Review GetReviewById(int ReviewId);
-        List<Review> GetUserReviewsByBusinessId(int businessId);
-        List<Review> GetAllReviews(SqlDataReader reader);
+        List<Review> GetReviewsByBusinessId(int BusinessId);
+        List<Review> GetAllReviews();
     }
 }
