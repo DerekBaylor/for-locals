@@ -3,7 +3,7 @@
     public class Business
     {
         public int BusinessId { get; set; }
-        public string OwnerId { get; set; }
+        public int OwnerId { get; set; }
         public string StateControlNum { get; set; }
         public string BusinessName { get; set; }
         public string Phone { get; set; }

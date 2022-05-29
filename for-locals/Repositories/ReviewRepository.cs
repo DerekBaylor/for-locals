@@ -19,7 +19,7 @@ namespace for_locals.Repositories
             }
         }
 
-        public List<Review> GetAllReviews(SqlDataReader reader)
+        public List<Review> GetAllReviews()
         {
             using (SqlConnection conn = Connection)
             {
@@ -35,6 +35,7 @@ namespace for_locals.Repositories
                                         Score
                                         FROM Review
                                         ";
+                    SqlDataReader reader = cmd.ExecuteReader();
 
                     List<Review> reviews = new List<Review>();
                     while (reader.Read())
@@ -70,6 +71,7 @@ namespace for_locals.Repositories
                                         ImgUrl, 
                                         Score
                                         FROM Review
+                                        Where ReviewId = @ReviewId
                                         ";
 
                     cmd.Parameters.AddWithValue("@ReviewId", ReviewId);
@@ -123,7 +125,7 @@ namespace for_locals.Repositories
             }
         }
 
-        public void DeleteReview(int reviewId)
+        public void DeleteReview(int ReviewId)
         {
             using (SqlConnection conn = Connection)
             {
@@ -132,16 +134,16 @@ namespace for_locals.Repositories
                 {
                     cmd.CommandText = @"
                         DELETE FROM Review
-                        WHERE ReviewId = @reviewId
+                        WHERE ReviewId = @ReviewId
                     ";
-                    cmd.Parameters.AddWithValue("@Id", reviewId);
+                    cmd.Parameters.AddWithValue("@ReviewId", ReviewId);
 
                     cmd.ExecuteNonQuery();
                 }
             }
         }
 
-        public List<Review> GetUserReviewsByBusinessId(int businessId)
+        public List<Review> GetReviewsByBusinessId(int BusinessId)
         {
             using (SqlConnection conn = Connection)
             {
@@ -149,19 +151,36 @@ namespace for_locals.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT * FROM Review
-                        LEFT JOIN Business
-                        ON Review = BusinessId
+                                    SELECT
+                                        UserId, 
+                                        BusinessId, 
+                                        ReviewText, 
+                                        ImgUrl, 
+                                        Score
+                                        FROM Review
+                                        WHERE BusinessId = @BusinessId
                     ";
 
-                    cmd.Parameters.AddWithValue("@BusinessId", businessId);
+                    cmd.Parameters.AddWithValue("@BusinessId", BusinessId);
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        var scores = GetAllReviews(reader);
-                        return scores;
+                    { 
+                        List<Review> reviews = new List<Review>();
+                        while (reader.Read())
+                        {
+                            Review review = new Review
+                            {
+                                UserId = reader.GetInt32(reader.GetOrdinal("UserId")),
+                                BusinessId = reader.GetInt32(reader.GetOrdinal("BusinessId")),
+                                ReviewText = reader.GetString(reader.GetOrdinal("ReviewText")),
+                                ImgUrl = reader.GetString(reader.GetOrdinal("ImgUrl")),
+                                Score = reader.GetInt32(reader.GetOrdinal("Score")),
+                            };
+                            reviews.Add(review);
+                        }
+                            return reviews;
                     }
-                }
+                }   
             }
         }
     }

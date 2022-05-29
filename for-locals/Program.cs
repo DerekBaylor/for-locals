@@ -9,6 +9,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<ILocalRepository, LocalRepository>();
+builder.Services.AddTransient<IBusinessRepository, BusinessRepository>();
+builder.Services.AddTransient<IReviewRepository, ReviewRepository>();
 
 var app = builder.Build();
 

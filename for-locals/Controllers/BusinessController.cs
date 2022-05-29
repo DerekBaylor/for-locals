@@ -23,12 +23,18 @@ namespace for_locals.Controllers
             return _businessRepository.GetAllBusiness();
         }
 
-        [HttpGet("{BusinessId}")]
-        public IActionResult Get(int businessId)
+        [HttpGet("api/business/{BusinessId}")]
+        public IActionResult Get(int BusinessId)
         {
-            var business = _businessRepository.GetBusinessById(businessId);
-            if (business == null) return NotFound();
-            return Ok(business);
+            Business business = _businessRepository.GetBusinessById(BusinessId);
+            if (business == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Ok(business);
+            }
         }
 
         [HttpPost]

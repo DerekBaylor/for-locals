@@ -22,24 +22,19 @@ namespace for_locals.Controllers
             return _reviewRepository.GetAllReviews();
         }
 
-        [HttpGet("business/businessId")]
-        public List<Review> GetUserReviewsByBusinessId(int businessId)
+        [HttpGet("review/{BusinessId}")]
+        public List<Review> GetReviewsByBusinessId(int BusinessId)
         {
-            return _reviewRepository.GetUserReviewsByBusinessId(businessId);
+            return _reviewRepository.GetReviewsByBusinessId(BusinessId);
         }
 
-        [HttpGet("review/reviewId")]
+        [HttpGet("{ReviewId}")]
         public IActionResult Get(int ReviewId)
         {
-            Review reivew = _reviewRepository.GetReviewById(ReviewId);
-            if (local == null)
-            {
-                return NotFound();
-            }
-            else
-            {
-                return Ok(review);
-            }
+            var review = _reviewRepository.GetReviewById(ReviewId);
+            if (review == null) return NotFound();
+            return Ok(review);
+        
         }
 
         [HttpPost]
@@ -49,17 +44,17 @@ namespace for_locals.Controllers
             return Ok(review);
         }
 
-        [HttpDelete("{reviewId}")]
-        public IActionResult Delete(int reviewId)
+        [HttpDelete("{ReviewId}")]
+        public IActionResult Delete(int ReviewId)
         {
-            var currentReview = _reviewRepository.GetReviewById(reviewId);
+            var currentReview = _reviewRepository.GetReviewById(ReviewId);
             if (currentReview == null)
             {
                 return NotFound();
             }
             else
             {
-                _localRepository.DeleteReview(currentReview.reviewId);
+                _reviewRepository.DeleteReview(currentReview.ReviewId);
                 return NoContent();
             }
         }
