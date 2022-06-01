@@ -3,6 +3,7 @@ $local-green: #6B9749;
 
 
 .navbar{
+  background-color: white;
   .navbar-logo{
     max-width: 10rem;
   }
@@ -40,5 +41,16 @@ $local-green: #6B9749;
 .main-body-div{
   .navbar-spacing{
     height: 4rem;
+  }
+}
+
+.featured-business-card{
+  .card-div{
+
+    display: flex;
+    flex-direction: row;
+    .featured-card-img{
+      max-width: 25rem;
+    }
   }
 }
