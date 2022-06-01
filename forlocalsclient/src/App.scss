@@ -1,0 +1,44 @@
+$local-green: #6B9749;
+
+
+
+.navbar{
+  .navbar-logo{
+    max-width: 10rem;
+  }
+  .nav-ul{
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    .nav-item{
+      margin-right: 1.5rem;
+      margin-left: 1.5rem;
+      .nav-link{
+        color: $local-green;
+        font-family: Montserrat;
+        font-size: 2rem;
+        font-weight:400;
+      }
+    }
+  }
+  .nav-btn-div{
+    .btn-outline-success{
+      margin-right: 1.5rem;
+      margin-left: 1.5rem;
+      color: $local-green;
+      border-color: $local-green;
+    }
+    .btn-success{
+      margin-right: 13.5rem;
+      margin-left: 1.5rem;
+      background-color: $local-green;
+    }
+  }
+}
+
+.main-body-div{
+  .navbar-spacing{
+    height: 4rem;
+  }
+}
