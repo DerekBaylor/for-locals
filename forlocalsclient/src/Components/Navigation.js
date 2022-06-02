@@ -1,8 +1,9 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import ForLocalsLogo from '../Assets/ForLocalsLogo.png';
 
-export default function Navigation() {
+export default function Navigation({user}) {
   return (
     <nav className="navbar fixed-top navbar-light">
         <ul className="navbar-nav nav-ul">
@@ -31,15 +32,20 @@ export default function Navigation() {
             </li>
         </ul>
         <div className="nav-btn-div">
-            <button className="btn nav-btn btn-outline-success">
-                LOGIN
-            </button>
-            <button className="btn nav-btn btn-outline-success">
-                LOG OUT
-            </button>
-            <button className="btn nav-btn btn-success">
-                REGISTER
-            </button>
+            {user ? ( 
+                <div>
+                <button className="btn nav-btn btn-outline-success">
+                    LOG OUT
+                </button>
+                <button className="btn nav-btn btn-success">
+                    REGISTER
+                </button>
+                </div>
+            ) : ( 
+                <button className="btn nav-btn btn-outline-success">
+                    LOGIN
+                </button>
+            )}
         </div>
     </nav>
   )

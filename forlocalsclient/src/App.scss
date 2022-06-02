@@ -1,7 +1,5 @@
 $local-green: #6B9749;
 
-
-
 .navbar{
   background-color: white;
   .navbar-logo{
@@ -40,17 +38,55 @@ $local-green: #6B9749;
 
 .main-body-div{
   .navbar-spacing{
-    height: 4rem;
+    height: 5rem;
+  }
+  .card-div{
+    display: flex;
+    justify-content: center;
   }
 }
 
 .featured-business-card{
-  .card-div{
-
+  border: 3px, solid;
+  max-width: 80%;
+  .card-div-two{
+    border: none;
     display: flex;
     flex-direction: row;
     .featured-card-img{
       max-width: 25rem;
     }
+    .card-body{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .card-title{
+      font-family: Montserrat;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+    .card-text{
+      max-height: max-content;
+    }
+    .card-btn-div{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      max-width: 5rem;
+      position: absolute;
+      right:    30%;
+      bottom:   .5rem;
+      .card-btn{
+        background-color: $local-green;
+        border-color: $local-green;
+        max-width: 7rem;
+      }
+    }
   }
+}
+
+.card{
+  border-radius: 50%;
 }
