@@ -20,7 +20,6 @@ export default function Home() {
       <div className='navbar-spacing'></div>
       <div className='card-div'>
         <FeatureBusinessCard />
-
       </div>
     </div>
   )
