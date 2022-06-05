@@ -23,7 +23,7 @@ namespace for_locals.Controllers
             return _businessRepository.GetAllBusiness();
         }
 
-        [HttpGet("api/business/{BusinessId}")]
+        [HttpGet("id/{BusinessId}")]
         public IActionResult Get(int BusinessId)
         {
             Business business = _businessRepository.GetBusinessById(BusinessId);

@@ -37,20 +37,26 @@ $local-green: #6B9749;
 }
 
 .main-body-div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   .navbar-spacing{
     height: 5rem;
   }
   .card-div{
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     margin-top: 3rem;
+    gap: 1rem;
   }
 }
 
 .featured-business-card{
   border: 3px, solid;
   border-radius: 1.5rem;
-  max-width: 80%;
+  max-width: 70%;
   max-height: 20.5rem;
   .card-div-two{
     border: none;
@@ -70,6 +76,9 @@ $local-green: #6B9749;
         font-weight: 800;
         margin-bottom: 1rem;
       }
+      .card-text{
+        overflow: hidden;
+      }
       .card-btn-div{
         margin-top: 4rem;
         max-width: 5rem;
@@ -85,14 +94,25 @@ $local-green: #6B9749;
 }
 
 .search-bar-div{
-  background-color: aqua;
   display: flex;
   justify-content: center;
-  .search-inputs{
-    font-size: 1.2rem;
-    .input-field{
-      max-width: 150rem;
-      min-width: fit-content(10rem);
+  .search-bar{
+    display: flex;
+    align-items: center;
+    .search-inputs{
+      font-size: 1.2rem;
+      .input-field{
+        max-width: 150rem;
+        min-width: fit-content(10rem);
+      }
+    }
+    .search-btn-div{
+      margin-left: 1rem;
+      .card-btn{
+        background-color: $local-green;
+        border-color: $local-green;
+        max-width: 7rem;
+      }
     }
   }
 }
@@ -101,6 +121,13 @@ $local-green: #6B9749;
   background-color: aqua;
   max-width: 15rem;
   border-radius: 1.5rem;
-  .card-img{
+  .card-btn-div{
+    display: flex;
+    justify-content: center;
+    .card-btn{
+      background-color: $local-green;
+      border-color: $local-green;
+      max-width: 7rem;
+    }
   }
 }

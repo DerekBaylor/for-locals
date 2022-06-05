@@ -1,8 +1,17 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import BusinessCard from '../Components/BusinessCard'
 import SerachBar from '../Components/SerachBar'
+import { getAllBusinesses } from '../Data/BusinessData'
 
 export default function Search() {
+  const [businessData, setBusinessData] = useState([]);
+
+  useEffect(() => {
+    getAllBusinesses().then(setBusinessData);
+    console.warn("length" ,businessData.length);
+  }, []);
+
+
   return (
     <div className='main-body-div'>
     <div className='navbar-spacing'></div>
@@ -10,8 +19,14 @@ export default function Search() {
       <SerachBar />
     </div>
     <div className='card-div'>
-      <BusinessCard />
+      {businessData.map((card) => (
+        <BusinessCard 
+          key = {card.BusinessId}
+          card={card}
+          setCards={setBusinessData}
+        />
+      ))}
     </div>
   </div>
   )
-}
+};
