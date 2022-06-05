@@ -1,17 +1,24 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 import BusinessIcon from '../Assets/BusinessIcon.png'
 
-export default function BusinessCard() {
+export default function BusinessCard({ card, setCards }) {
   return (
-    <div class="business-card">
+    <div className="business-card">
         <img className="card-img" src={BusinessIcon} alt="a business" />
-        <div class="card-body">
-            <h5 class="card-title">Business Name</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <div className="card-body">
+            <div>Review Score Coming Soon</div>
+            <h5 className="card-title">{card.businessName}</h5>
+            <p className="card-text">{card.description}</p>
         <div className="card-btn-div">
           <a href="#" className="btn btn-success card-btn">Details</a>
         </div>
         </div>
     </div>
   )
+};
+
+BusinessCard.propTypes = {
+  card: PropTypes.shape(PropTypes.obj).isRequired,
+  setCards: PropTypes.func.isRequired,
 };
