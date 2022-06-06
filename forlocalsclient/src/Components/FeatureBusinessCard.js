@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import BusinessIcon from '../Assets/BusinessIcon.png'
 
@@ -10,7 +10,7 @@ export default function FeatureBusinessCard({ card, setCards }) {
       <img className="featured-card-img" src={BusinessIcon} alt="featured business" />
       <div className="card-body">
           <h5 className="card-title">{card.businessName}</h5>
-          // <p className="card-text">{card.description}</p>
+          <p className="card-text">{card.description}</p>
           {/* <h5 className="card-title">Business Name</h5>
           <p className="card-text">Description</p> */}
           <div className="card-btn-div">
