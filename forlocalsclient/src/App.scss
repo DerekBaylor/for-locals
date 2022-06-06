@@ -118,9 +118,12 @@ $local-green: #6B9749;
 }
 
 .business-card{
-  background-color: aqua;
-  max-width: 15rem;
-  border-radius: 1.5rem;
+  max-width: 22%;
+  min-width: 9.5rem;
+  border-width: .19rem;
+  border-style: solid;
+  border-color: $local-green;
+  border-radius: 9%;
   .card-btn-div{
     display: flex;
     justify-content: center;
@@ -128,6 +131,30 @@ $local-green: #6B9749;
       background-color: $local-green;
       border-color: $local-green;
       max-width: 7rem;
+    }
+  }
+}
+
+.business-body-div{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  .business-img{
+    max-width: 50%;
+    min-width: 20rem;
+    border-radius: 1.5rem;
+  }
+  .business-spacing{
+    margin-right: 5rem;
+  }
+  .business-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    .bus-detail{
+      margin: 2rem;
     }
   }
 }

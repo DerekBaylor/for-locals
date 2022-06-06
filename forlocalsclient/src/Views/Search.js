@@ -8,10 +8,8 @@ export default function Search() {
 
   useEffect(() => {
     getAllBusinesses().then(setBusinessData);
-    console.warn("length" ,businessData.length);
   }, []);
-
-
+  
   return (
     <div className='main-body-div'>
     <div className='navbar-spacing'></div>
@@ -21,7 +19,7 @@ export default function Search() {
     <div className='card-div'>
       {businessData.map((card) => (
         <BusinessCard 
-          key = {card.BusinessId}
+          key = {card.businessId}
           card={card}
           setCards={setBusinessData}
         />
