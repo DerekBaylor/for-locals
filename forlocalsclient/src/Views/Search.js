@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import BusinessCard from '../Components/BusinessCard'
+// import BusinessCard from '../Components/BusinessCard'
 import SerachBar from '../Components/SerachBar'
 import { getAllBusinesses } from '../Data/BusinessData'
 
@@ -9,14 +9,15 @@ export default function Search() {
   useEffect(() => {
     getAllBusinesses().then(setBusinessData);
   }, []);
+
   
   return (
     <div className='main-body-div'>
     <div className='navbar-spacing'></div>
     <div className='search-bar-div'>
-      <SerachBar />
+      <SerachBar data={businessData} />
     </div>
-    <div className='card-div'>
+    {/* <div className='card-div'>
       {businessData.map((card) => (
         <BusinessCard 
           key = {card.businessId}
@@ -24,7 +25,7 @@ export default function Search() {
           setCards={setBusinessData}
         />
       ))}
-    </div>
+    </div> */}
   </div>
   )
 };
