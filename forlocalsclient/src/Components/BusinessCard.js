@@ -1,8 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import BusinessIcon from '../Assets/BusinessIcon.png'
 
-export default function BusinessCard({ card, setCards }) {
+export default function BusinessCard({ card }) {
   return (
     <div className="business-card">
         <img className="card-img" src={BusinessIcon} alt="a business" />
@@ -11,8 +12,10 @@ export default function BusinessCard({ card, setCards }) {
             <h5 className="card-title">{card.businessName}</h5>
             <p className="card-text">{card.description}</p>
         <div className="card-btn-div">
-          <a href="#" className="btn btn-success card-btn">Details</a>
-        </div>
+          <Link  to={`/businessDetails/${card.businessId}`} className='btn btn-success card-btn'>
+          Details
+          </Link>
+        </div>  
         </div>
     </div>
   )
@@ -20,5 +23,4 @@ export default function BusinessCard({ card, setCards }) {
 
 BusinessCard.propTypes = {
   card: PropTypes.shape(PropTypes.obj).isRequired,
-  setCards: PropTypes.func.isRequired,
 };

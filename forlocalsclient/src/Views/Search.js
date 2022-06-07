@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-// import BusinessCard from '../Components/BusinessCard'
 import SerachBar from '../Components/SerachBar'
 import { getAllBusinesses } from '../Data/BusinessData'
 
@@ -17,15 +16,6 @@ export default function Search() {
     <div className='search-bar-div'>
       <SerachBar data={businessData} />
     </div>
-    {/* <div className='card-div'>
-      {businessData.map((card) => (
-        <BusinessCard 
-          key = {card.businessId}
-          card={card}
-          setCards={setBusinessData}
-        />
-      ))}
-    </div> */}
   </div>
   )
 };
