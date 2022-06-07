@@ -12,8 +12,6 @@ export default function Home() {
   useEffect(() => {
       getBusinessById(busId).then(setFeatBusiness);
       getAllBusinesses().then(setBusinessData);
-      console.warn('business1', businessData)
-      console.warn('featBusiness1', featBusiness)
   }, []);
 
   useEffect(() => {

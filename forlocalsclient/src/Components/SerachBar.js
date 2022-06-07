@@ -1,43 +1,62 @@
 import React, { useState } from "react";
+import BusinessCard from "./BusinessCard";
 
 
 export default function SerachBar({data}) {
     const [filteredData, setFilteredData] = useState([]);
-    const [wordEntered, setWordEntered] = useState("");
+    const [searchText, setSearchText] = useState("");
 
-    const handleFilter = (event) => {
-        const searchWord = event.target.value;
-        setWordEntered(searchWord);
-        const newFilter = data.filter((value) => {
-          return value.title.toLowerCase().includes(searchWord.toLowerCase());
-        });
+    const handleFilter = (e) => {
+      const inputText = e.target.value;
+      setSearchText(inputText);
+      const textfilter = data.filter((value) => {
+        return (value.businessName.toLowerCase().includes(inputText.toLowerCase())
+        || value.description.toLowerCase().includes(inputText.toLowerCase())
+        || value.phone.toLowerCase().includes(inputText.toLowerCase())
+        || value.address.toLowerCase().includes(inputText.toLowerCase())
+        || value.keywords.toLowerCase().includes(inputText.toLowerCase())
+        || value.industry.toLowerCase().includes(inputText.toLowerCase())
+        );
+      });
     
-        if (searchWord === "") {
+        if (inputText === "") {
           setFilteredData([]);
         } else {
-          setFilteredData(newFilter);
+          setFilteredData(textfilter);
         }
     };
 
     const ClearInput = () => {
         setFilteredData([]);
-        setWordEntered("");
+        setSearchText("");
       };
 
     return (
-        <div className="search-bar">
-          <div className="search-inputs">
-            <input
-                className="input-field"        
-                type="text"
-                placeholder="Search for a business..."
-                value={wordEntered}
-                onChange={handleFilter}
-            />
-          </div>
-            <div className="search-btn-div">
-             <button className="btn btn-success card-btn" onClick ={ClearInput}>Clear</button>
+        <div className="main-search-bar-div">
+          <div className="search-bar">
+            <div className="search-inputs">
+              <input
+                  className="input-field"        
+                  type="text"
+                  placeholder="Search for a business..."
+                  value={searchText}
+                  onChange={handleFilter}
+                  />
             </div>
+              <div className="search-btn-div">
+                <button className="btn btn-success clear-btn" onClick ={ClearInput}>Clear Search</button>
+              </div>
+          </div>
+          <div className="card-div">
+            {filteredData.map((card) => {
+              return (
+                <BusinessCard 
+                key = {card.businessId}
+                card = {card}
+                />
+              )
+            })}
+          </div>
         </div>
       );
 };
