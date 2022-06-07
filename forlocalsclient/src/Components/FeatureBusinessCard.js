@@ -1,20 +1,21 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import BusinessIcon from '../Assets/BusinessIcon.png'
 
-export default function FeatureBusinessCard({ card, setCards }) {
+export default function FeatureBusinessCard({bus}) {
 
   return (
     <div className="featured-business-card">
     <div className="card-div-two">
       <img className="featured-card-img" src={BusinessIcon} alt="featured business" />
       <div className="card-body">
-          <h5 className="card-title">{card.businessName}</h5>
-          <p className="card-text">{card.description}</p>
-          {/* <h5 className="card-title">Business Name</h5>
-          <p className="card-text">Description</p> */}
+          <h5 className="card-title">{bus.businessName}</h5>
+          <p className="card-text">{bus.description}</p>
           <div className="card-btn-div">
-            <button className="btn btn-primary card-btn">Details</button>
+            <Link  to={`/businessDetails/${bus.businessId}`} className='btn btn-success card-btn'>
+              Details
+            </Link>
           </div>
       </div>
     </div>
@@ -23,6 +24,5 @@ export default function FeatureBusinessCard({ card, setCards }) {
 };
 
 FeatureBusinessCard.propTypes = {
-  card: PropTypes.shape(PropTypes.obj).isRequired,
-  setCards: PropTypes.func.isRequired,
+  bus: PropTypes.shape(PropTypes.obj).isRequired,
 };

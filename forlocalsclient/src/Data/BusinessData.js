@@ -14,7 +14,7 @@ const getAllBusinesses = () =>
   new Promise((resolve, reject) => {
     axios
       .get(`${dbURL}/Business/id/${busId}`)
-      .then((response) => resolve(Object.values(response.data)))
+      .then((response) => resolve((response.data)))
       .catch(reject);
   });
 
