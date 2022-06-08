@@ -33,6 +33,7 @@ CREATE TABLE Business (
 
 CREATE TABLE Review (
         ReviewId INT NOT NULL PRIMARY KEY IDENTITY,
+        ReviewTitle VARCHAR(100) NOT NULL,
         ReviewText VARCHAR(255) NOT NULL,
         ImgUrl VARCHAR(255) DEFAULT '',
         Score INTEGER NOT NULL,
@@ -84,17 +85,17 @@ INSERT INTO Business (StateControlNum, BusinessName, [Address], Keywords, Indust
 INSERT INTO Business (StateControlNum, BusinessName, [Address], Keywords, Industry,Verified, OwnerId, WebUrl) VALUES ('000205000', 'Recycle Nash','5025 Hillsboro #171 Rd Nashville, TN 37215 ', 'Recycling, Glass, Pickup', 'Sanitation', 'Y', 20, 'http://www.recyclenash.com/home.html')
 
 -- Mock Review Data
-INSERT INTO Review (ReviewText, Score, UserId, BusinessId) VALUES ('This is a great business!', 5, 1, 1);
-INSERT INTO Review (ReviewText, Score, UserId, BusinessId) VALUES ('I love shopping here. Great people!', 5, 1, 6);
-INSERT INTO Review (ReviewText, Score, UserId, BusinessId) VALUES ('They treat me great', 5, 1, 20);
-INSERT INTO Review (ReviewText, Score, UserId, BusinessId) VALUES ('Best Ice Cream in town!', 5, 3, 12);
-INSERT INTO Review (ReviewText, Score, UserId, BusinessId) VALUES ('Id eat here any day!', 5, 7, 4);
-INSERT INTO Review (ReviewText, Score, UserId, BusinessId) VALUES ('Great food, long line!', 4, 6, 4);
-INSERT INTO Review (ReviewText, Score, UserId, BusinessId) VALUES ('This is a great business!', 4, 3, 19);
-INSERT INTO Review (ReviewText, Score, UserId, BusinessId) VALUES ('This is a great business!', 4, 2, 1);
-INSERT INTO Review (ReviewText, Score, UserId, BusinessId) VALUES ('I kind of like it.', 3, 3, 1);
-INSERT INTO Review (ReviewText, Score, UserId, BusinessId) VALUES ('My sandwhich was cold.', 4, 7, 17);
-INSERT INTO Review (ReviewText, Score, UserId, BusinessId) VALUES ('This is a great business!', 5, 2, 8);
-INSERT INTO Review (ReviewText, Score, UserId, BusinessId) VALUES ('This is a great business!', 5, 6, 8);
-INSERT INTO Review (ReviewText, Score, UserId, BusinessId) VALUES ('They have the meats!', 5, 10, 9);
-INSERT INTO Review (ReviewText, Score, UserId, BusinessId) VALUES ('I shop here every week.', 5, 11, 9);
+INSERT INTO Review (ReviewTitle, ReviewText, Score, UserId, BusinessId) VALUES ('Great Business', 'This is a great business!', 5, 1, 1);
+INSERT INTO Review (ReviewTitle, ReviewText, Score, UserId, BusinessId) VALUES ('Love the People', 'I love shopping here. Great people!', 5, 1, 6);
+INSERT INTO Review (ReviewTitle, ReviewText, Score, UserId, BusinessId) VALUES ('Great Service', 'They treat me great', 5, 1, 20);
+INSERT INTO Review (ReviewTitle, ReviewText, Score, UserId, BusinessId) VALUES ('I scream for icecream', 'Best Ice Cream in town!', 5, 3, 12);
+INSERT INTO Review (ReviewTitle, ReviewText, Score, UserId, BusinessId) VALUES ('Great Food', 'Id eat here any day!', 5, 7, 4);
+INSERT INTO Review (ReviewTitle, ReviewText, Score, UserId, BusinessId) VALUES ('They get busy.', 'Great food, long line!', 4, 6, 4);
+INSERT INTO Review (ReviewTitle, ReviewText, Score, UserId, BusinessId) VALUES ('Great Business', 'This is a great business!', 4, 3, 19);
+INSERT INTO Review (ReviewTitle, ReviewText, Score, UserId, BusinessId) VALUES ('Great Business', 'This is a great business!', 4, 2, 1);
+INSERT INTO Review (ReviewTitle, ReviewText, Score, UserId, BusinessId) VALUES ('Meh', 'I kind of like it.', 3, 3, 1);
+INSERT INTO Review (ReviewTitle, ReviewText, Score, UserId, BusinessId) VALUES ('Cold Food', 'My sandwhich was cold.', 4, 7, 17);
+INSERT INTO Review (ReviewTitle, ReviewText, Score, UserId, BusinessId) VALUES ('Great Business', 'This is a great business!', 5, 2, 8);
+INSERT INTO Review (ReviewTitle, ReviewText, Score, UserId, BusinessId) VALUES ('Great Business', 'This is a great business!', 5, 6, 8);
+INSERT INTO Review (ReviewTitle, ReviewText, Score, UserId, BusinessId) VALUES ('Love them meat!', 'They have the meats!', 5, 10, 9);
+INSERT INTO Review (ReviewTitle, ReviewText, Score, UserId, BusinessId) VALUES ('My Favorite Shop!', 'I shop here every week.', 5, 11, 9);

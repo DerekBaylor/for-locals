@@ -3,6 +3,7 @@ import BusinessIcon from '../Assets/BusinessIcon.png'
 import { getBusinessById } from '../Data/BusinessData';
 import { useParams } from 'react-router-dom';
 import BusinessDetailsCard from '../Components/BusinessDetailsCard';
+import ReviewForm from '../Components/ReviewForm';
 
 export default function BusinessDetails() {
   const [business, setBusiness] = useState({});
@@ -26,6 +27,7 @@ export default function BusinessDetails() {
         <div className='review-header'>User Reviews</div>
         <hr/>
         <div className="reivew-card-div">
+          <ReviewForm />
           <div>Review Cards</div>
         </div>
       </div>

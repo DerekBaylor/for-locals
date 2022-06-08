@@ -40,8 +40,16 @@ namespace for_locals.Controllers
         [HttpPost]
         public IActionResult AddReview(Review review)
         {
+            if (review == null)
+            {
+                return NotFound();
+            }
+            else
+            {
             _reviewRepository.AddReview(review);
             return Ok(review);
+
+            }
         }
 
         [HttpDelete("{ReviewId}")]

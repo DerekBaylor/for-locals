@@ -63,7 +63,7 @@ $local-green: #6B9749;
     display: flex;
     flex-direction: row;
     .featured-card-img{
-      max-width: 25rem;
+      max-width: 50%;
       border-radius: 1.5rem;
     }
     .card-body{
@@ -148,7 +148,7 @@ $local-green: #6B9749;
   justify-content: flex-start;
   align-items: center; 
   .business-img{
-    max-width: 50%;
+    max-width: 30%;
     min-width: 20rem;
     border-radius: 1.5rem;
   }
@@ -160,7 +160,7 @@ $local-green: #6B9749;
     flex-direction: column;
     justify-content: space-evenly;
     .bus-detail{
-      margin: 2rem;
+      margin: 1.5rem;
     }
   }
 }

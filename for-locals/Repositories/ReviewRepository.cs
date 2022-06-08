@@ -30,6 +30,7 @@ namespace for_locals.Repositories
                                         SELECT
                                         UserId, 
                                         BusinessId, 
+                                        ReviewTitle,
                                         ReviewText, 
                                         ImgUrl, 
                                         Score
@@ -44,6 +45,7 @@ namespace for_locals.Repositories
                         {
                             UserId = reader.GetInt32(reader.GetOrdinal("UserId")),
                             BusinessId = reader.GetInt32(reader.GetOrdinal("BusinessId")),
+                            ReviewTitle = reader.GetString(reader.GetOrdinal("ReviewTitle")),
                             ReviewText = reader.GetString(reader.GetOrdinal("ReviewText")),
                             ImgUrl = reader.GetString(reader.GetOrdinal("ImgUrl")),
                             Score = reader.GetInt32(reader.GetOrdinal("Score")),
@@ -67,6 +69,7 @@ namespace for_locals.Repositories
                                         SELECT
                                         UserId, 
                                         BusinessId, 
+                                        ReviewTitle,
                                         ReviewText, 
                                         ImgUrl, 
                                         Score
@@ -85,6 +88,7 @@ namespace for_locals.Repositories
                             {
                                 UserId = reader.GetInt32(reader.GetOrdinal("UserId")),
                                 BusinessId = reader.GetInt32(reader.GetOrdinal("BusinessId")),
+                                ReviewTitle = reader.GetString(reader.GetOrdinal("ReviewTitle")),
                                 ReviewText = reader.GetString(reader.GetOrdinal("ReviewText")),
                                 ImgUrl = reader.GetString(reader.GetOrdinal("ImgUrl")),
                                 Score = reader.GetInt32(reader.GetOrdinal("Score")),
@@ -110,12 +114,12 @@ namespace for_locals.Repositories
                 {
                     cmd.CommandText = @"
                                         INSERT INTO Review 
-                                        (UserId, BusinessId, ReviewText, ImgUrl, Score)
-                                        OUT INSERTED.ID
+                                        (UserId, BusinessId, ReviewTitle, ReviewText, ImgUrl, Score)
                                         VALUES (@UserId, @BusinessId, @ReviewText, @ImgUrl, @Score)
                                         ";
                     cmd.Parameters.AddWithValue("@UserId", review.UserId);
                     cmd.Parameters.AddWithValue("@BusinessId", review.BusinessId);
+                    cmd.Parameters.AddWithValue("@ReviewTitle", review.ReviewTitle);
                     cmd.Parameters.AddWithValue("@ReviewText", review.ReviewText);
                     cmd.Parameters.AddWithValue("@ImgUrl", review.ImgUrl);
                     cmd.Parameters.AddWithValue("@Score", review.Score);
@@ -153,7 +157,8 @@ namespace for_locals.Repositories
                     cmd.CommandText = @"
                                     SELECT
                                         UserId, 
-                                        BusinessId, 
+                                        BusinessId,
+                                        ReviewTitle,
                                         ReviewText, 
                                         ImgUrl, 
                                         Score
@@ -172,6 +177,7 @@ namespace for_locals.Repositories
                             {
                                 UserId = reader.GetInt32(reader.GetOrdinal("UserId")),
                                 BusinessId = reader.GetInt32(reader.GetOrdinal("BusinessId")),
+                                ReviewTitle = reader.GetString(reader.GetOrdinal("ReviewTitle")),
                                 ReviewText = reader.GetString(reader.GetOrdinal("ReviewText")),
                                 ImgUrl = reader.GetString(reader.GetOrdinal("ImgUrl")),
                                 Score = reader.GetInt32(reader.GetOrdinal("Score")),
