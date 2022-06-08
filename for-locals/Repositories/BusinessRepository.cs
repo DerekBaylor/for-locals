@@ -151,7 +151,6 @@ namespace for_locals.Repositories
                                         INSERT INTO Business
                                         (OwnerId, StateControlNum, BusinessName, Phone, Address, Description, Keywords,
                                         Industry, ImgUrl, WebUrl, ReviewScore, Verified)
-                                        OUTPUT INSERTED.ID
                                         VALUES (@OwnerId, @StateControlNum, @BusinessName, @Phone, @Address, @Description,       @Keywords, @Industry, @ImgUrl, @WebUrl, @ReviewScore, @Verified)
                                         ";
                     cmd.Parameters.AddWithValue("@OwnerId", business.OwnerId);
