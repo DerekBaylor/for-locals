@@ -164,3 +164,44 @@ $local-green: #6B9749;
     }
   }
 }
+
+.main-review-div{
+  .review-header{
+    font-weight: 800;
+  }
+  .hr{
+    width: 80%;
+    border: .05rem solid black;
+    margin: .3rem;
+  }
+  .form-container{
+    .form-group{
+      display: flex;
+      flex-direction: column;
+      .form-input{
+        min-width: 18rem;
+        max-width: 90%;
+      }
+      .text-input{
+        min-height: 4rem;
+
+      }
+    }
+  }
+}
+
+.review-card-container{
+  margin-top: 3rem;
+  .review-card{
+    display: flex;
+    flex-direction: row;
+    border-radius: 3rem;
+    margin: 1rem;
+    max-width: 90%;
+    .review-card-img{
+      max-width: 20%;
+      min-width: 20rem;
+      border-radius: 3rem;
+    }
+  }
+}

@@ -1,20 +1,27 @@
 import axios from "axios";
 
-const dbURL = "https://localhost:7058/api/Review";
+const dbUrl = "https://localhost:7058";
+// const dbUrl = "https://localhost:7058/api/Review";
 
-const addReview = (obj) => {
+const getReviewsByBusinessId = (businessId) =>
     new Promise ((resolve, reject) => {
         axios
-        .post(`${dbURL}`, obj).then(resolve).catch(reject);
+            .get(`${dbUrl}/busId/${businessId}`)
+            .then((response) => resolve(Object.values(response.data)))
+            .catch(reject);
     });
-};
+
+const addReview = (obj) =>
+    new Promise ((resolve, reject) => {
+        axios
+            .post(`${dbUrl}`, obj).then(resolve).catch(reject);
+    });
 
 //get review by id
-
-//get reviews by business id
 
 //delete review
 
 export {
-    addReview
+    getReviewsByBusinessId,
+    addReview,
 };
