@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import BusinessIcon from '../Assets/BusinessIcon.png'
 
-export default function BusinessCard({ card }) {
+export default function BusinessCard({card}) {
   return (
     <div className="business-card">
         <img className="card-img" src={BusinessIcon} alt="a business" />

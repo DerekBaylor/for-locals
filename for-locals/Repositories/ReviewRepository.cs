@@ -28,6 +28,7 @@ namespace for_locals.Repositories
                 {
                     cmd.CommandText = @"
                                         SELECT
+                                        ReviewId,
                                         UserId, 
                                         BusinessId, 
                                         ReviewTitle,
@@ -43,6 +44,7 @@ namespace for_locals.Repositories
                     {
                         Review review = new Review
                         {
+                            ReviewId = reader.GetInt32(reader.GetOrdinal("ReviewId")),
                             UserId = reader.GetInt32(reader.GetOrdinal("UserId")),
                             BusinessId = reader.GetInt32(reader.GetOrdinal("BusinessId")),
                             ReviewTitle = reader.GetString(reader.GetOrdinal("ReviewTitle")),
@@ -67,6 +69,7 @@ namespace for_locals.Repositories
                 {
                     cmd.CommandText = @"
                                         SELECT
+                                        ReviewId,
                                         UserId, 
                                         BusinessId, 
                                         ReviewTitle,
@@ -86,6 +89,7 @@ namespace for_locals.Repositories
                         {
                             Review review = new Review
                             {
+                                ReviewId = reader.GetInt32(reader.GetOrdinal("ReviewId")),
                                 UserId = reader.GetInt32(reader.GetOrdinal("UserId")),
                                 BusinessId = reader.GetInt32(reader.GetOrdinal("BusinessId")),
                                 ReviewTitle = reader.GetString(reader.GetOrdinal("ReviewTitle")),
@@ -114,9 +118,10 @@ namespace for_locals.Repositories
                 {
                     cmd.CommandText = @"
                                         INSERT INTO Review 
-                                        (UserId, BusinessId, ReviewTitle, ReviewText, ImgUrl, Score)
+                                        (ReviewId, UserId, BusinessId, ReviewTitle, ReviewText, ImgUrl, Score)
                                         VALUES (@UserId, @BusinessId, @ReviewText, @ImgUrl, @Score)
                                         ";
+                    cmd.Parameters.AddWithValue("@ReviewId", review.ReviewId);
                     cmd.Parameters.AddWithValue("@UserId", review.UserId);
                     cmd.Parameters.AddWithValue("@BusinessId", review.BusinessId);
                     cmd.Parameters.AddWithValue("@ReviewTitle", review.ReviewTitle);
@@ -156,6 +161,7 @@ namespace for_locals.Repositories
                 {
                     cmd.CommandText = @"
                                     SELECT
+                                        ReviewId,
                                         UserId, 
                                         BusinessId,
                                         ReviewTitle,
@@ -175,6 +181,7 @@ namespace for_locals.Repositories
                         {
                             Review review = new Review
                             {
+                                ReviewId = reader.GetInt32(reader.GetOrdinal("ReviewId")),
                                 UserId = reader.GetInt32(reader.GetOrdinal("UserId")),
                                 BusinessId = reader.GetInt32(reader.GetOrdinal("BusinessId")),
                                 ReviewTitle = reader.GetString(reader.GetOrdinal("ReviewTitle")),

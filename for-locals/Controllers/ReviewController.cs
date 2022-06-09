@@ -22,13 +22,13 @@ namespace for_locals.Controllers
             return _reviewRepository.GetAllReviews();
         }
 
-        [HttpGet("review/{BusinessId}")]
+        [HttpGet("/busId/{BusinessId}")]
         public List<Review> GetReviewsByBusinessId(int BusinessId)
         {
             return _reviewRepository.GetReviewsByBusinessId(BusinessId);
         }
 
-        [HttpGet("{ReviewId}")]
+        [HttpGet("/id/{ReviewId}")]
         public IActionResult Get(int ReviewId)
         {
             var review = _reviewRepository.GetReviewById(ReviewId);

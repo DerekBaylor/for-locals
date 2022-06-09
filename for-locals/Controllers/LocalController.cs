@@ -23,7 +23,7 @@ namespace for_locals.Controllers
             return _localRepository.GetAllLocals();
         }
 
-        [HttpGet("api/User/{UserId}")]
+        [HttpGet("id/{UserId}")]
         public IActionResult GetUserById(int UserId)
         {
             Local local = _localRepository.GetLocalById(UserId);
