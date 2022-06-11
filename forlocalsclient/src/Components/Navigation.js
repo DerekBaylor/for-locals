@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import ForLocalsLogo from '../Assets/ForLocalsLogo.png';
+import signOutUser from '../Data/auth';
 
 export default function Navigation({user}) {
   return (
@@ -34,17 +35,26 @@ export default function Navigation({user}) {
         <div className="nav-btn-div">
             {user ? ( 
                 <div>
-                <button className="btn nav-btn btn-outline-success">
+                <button 
+                    className="btn nav-btn btn-outline-success"
+                    onClick={signOutUser}
+                >
                     LOG OUT
                 </button>
-                <button className="btn nav-btn btn-success">
+                <button 
+                   className="btn nav-btn btn-success"
+                   to="/businessProfile"
+                >
                     REGISTER
                 </button>
                 </div>
             ) : ( 
-                <button className="btn nav-btn btn-outline-success">
+                <Link 
+                    className="btn nav-btn btn-outline-success"
+                    to="/login"
+                >
                     LOGIN
-                </button>
+                </Link>
             )}
         </div>
     </nav>

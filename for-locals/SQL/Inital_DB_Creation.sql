@@ -1,17 +1,18 @@
 ﻿USE ForLocals
 GO
 
-DROP TABLE IF EXISTS Locals;
-DROP TABLE IF EXISTS Business;
-DROP TABLE IF EXISTS Review;
+DROP TABLE Locals;
+DROP TABLE Business;
+DROP TABLE Review;
 
 CREATE TABLE Locals (
         UserId INT NOT NULL PRIMARY KEY IDENTITY,
         [Name] VARCHAR(255) DEFAULT '',
+        Email VARCHAR(100) Default '',
         ImgUrl VARCHAR(500) DEFAULT 'https://wgfuljukrcejubfajlyl.supabase.co/storage/v1/object/sign/images/BlankProfileImage.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZXMvQmxhbmtQcm9maWxlSW1hZ2UucG5nIiwiaWF0IjoxNjUzNDQyNzUxLCJleHAiOjE5Njg4MDI3NTF9.aXoYRONxtL6QujRWGV7fweD34R7x-tnW1CIbz78I3a0' NOT NULL,
         Bio VARCHAR(255) DEFAULT 'Hello World' NOT NULL,
         IsAdmin CHAR(1) DEFAULT 'N' NOT NULL,
-        FirebaseKey VARCHAR(255) DEFAULT 'MockFBaseKey' NOT NULL,
+        FirebaseKey VARCHAR(255) NOT NULL,
 );
 
 CREATE TABLE Business (
@@ -42,26 +43,26 @@ CREATE TABLE Review (
 );
 
 -- Mock User Data
-INSERT INTO Locals ([Name], Bio, IsAdmin) VALUES ('Derek B', 'Im the admin. Welcome to the site!','Y');
-INSERT INTO Locals ([Name], Bio) VALUES ('John Smith', 'I am the owner of Pick Tennessee!');
-INSERT INTO Locals ([Name], Bio) VALUES ('Kix Brooks', 'I am the owner of Arrington Vineyards!');
-INSERT INTO Locals ([Name], Bio) VALUES ('Karen Hayes', 'I am the owner of Parnassus Books!');
-INSERT INTO Locals ([Name], Bio) VALUES ('Doug', 'I am the owner of Gabbys Bugers!');
-INSERT INTO Locals ([Name], Bio) VALUES ('Jeremiah Steinhauer', 'I am the owner of Pheonix Massage!');
-INSERT INTO Locals ([Name], Bio) VALUES ('Ron', 'I am the owner of The Game Keep!');
-INSERT INTO Locals ([Name], Bio) VALUES ('Carol Hagen', 'I am the owner of Queen Bee!');
-INSERT INTO Locals ([Name], Bio) VALUES ('David Mitchell', 'I am the owner of Mitchell Delicatessen!');
-INSERT INTO Locals ([Name], Bio) VALUES ('Revi Shetkar', 'I am the owner of Woodlands!');
-INSERT INTO Locals ([Name], Bio) VALUES ('Nan Nelson', 'I am the owner of the Loft Salon!');
-INSERT INTO Locals ([Name], Bio) VALUES ('Austin Reese', 'I am the owner of Corsair Distillery!');
-INSERT INTO Locals ([Name], Bio) VALUES ('Mike', 'I am the owner of Mikes Ice Cream & Coffee Bar!');
-INSERT INTO Locals ([Name], Bio) VALUES ('Joel Larabell', 'I am the owner of High Garden Tea!');
-INSERT INTO Locals ([Name], Bio) VALUES ('Gunner', 'I am the owner of Gunners Glass Recycling!');
-INSERT INTO Locals ([Name], Bio) VALUES ('Brandi Soda', 'I am the owner of The Filling Station!');
-INSERT INTO Locals ([Name], Bio) VALUES ('Edward Rice', 'I am the owner of Rices County Hams!');
-INSERT INTO Locals ([Name], Bio) VALUES ('Ed', 'I am the owner of 8th & Roast!');
-INSERT INTO Locals ([Name], Bio) VALUES ('Barry Burnette', 'I am the owner of The Produce Place!');
-INSERT INTO Locals ([Name], Bio) VALUES ('Meg Raj', 'I am the owner of Recycle Nash!');
+INSERT INTO Locals ([Name], Email, Bio, IsAdmin, FirebaseKey) VALUES ('Derek B', 'dbaylor25@gmail.com', 'Im the admin. Welcome to the site!','Y', 'Js0JmwyFZjgqbqrMnLavrsUB0B32');
+INSERT INTO Locals ([Name], Email, Bio, FirebaseKey) VALUES ('John Smith', 'john@forlocals.com','I am the owner of Pick Tennessee!','3BmdIm3F9GZmm0UBnH2ADGNljhu2');
+INSERT INTO Locals ([Name], Email, Bio, FirebaseKey) VALUES ('Kix Brooks', 'kix@forlocals.com','I am the owner of Arrington Vineyards!', '7vUgp5uOGoQYIAcqQlUMx1E6RbC2');
+INSERT INTO Locals ([Name], Email, Bio, FirebaseKey) VALUES ('Karen Hayes', 'karen@forlocals.com','I am the owner of Parnassus Books!', 'HRQXSE97G5N1KrvyTEjkkdDbv3G3');
+INSERT INTO Locals ([Name], Email, Bio, FirebaseKey) VALUES ('Doug', 'doug@forlocals.com','I am the owner of Gabbys Bugers!', 'WVsOfVUcQVXoCHs0TXBJMthdbdV2');
+INSERT INTO Locals ([Name], Email, Bio, FirebaseKey) VALUES ('Jeremiah Steinhauer', 'jeremiah@forlocals.com','I am the owner of Pheonix Massage!', 'u8aMHDzCyAXb9G9xl81EEPbk3sC2');
+INSERT INTO Locals ([Name], Email, Bio, FirebaseKey) VALUES ('Ron', 'ron@forlocals.com','I am the owner of The Game Keep!' ,'72qLtEPpmSP0TRdVX6GTwqU29zl2');
+INSERT INTO Locals ([Name], Email, Bio, FirebaseKey) VALUES ('Carol Hagen', 'carol@forlocals.com','I am the owner of Queen Bee!', 'ZKBIsMcdJmPNyGrnoHm1HCdtexs1');
+INSERT INTO Locals ([Name], Email, Bio, FirebaseKey) VALUES ('David Mitchell', 'david@forlocals.com','I am the owner of Mitchell Delicatessen!', 'beLGloSSUwVqOxna63LxKWIafGU2');
+INSERT INTO Locals ([Name], Email, Bio, FirebaseKey) VALUES ('Revi Shetkar', 'revi@forlocals.com','I am the owner of Woodlands!', '8Rb7yIs2WdXZmwCocX9no9CpyLA2');
+INSERT INTO Locals ([Name], Email, Bio, FirebaseKey) VALUES ('Nan Nelson', 'nan@forlocals.com','I am the owner of the Loft Salon!' ,'pVLgX34GJVam68za2qQt0UI4p8D2');
+INSERT INTO Locals ([Name], Email, Bio, FirebaseKey) VALUES ('Austin Reese', 'austin@forlocals.com','I am the owner of Corsair Distillery!' ,'tDF74APvazWAbPfa8EY2OnXGYur1');
+INSERT INTO Locals ([Name], Email, Bio, FirebaseKey) VALUES ('Mike', 'mike@forlocals.com','I am the owner of Mikes Ice Cream & Coffee Bar!', 'x2zUvLuTZ5Vm7MSDOckVSVJj1bu2');
+INSERT INTO Locals ([Name], Email, Bio, FirebaseKey) VALUES ('Joel Larabell', 'joel@forlocals.com','I am the owner of High Garden Tea!', 'aaIrLfDUbXeXMGEtjblOkZS309x1');
+INSERT INTO Locals ([Name], Email, Bio, FirebaseKey) VALUES ('Gunner', 'gunner@forlocals.com','I am the owner of Gunners Glass Recycling!' ,'gr5YuqIyLReth8sq6il2CioUWQj1');
+INSERT INTO Locals ([Name], Email, Bio, FirebaseKey) VALUES ('Brandi Soda', 'brandi@forlocals.com','I am the owner of The Filling Station!', 'R4oqyyaenYShvGDZukCUnra0rMY2');
+INSERT INTO Locals ([Name], Email, Bio, FirebaseKey) VALUES ('Edward Rice', 'edward@forlocals.com','I am the owner of Rices County Hams!', 'WxeV0OAvM8aCpc8TDzZBalUF1NZ2');
+INSERT INTO Locals ([Name], Email, Bio, FirebaseKey) VALUES ('Ed', 'ed@forlocals.com','I am the owner of 8th & Roast!', 'ejcmiPhpcsaxqrKg7yFtXby93iW2');
+INSERT INTO Locals ([Name], Email, Bio, FirebaseKey) VALUES ('Barry Burnette', 'barry@forlocals.com','I am the owner of The Produce Place!', 'NFX2ejnX65eWInWMBrf9X81wRyV2');
+INSERT INTO Locals ([Name], Email, Bio, FirebaseKey) VALUES ('Meg Raj', 'meg@forlocals.com','I am the owner of Recycle Nash!', 'F2FTyqZgWRe9N4phzGnQHpubVuT2');
 
 -- Mock Business Data
 INSERT INTO Business (StateControlNum, BusinessName, [Address], Keywords, Industry,Verified, OwnerId) VALUES ('000607957', 'Pick Tennessee Conference','6290 McDaniel Rd. College Grove, TN 37046', 'Agriculture, Farming', 'Agriculture', 'Y', 2);
