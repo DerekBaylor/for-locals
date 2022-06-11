@@ -29,6 +29,7 @@ namespace for_locals.Repositories
                     cmd.CommandText = @"
                                        SELECT
                                        [Name],
+                                       Email,
                                        UserId,
                                        ImgUrl,
                                        Bio,
@@ -44,6 +45,7 @@ namespace for_locals.Repositories
                         Local local = new Local
                         {
                             Name = reader.GetString(reader.GetOrdinal("Name")),
+                            Email = reader.GetString(reader.GetOrdinal("Email")),
                             UserId = reader.GetInt32(reader.GetOrdinal("UserId")),
                             ImgUrl = reader.GetString(reader.GetOrdinal("ImgUrl")),
                             Bio = reader.GetString(reader.GetOrdinal("Bio")),
@@ -69,6 +71,7 @@ namespace for_locals.Repositories
                     cmd.CommandText = @"
                                        SELECT
                                        [Name],
+                                       Email,
                                        UserId,
                                        ImgUrl,
                                        Bio,
@@ -88,6 +91,7 @@ namespace for_locals.Repositories
                             Local local = new Local
                             {
                                 Name = reader.GetString(reader.GetOrdinal("Name")),
+                                Email = reader.GetString(reader.GetOrdinal("Email")),
                                 UserId = reader.GetInt32(reader.GetOrdinal("UserId")),
                                 ImgUrl = reader.GetString(reader.GetOrdinal("ImgUrl")),
                                 Bio = reader.GetString(reader.GetOrdinal("Bio")),
@@ -139,10 +143,11 @@ namespace for_locals.Repositories
                     cmd.CommandText = @"
                                         UPDATE Locals
                                         SET
-                                        [Name], ImgUrl, Bio,
+                                        [Name], Email, ImgUrl, Bio,
                                         Where FirebaseKey = @firebasekey
                                         ";
                     cmd.Parameters.AddWithValue("@name", local.Name);
+                    cmd.Parameters.AddWithValue("@email", local.Email);
                     cmd.Parameters.AddWithValue("@imgurl", local.ImgUrl);
                     cmd.Parameters.AddWithValue("@bio", local.Bio);
 
@@ -176,7 +181,7 @@ namespace for_locals.Repositories
                 {
                     cmd.CommandText = @"
                                         SELECT
-                                        [Name], UserId, ImgUrl, Bio, IsAdmin,FirebaseKey
+                                        [Name], Email, UserId, ImgUrl, Bio, IsAdmin,FirebaseKey
                                         FROM Locals WHERE FirebaseKey = @firebasekey";
 
                     cmd.Parameters.AddWithValue("@firebasekey", firebasekey);
@@ -188,6 +193,7 @@ namespace for_locals.Repositories
                         Local local = new Local
                         {
                             Name = reader.GetString(reader.GetOrdinal("Name")),
+                            Email = reader.GetString(reader.GetOrdinal("Email")),
                             UserId = reader.GetInt32(reader.GetOrdinal("UserId")),
                             ImgUrl = reader.GetString(reader.GetOrdinal("ImgUrl")),
                             Bio = reader.GetString(reader.GetOrdinal("Bio")),

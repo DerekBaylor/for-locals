@@ -38,10 +38,10 @@ namespace for_locals.Controllers
         }
 
         [Authorize]
-        [HttpGet("{firebasekey}")]
-        public IActionResult GetLocalByFirebaseKey(string firebasekey)
+        [HttpGet("{FirebaseKey}")]
+        public IActionResult GetLocalByFirebaseKey(string firebaseKey)
         {
-            var currentLocal = _localRepository.GetLocalByFirebaseKey(firebasekey);
+            var currentLocal = _localRepository.GetLocalByFirebaseKey(firebaseKey);
             if (currentLocal == null)
             {
                 return NotFound();
@@ -50,6 +50,19 @@ namespace for_locals.Controllers
             {
                 return Ok(currentLocal);
             }
+        }
+
+        [Authorize]
+        [HttpGet("DoesUserExist/{FirebaseKey}")]
+        public IActionResult DoesUserExist(string firebaseKey)
+        {
+            var matchingBuyer = _localRepository.GetLocalByFirebaseKey(firebaseKey);
+            if (matchingBuyer == null)
+            {
+                return NotFound();
+            }
+
+            return Ok();
         }
 
         [Authorize]
@@ -82,9 +95,9 @@ namespace for_locals.Controllers
 
         [Authorize]
         [HttpDelete("{firebasekey}")]
-        public IActionResult Delete(string firebasekey)
+        public IActionResult Delete(string firebaseKey)
         {
-            var currentLocal = _localRepository.GetLocalByFirebaseKey(firebasekey);
+            var currentLocal = _localRepository.GetLocalByFirebaseKey(firebaseKey);
             if (currentLocal == null)
             {
                 return NotFound();
