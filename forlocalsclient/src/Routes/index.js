@@ -7,7 +7,7 @@ import LocalProfile from '../Views/LocalProfile';
 import Login from '../Views/Login';
 import Search from '../Views/Search';
 
-export default function Routing(){
+export default function Routing({local}){
     return(
         <>
             <Routes>

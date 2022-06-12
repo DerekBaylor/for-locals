@@ -11,7 +11,7 @@ export default function Login() {
     const loginSubmit = (e) => {
         e.preventDefault();
         LoginLocal(email, password)
-            .then(() => navigate("/"))
+            .then(() => navigate("/localProfile"))
             .catch(() => alert("Login Failed"));
     };
 

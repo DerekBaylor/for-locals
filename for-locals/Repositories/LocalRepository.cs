@@ -27,14 +27,7 @@ namespace for_locals.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                                       SELECT
-                                       [Name],
-                                       Email,
-                                       UserId,
-                                       ImgUrl,
-                                       Bio,
-                                       IsAdmin,
-                                       FirebaseKey 
+                                       SELECT *
                                        FROM Locals";
 
                     SqlDataReader reader = cmd.ExecuteReader();
@@ -69,14 +62,7 @@ namespace for_locals.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                                       SELECT
-                                       [Name],
-                                       Email,
-                                       UserId,
-                                       ImgUrl,
-                                       Bio,
-                                       IsAdmin,
-                                       FirebaseKey 
+                                       SELECT *
                                        FROM Locals
                                        WHERE UserId = @UserId";
 
@@ -109,6 +95,44 @@ namespace for_locals.Repositories
                 }
             }
         }
+        public Local GetLocalByFirebaseKey(string firebaseKey)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                                        SELECT *
+                                        FROM Locals 
+                                        WHERE FirebaseKey = @firebaseKey";
+
+                    cmd.Parameters.AddWithValue("@firebaseKey", firebaseKey);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    
+                        if (reader.Read())
+                        {
+                            Local local = new Local
+                            {
+                                Name = reader.GetString(reader.GetOrdinal("Name")),
+                                Email = reader.GetString(reader.GetOrdinal("Email")),
+                                UserId = reader.GetInt32(reader.GetOrdinal("UserId")),
+                                ImgUrl = reader.GetString(reader.GetOrdinal("ImgUrl")),
+                                Bio = reader.GetString(reader.GetOrdinal("Bio")),
+                                IsAdmin = reader.GetString(reader.GetOrdinal("IsAdmin")),
+                                FirebaseKey = reader.GetString(reader.GetOrdinal("FirebaseKey")),
+                            };
+                            return local;
+                        }
+                        else
+                        {
+                            return null;
+                        }
+                    
+                }
+            }
+        }
 
         public void AddLocal(Local local)
         {
@@ -118,13 +142,16 @@ namespace for_locals.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                                        INSERT INTO Locals ([Name], ImgUrl, Bio, FirebaseKey)
+                                        INSERT INTO Locals ([Name], Email, UserId, ImgUrl, Bio, isAdmin, FirebaseKey)
                                         OUTPUT INSERTED.ID
-                                        VALUES (@name, @imgurl, @bio, @firebasekey)
+                                        VALUES (@name, @email, @imgurl, @bio, @firebasekey)
                                         ";
                     cmd.Parameters.AddWithValue("@name", local.Name);
+                    cmd.Parameters.AddWithValue("@email", local.Email);
+                    cmd.Parameters.AddWithValue("@userId", local.UserId);
                     cmd.Parameters.AddWithValue("@imgurl", local.ImgUrl);
                     cmd.Parameters.AddWithValue("@bio", local.Bio);
+                    cmd.Parameters.AddWithValue("@isAdmin", local.IsAdmin);
                     cmd.Parameters.AddWithValue("@firebasekey", local.FirebaseKey);
 
                     int UserId = (int)cmd.ExecuteScalar();
@@ -172,45 +199,5 @@ namespace for_locals.Repositories
             }
         }
 
-        public Local GetLocalByFirebaseKey(string firebasekey)
-        {
-            using (SqlConnection conn = Connection)
-            {
-                conn.Open();
-                using (SqlCommand cmd = conn.CreateCommand())
-                {
-                    cmd.CommandText = @"
-                                        SELECT
-                                        [Name], Email, UserId, ImgUrl, Bio, IsAdmin,FirebaseKey
-                                        FROM Locals WHERE FirebaseKey = @firebasekey";
-
-                    cmd.Parameters.AddWithValue("@firebasekey", firebasekey);
-
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    if (reader.Read())
-                    {
-                        Local local = new Local
-                        {
-                            Name = reader.GetString(reader.GetOrdinal("Name")),
-                            Email = reader.GetString(reader.GetOrdinal("Email")),
-                            UserId = reader.GetInt32(reader.GetOrdinal("UserId")),
-                            ImgUrl = reader.GetString(reader.GetOrdinal("ImgUrl")),
-                            Bio = reader.GetString(reader.GetOrdinal("Bio")),
-                            IsAdmin = reader.GetString(reader.GetOrdinal("IsAdmin")),
-                            FirebaseKey = reader.GetString(reader.GetOrdinal("FirebaseKey")),
-                        };
-
-                        reader.Close();
-                        return local;
-                    }
-                    else
-                    {
-                        reader.Close();
-                        return null;
-                    }
-                }
-            }
-        }
     }
 }
