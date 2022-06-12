@@ -1,10 +1,9 @@
 import React from "react";
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import ForLocalsLogo from '../Assets/ForLocalsLogo.png';
 import signOutUser from '../Data/auth';
 
-export default function Navigation({user}) {
+export default function Navigation({local}) {
   return (
     <nav className="navbar fixed-top navbar-light">
         <ul className="navbar-nav nav-ul">
@@ -33,7 +32,7 @@ export default function Navigation({user}) {
             </li>
         </ul>
         <div className="nav-btn-div">
-            {user ? ( 
+            {local ? ( 
                 <div>
                 <button 
                     className="btn nav-btn btn-outline-success"

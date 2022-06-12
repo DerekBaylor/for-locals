@@ -37,27 +37,27 @@ namespace for_locals.Controllers
             }
         }
 
-        [Authorize]
-        [HttpGet("{FirebaseKey}")]
+        [HttpGet("{firebaseKey}")]
         public IActionResult GetLocalByFirebaseKey(string firebaseKey)
         {
-            var currentLocal = _localRepository.GetLocalByFirebaseKey(firebaseKey);
-            if (currentLocal == null)
+            Local local = _localRepository.GetLocalByFirebaseKey(firebaseKey);
+            //var local = _localRepository.GetLocalByFirebaseKey(firebaseKey);
+            if (local == null)
             {
                 return NotFound();
             }
             else
             {
-                return Ok(currentLocal);
+                return Ok(local);
             }
         }
 
-        [Authorize]
-        [HttpGet("DoesUserExist/{FirebaseKey}")]
+
+        [HttpGet("DoesUserExist/{firebaseKey}")]
         public IActionResult DoesUserExist(string firebaseKey)
         {
-            var matchingBuyer = _localRepository.GetLocalByFirebaseKey(firebaseKey);
-            if (matchingBuyer == null)
+            var local = _localRepository.GetLocalByFirebaseKey(firebaseKey);
+            if (local == null)
             {
                 return NotFound();
             }

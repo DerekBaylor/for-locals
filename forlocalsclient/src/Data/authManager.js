@@ -7,11 +7,11 @@ const _apiUrl = "https://localhost:7058/api/Local/";
 const _doesUserExist = (firebaseKey) => {
     return getToken().then((token) =>
         fetch(`${_apiUrl}DoesUserExist/${firebaseKey}`, {
-            method: "GET",
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then(resp => resp.ok));
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }).then(resp => resp.ok));
 };
 
 export const getToken = () => {
@@ -22,12 +22,11 @@ export const getToken = () => {
     return currentUser.getIdToken();
 };
 
-export const LoginLocal = (email, pw) => {
-    return firebase.auth().signInWithEmailAndPassword(email, pw)
-        .then((signInResponse) => _doesUserExist(signInResponse.user.uid))
+export const LoginLocal = (email, password) => {
+    return firebase.auth().signInWithEmailAndPassword(email, password)
+    .then((signInResponse) => _doesUserExist(signInResponse.user.uid))
         .then((doesUserExist) => {
             if (!doesUserExist) {
-
                 logout();
 
                 throw new Error("The user exists in firebase, but not in the application database.");

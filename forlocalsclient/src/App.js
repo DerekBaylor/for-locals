@@ -1,39 +1,44 @@
-import Navigation from "./Components/Navigation";
-import Routing from "./Routes";
 import { useEffect, useState } from 'react';
-import firebase from 'firebase/compat/app';
-import { onLoginStatusChange } from "./Data/authManager";
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { getLocals } from "./Data/LocalData";
+import { onLoginStatusChange } from "./Data/authManager";
+import Routing from "./Routes";
+import { getLocalById } from "./Data/LocalData";
+import Navigation from "./Components/Navigation";
 import { Spinner } from 'reactstrap';
+import firebase from 'firebase/compat/app';
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_API_KEY,
-};
-firebase.initializeApp(firebaseConfig);
+  };
+  firebase.initializeApp(firebaseConfig);
 
 function App() {
-    const [local, setLocal] = useState(null);
+    const [loggedIn, setLoggedIn] = useState(null);
+    const [isAdmin, setIsAdmin] = useState(false);
 
     useEffect(() => {
-        onLoginStatusChange(setLocal);
+        onLoginStatusChange(setLoggedIn);
 
         const auth = getAuth();
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                getLocals(user.uid).then(() => {
-                    if (user.isLoggedIn === null) {
-                        return <Spinner className="app-spinner light" />;
+                getLocalById(user.UserId).then((local) => {
+                    if (local.isAdmin === "Y") {
+                        setIsAdmin(true);
                     }
-                })
+                });
             }
         });
     }, []);
+    
+    if (loggedIn === null) {
+        return <Spinner className="app-spinner dark"/>;
+      }
 
     return (
         <div>
-            <Navigation lcoal={local} />
-            <Routing local={local} />
+            <Navigation local={loggedIn} />
+            <Routing local={loggedIn} admin={isAdmin} />
         </div>
     );
 }
