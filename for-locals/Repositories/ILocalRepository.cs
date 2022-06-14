@@ -12,5 +12,6 @@ namespace for_locals.Repositories
         void AddLocal(Local local);
         void UpdateLocal(Local local);
         void DeleteLocal(string firebasekey);
+        public bool LocalExists(string firebasekey);
     }
 }

@@ -9,5 +9,6 @@
         public string Bio { get; set; }
         public string IsAdmin { get; set; }
         public string FirebaseKey { get; set; }
+
     }
 }

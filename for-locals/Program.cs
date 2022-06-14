@@ -1,11 +1,11 @@
 using for_locals.Repositories;
+using FirebaseAdmin;
+using Google.Apis.Auth.OAuth2;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-var firebaseProjectId = builder.Configuration.GetValue<string>("FirebaseProjectId");
-var googleTokenUrl = $"https://securetoken.google.com/{firebaseProjectId}";
 
 // Add services to the container.
 
@@ -18,9 +18,29 @@ builder.Services.AddCors(options =>
                        });
 });
 
+
+
+builder.Services.AddControllers();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+builder.Services.AddTransient<ILocalRepository, LocalRepository>();
+builder.Services.AddTransient<IBusinessRepository, BusinessRepository>();
+builder.Services.AddTransient<IReviewRepository, ReviewRepository>();
+
+
+// Firebase Authentication
+var firebaseProjectId = builder.Configuration.GetValue<string>("FirebaseProjectId");
+var googleTokenUrl = $"https://securetoken.google.com/{firebaseProjectId}";
+var FirebaseSDKPath = builder.Configuration["FirebaseSDKPath"];
+
+FirebaseApp.Create(new AppOptions()
+{
+    Credential = GoogleCredential.FromFile(FirebaseSDKPath)
+});
+
 builder.Services
-    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
+    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
     {
         options.Authority = googleTokenUrl;
         options.TokenValidationParameters = new TokenValidationParameters
@@ -32,14 +52,6 @@ builder.Services
             ValidateLifetime = true
         };
     });
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.AddTransient<ILocalRepository, LocalRepository>();
-builder.Services.AddTransient<IBusinessRepository, BusinessRepository>();
-builder.Services.AddTransient<IReviewRepository, ReviewRepository>();
 
 var app = builder.Build();
 

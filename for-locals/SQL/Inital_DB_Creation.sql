@@ -9,7 +9,7 @@ CREATE TABLE Locals (
         UserId INT NOT NULL PRIMARY KEY IDENTITY,
         [Name] VARCHAR(255) DEFAULT '',
         Email VARCHAR(100) Default '',
-        ImgUrl VARCHAR(500) DEFAULT 'https://wgfuljukrcejubfajlyl.supabase.co/storage/v1/object/sign/images/BlankProfileImage.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZXMvQmxhbmtQcm9maWxlSW1hZ2UucG5nIiwiaWF0IjoxNjUzNDQyNzUxLCJleHAiOjE5Njg4MDI3NTF9.aXoYRONxtL6QujRWGV7fweD34R7x-tnW1CIbz78I3a0' NOT NULL,
+        ImgUrl VARCHAR(500) DEFAULT 'https://zfjepfckphrvbatmvyud.supabase.co/storage/v1/object/sign/for-locals-img/BlankProfileImg.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJmb3ItbG9jYWxzLWltZy9CbGFua1Byb2ZpbGVJbWcucG5nIiwiaWF0IjoxNjU1MTY0ODc5LCJleHAiOjE5NzA1MjQ4Nzl9.tFYCMfkFr2wU3a2by288dXBiVuIeDa7VLW_FO7DN2_U' NOT NULL,
         Bio VARCHAR(255) DEFAULT 'Hello World' NOT NULL,
         IsAdmin CHAR(1) DEFAULT 'N' NOT NULL,
         FirebaseKey VARCHAR(255) NOT NULL,
@@ -84,6 +84,7 @@ INSERT INTO Business (StateControlNum, BusinessName, [Address], Keywords, Indust
 INSERT INTO Business (StateControlNum, BusinessName, [Address], Keywords, Industry,Verified, OwnerId, WebUrl) VALUES ('000930352', '8th & Roast','2108A 8th Ave S Nashville, TN 37204 ', 'Coffe, Wholesale, Cafe', 'Food & Beverage', 'Y', 18, 'https://www.8thandroast.com/');
 INSERT INTO Business (StateControlNum, BusinessName, [Address], Keywords, Industry,Verified, OwnerId, WebUrl) VALUES ('000253436', 'The Produce Place','4000 Murphy Rd Nashville, TN 37209 ', 'Produce, Groceries, Market', 'Food & Beverage', 'Y', 19, 'https://produceplace.com/');
 INSERT INTO Business (StateControlNum, BusinessName, [Address], Keywords, Industry,Verified, OwnerId, WebUrl) VALUES ('000205000', 'Recycle Nash','5025 Hillsboro #171 Rd Nashville, TN 37215 ', 'Recycling, Glass, Pickup', 'Sanitation', 'Y', 20, 'http://www.recyclenash.com/home.html')
+INSERT INTO Business (StateControlNum, BusinessName, [Address], Keywords, Industry,Verified, OwnerId, WebUrl) VALUES ('000000005', 'For Locals','123 ABC Ave Nashville, TN 37215 ', 'Locals, Web, Internet Search', 'Tech', 'Y', 1, 'http://www.for-locals.com/')
 
 -- Mock Review Data
 INSERT INTO Review (ReviewTitle, ReviewText, Score, UserId, BusinessId) VALUES ('Great Business', 'This is a great business!', 5, 1, 1);

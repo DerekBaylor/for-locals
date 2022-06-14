@@ -13,6 +13,7 @@ export default function Search() {
   return (
     <div className='main-body-div'>
     <div className='navbar-spacing'></div>
+    <div className='navbar-spacing'></div>
     <div className='search-bar-div'>
       <SerachBar data={businessData} />
     </div>

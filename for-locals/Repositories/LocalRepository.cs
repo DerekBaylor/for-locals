@@ -199,5 +199,34 @@ namespace for_locals.Repositories
             }
         }
 
+        public bool LocalExists(string firebaseKey)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                                       SELECT *
+                                       FROM Locals
+                                       WHERE FirebaseKey = @firebaseKey";
+                    cmd.Parameters.AddWithValue("@firebaseKey", firebaseKey);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        reader.Close();
+                        return false;
+                    }
+
+                }
+            }
+        }
+
     }
 }

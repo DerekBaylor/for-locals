@@ -15,7 +15,7 @@ export default function Home() {
     <div className='main-body-div'>
       <div className='navbar-spacing'></div>
       <div className='featured-card-div card-div'>
-      <FeatureBusinessCard bus={featBusiness} /> 
+      <FeatureBusinessCard featBus={featBusiness} /> 
     </div>
   </div>
   )
