@@ -15,7 +15,6 @@ export default function BusinessDetails() {
   useEffect(() => {
     getBusinessById(key).then(setBusiness)
     getReviewsByBusinessId(key).then(setReviews)
-    getReviewsByBusinessId(key).then(console.warn)
   }, []);
 
 

@@ -11,5 +11,6 @@ namespace for_locals.Repositories
         void AddBusiness(Business business);
         void UpdateBusiness(Business business);
         void DeleteBusiness(int BusinessId);
+        Business GetBusinessByOwnerId(int OwnerId);
     }
 }

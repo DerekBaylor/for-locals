@@ -1,44 +1,41 @@
-import { useEffect, useState } from 'react';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { onLoginStatusChange } from "./Data/authManager";
+import React, { useEffect, useState } from 'react';
+import { auth } from "./Data/apiKeys"
 import Routing from "./Routes";
-import { getLocalById } from "./Data/LocalData";
 import Navigation from "./Components/Navigation";
-import { Spinner } from 'reactstrap';
-import firebase from 'firebase/compat/app';
-
-const firebaseConfig = {
-    apiKey: process.env.REACT_APP_API_KEY,
-  };
-  firebase.initializeApp(firebaseConfig);
+import { doesLocalExist } from "./Data/authManager";
+import { getLocalByFKey } from './Data/LocalData';
 
 function App() {
-    const [loggedIn, setLoggedIn] = useState(null);
     const [isAdmin, setIsAdmin] = useState(false);
+    const [local, setLocal] = useState({});
+
+    const checkForAdmin = () => {
+      getLocalByFKey()
+      if (local.isAdmin === "Y") {
+          setIsAdmin(true);
+      } else {
+          setIsAdmin(false);
+      }
+    };
+
 
     useEffect(() => {
-        onLoginStatusChange(setLoggedIn);
-
-        const auth = getAuth();
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                getLocalById(user.UserId).then((local) => {
-                    if (local.isAdmin === "Y") {
-                        setIsAdmin(true);
-                    }
-                });
-            }
-        });
+      auth.onAuthStateChanged((authed) => {
+        if(authed) {
+          sessionStorage.setItem("token", authed.accessToken);
+          sessionStorage.setItem("firebaseKey", authed.uid);
+          doesLocalExist(authed.accessToken).then(getLocalByFKey(local.firebaseKey).then(setLocal));
+        } else {
+          setLocal(null);
+          setIsAdmin(false);
+        }
+      });
     }, []);
     
-    if (loggedIn === null) {
-        return <Spinner className="app-spinner dark"/>;
-      }
-
     return (
         <div>
-            <Navigation local={loggedIn} />
-            <Routing local={loggedIn} admin={isAdmin} />
+            <Navigation local={local} />
+            <Routing local={local} admin={isAdmin} />
         </div>
     );
 }

@@ -1,47 +1,38 @@
-import React, { useState } from 'react';
-import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
-import { Link, useNavigate } from 'react-router-dom';
-import { LoginLocal } from '../Data/authManager';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
+import { signInUser } from '../Data/authManager';
 
 export default function Login() {
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
     const navigate = useNavigate();
+    const firebaseKey = sessionStorage.getItem("uid")
 
-    const loginSubmit = (e) => {
-        e.preventDefault();
-        LoginLocal(email, password)
-            .then(() => navigate("/localProfile"))
-            .catch(() => alert("Login Failed"));
-    };
+    const handleClick = (e) => {
+        signInUser();
+        // navigate(`/localProfile/${firebaseKey}`);
+        navigate(`/`);
+      }
 
     return (
-        <div className="main-body-div">
-            <div className='navbar-spacing'></div>
-            <div className="login-form-container">
-                <h1> Hi! Please Login </h1>
-                <Form onSubmit={loginSubmit}>
-                    <fieldset>
-                        <FormGroup>
-                            <Label for="login-email">Email
-                            </Label>
-                            <Input id="login-email" type="text" autoFocus onChange={e => setEmail(e.target.value)} />
-                        </FormGroup>
-                        <FormGroup>
-                            <Label for="login-password">Password
-                            </Label>
-                            <Input id="login-password" type="password" autoFocus onChange={e => setPassword(e.target.value)} />
-                        </FormGroup>
-                        <FormGroup>
-                            <Button id="login-button">Login
-                            </Button>
-                        </FormGroup>
-                        <em>
-                            Not Registered? <Link to={'/register'}>Register</Link>
-                        </em>
-                    </fieldset>
-                </Form>
-            </div>
+        <div className='main-body-div'>
+        <div className='navbar-spacing'></div>
+        <div className="title">
+            Local Login
+            <hr className="hr" />
         </div>
-        );
+        <div className='div-body'>
+          <div className='btn-div'>
+            <button className='login-button btn btn-info' onClick={(e) => handleClick(e)}>Login</button>
+          </div>
+        </div>
+      </div>
+    )
 }
+
+// Login.propTypes = {
+//   local: PropTypes.shape(PropTypes.obj),
+// };
+
+// Login.defaultProps = {
+//   local: null,
+// };

@@ -28,21 +28,7 @@ namespace for_locals.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                                        SELECT
-                                        BusinessId,
-                                        OwnerId,
-                                        StateControlNum,
-                                        BusinessName,
-                                        Phone,
-                                        Address,
-                                        Description,
-                                        Keywords,
-                                        Industry,
-                                        Logo,
-                                        ImgUrl,
-                                        WebUrl,
-                                        ReviewScore,
-                                        Verified
+                                        SELECT *
                                         FROM Business
                                         ";
 
@@ -84,21 +70,7 @@ namespace for_locals.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                                        SELECT
-                                        BusinessId,
-                                        OwnerId,
-                                        StateControlNum,
-                                        BusinessName,
-                                        Phone,
-                                        Address,
-                                        Description,
-                                        Keywords,
-                                        Industry,
-                                        Logo,
-                                        ImgUrl,
-                                        WebUrl,
-                                        ReviewScore,
-                                        Verified
+                                        SELECT *
                                         FROM Business
                                         WHERE BusinessId = @BusinessId
                                         ";
@@ -219,5 +191,55 @@ namespace for_locals.Repositories
                 }
             }
         }
+        public Business GetBusinessByOwnerId(int OwnerId)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                                        SELECT *
+                                        FROM Business
+                                        WHERE OwnerId = @OwnerId
+                                        ";
+
+                    cmd.Parameters.AddWithValue("@OwnerId", OwnerId);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+
+                        List<Business> businesses = new List<Business>();
+                        if (reader.Read())
+                        {
+                            Business business = new Business
+                            {
+                                BusinessId = reader.GetInt32(reader.GetOrdinal("BusinessId")),
+                                OwnerId = reader.GetInt32(reader.GetOrdinal("OwnerId")),
+                                StateControlNum = reader.GetString(reader.GetOrdinal("StateControlNum")),
+                                BusinessName = reader.GetString(reader.GetOrdinal("BusinessName")),
+                                Phone = reader.GetString(reader.GetOrdinal("Phone")),
+                                Address = reader.GetString(reader.GetOrdinal("Address")),
+                                Description = reader.GetString(reader.GetOrdinal("Description")),
+                                Keywords = reader.GetString(reader.GetOrdinal("Keywords")),
+                                Industry = reader.GetString(reader.GetOrdinal("Industry")),
+                                Logo = reader.GetString(reader.GetOrdinal("Logo")),
+                                ImgUrl = reader.GetString(reader.GetOrdinal("ImgUrl")),
+                                WebUrl = reader.GetString(reader.GetOrdinal("WebUrl")),
+                                ReviewScore = reader.GetInt32(reader.GetOrdinal("ReviewScore")),
+                                Verified = reader.GetString(reader.GetOrdinal("Verified")),
+                            };
+                            return business;
+                        }
+                        else
+                        {
+                            return null;
+                        }
+
+                    }
+                }
+            }
+        }
+
     }
 }

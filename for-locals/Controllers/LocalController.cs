@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using for_locals.Models;
 using for_locals.Repositories;
@@ -41,7 +40,6 @@ namespace for_locals.Controllers
         public IActionResult GetLocalByFirebaseKey(string firebaseKey)
         {
             Local local = _localRepository.GetLocalByFirebaseKey(firebaseKey);
-            //var local = _localRepository.GetLocalByFirebaseKey(firebaseKey);
             if (local == null)
             {
                 return NotFound();
@@ -107,6 +105,25 @@ namespace for_locals.Controllers
                 _localRepository.DeleteLocal(currentLocal.FirebaseKey);
                 return NoContent();
             }
+        }
+        [HttpGet("Auth")]
+        public async Task<IActionResult> GetLocalAuthStatus()
+        {
+            string firebaseKey = User.FindFirst(claim => claim.Type == "user_id").Value;
+            bool localexists = _localRepository.LocalExists(firebaseKey);
+            if (!localexists)
+            {
+                Local localfromtoken = new Local()
+                {
+                    Name = User.Identity.Name,
+                    FirebaseKey = firebaseKey,
+                };
+
+                _localRepository.AddLocal(localfromtoken);
+                return Ok();
+            }
+            Local existingAgent = _localRepository.GetLocalByFirebaseKey(firebaseKey);
+            return Ok(existingAgent);
         }
     }
 }
