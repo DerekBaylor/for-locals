@@ -43,13 +43,8 @@ export default function LocalProfileForm({ local }) {
         })
     }
 
-    const warn = () => {
-        console.warn('local', local)
-      };
-
-
-        return (
-          <Form>
+    return (
+        <Form>
             <FormGroup>
                 <Input type="text" name="Name" id="Name" placeholder="Name:" value={formInput.name || ""} onChange={handleChange} />
             </FormGroup>
@@ -60,10 +55,10 @@ export default function LocalProfileForm({ local }) {
                 <Input type="text" name="bio" id="bio" placeholder="Bio:" value={formInput.bio || ""} onChange={handleChange} />
             </FormGroup>
             <Button className='btn-success form-btn' onClick={handleSubmit}>Submit</Button>
-          </Form>
-        );
-    }
+        </Form>
+    );
+}
 
-    LocalProfileForm.propTypes = {
-        local: PropTypes.shape(PropTypes.obj).isRequired,
-      };
+LocalProfileForm.propTypes = {
+    local: PropTypes.shape(PropTypes.obj).isRequired,
+    };

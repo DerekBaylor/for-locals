@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import SerachBar from '../Components/SerachBar'
+import SearchBar from '../Components/SearchBar'
 import { getAllBusinesses } from '../Data/BusinessData'
 
 export default function Search() {
@@ -15,7 +15,7 @@ export default function Search() {
     <div className='navbar-spacing'></div>
     <div className='navbar-spacing'></div>
     <div className='search-bar-div'>
-      <SerachBar data={businessData} />
+      <SearchBar data={businessData} />
     </div>
   </div>
   )

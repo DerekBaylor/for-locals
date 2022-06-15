@@ -23,8 +23,6 @@ function App() {
         if(authed) {
           sessionStorage.setItem("token", authed.accessToken);
           sessionStorage.setItem("firebaseKey", authed.uid);
-          console.warn(sessionStorage.getItem("token"))
-          console.warn(sessionStorage.getItem("firebaseKey"))
           doesLocalExist(authed.accessToken).then(() => {
             getLocalByFKey(authed.uid).then(setLocal)
           });

@@ -44,7 +44,7 @@ namespace for_locals.Controllers
             return Ok(business);
         }
 
-        [HttpPatch("edit/{BusinessId}")]
+        [HttpPatch("edit/{businessId}")]
         public IActionResult Put(int businessId, Business business)
         {
             if (businessId != business.BusinessId)

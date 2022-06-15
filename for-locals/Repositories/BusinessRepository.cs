@@ -153,8 +153,18 @@ namespace for_locals.Repositories
                     cmd.CommandText = @"
                                         UPDATE Business
                                         SET
-                                        OwnerKey, StateControlNum, BusinessName, Phone, Address, Description, Keywords,
-                                        Industry, ImgUrl, WebUrl, ReviewScore, Verified
+                                        OwnerKey = @OwnerKey,
+                                        StateControlNum = @StatecontrolNum, 
+                                        BusinessName = @BusinessName, 
+                                        Phone = @Phone, 
+                                        Address = @Address, 
+                                        Description = @Description, 
+                                        Keywords = @Keywords,
+                                        Industry = @Industry, 
+                                        ImgUrl = @ImgUrl, 
+                                        WebUrl = @WebUrl, 
+                                        ReviewScore = @ReviewScore, 
+                                        Verified = @Verified
                                         Where BusinessId = @BusinessId
                                         ";
                     cmd.Parameters.AddWithValue("@OwnerKey", business.OwnerKey);
@@ -169,6 +179,7 @@ namespace for_locals.Repositories
                     cmd.Parameters.AddWithValue("@WebUrl", business.WebUrl);
                     cmd.Parameters.AddWithValue("@ReviewScore", business.ReviewScore);
                     cmd.Parameters.AddWithValue("@Verified", business.Verified);
+                    cmd.Parameters.AddWithValue("@BusinessId", business.BusinessId);
 
                     cmd.ExecuteNonQuery();
 

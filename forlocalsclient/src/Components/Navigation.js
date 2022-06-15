@@ -36,18 +36,13 @@ export default function Navigation({ local }) {
                                 BUSINESS
                             </Link>
                         </li>
-                        <button 
+                        <Link 
                             className="btn nav-btn btn-outline-success"
                             onClick={signOutUser}
+                            to="/"
                             >
                             LOG OUT
-                        </button>
-                        <button 
-                        className="btn nav-btn btn-success"
-                        to="/businessProfile"
-                        >
-                            REGISTER
-                        </button>
+                        </Link>
                     </ul>
                 </div>
             ) : ( 
