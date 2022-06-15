@@ -32,7 +32,7 @@ export default function Navigation({ local }) {
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/businessProfile">
+                            <Link className="nav-link" to={`/businessProfile/${local.firebaseKey}`}>
                                 BUSINESS
                             </Link>
                         </li>
@@ -64,5 +64,9 @@ export default function Navigation({ local }) {
 }
 
 Navigation.propTypes = {
-    local: PropTypes.shape(PropTypes.obj).isRequired,
+    local: PropTypes.shape(PropTypes.obj),
+  };
+  
+  Navigation.defaultProps = {
+    local: null,
   };

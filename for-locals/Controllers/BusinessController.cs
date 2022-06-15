@@ -78,10 +78,10 @@ namespace for_locals.Controllers
             }
         }
 
-        [HttpGet("ownerId/{OwnerId}")]
-        public IActionResult GetBusinessByOwnerId(int OwnerId)
+        [HttpGet("ownerKey/{OwnerKey}")]
+        public IActionResult GetBusinessByOwnerKey(string OwnerKey)
         {
-            Business business = _businessRepository.GetBusinessByOwnerId(OwnerId);
+            Business business = _businessRepository.GetBusinessByOwnerKey(OwnerKey);
             if (business == null)
             {
                 return NotFound();

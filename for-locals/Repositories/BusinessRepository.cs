@@ -40,7 +40,7 @@ namespace for_locals.Repositories
                         Business business = new Business
                         {
                             BusinessId = reader.GetInt32(reader.GetOrdinal("BusinessId")),
-                            OwnerId = reader.GetInt32(reader.GetOrdinal("OwnerId")),
+                            OwnerKey = reader.GetString(reader.GetOrdinal("OwnerKey")),
                             StateControlNum = reader.GetString(reader.GetOrdinal("StateControlNum")),
                             BusinessName = reader.GetString(reader.GetOrdinal("BusinessName")),
                             Phone = reader.GetString(reader.GetOrdinal("Phone")),
@@ -86,7 +86,7 @@ namespace for_locals.Repositories
                             Business business = new Business
                             {
                                 BusinessId = reader.GetInt32(reader.GetOrdinal("BusinessId")),
-                                OwnerId = reader.GetInt32(reader.GetOrdinal("OwnerId")),
+                                OwnerKey = reader.GetString(reader.GetOrdinal("OwnerKey")),
                                 StateControlNum = reader.GetString(reader.GetOrdinal("StateControlNum")),
                                 BusinessName = reader.GetString(reader.GetOrdinal("BusinessName")),
                                 Phone = reader.GetString(reader.GetOrdinal("Phone")),
@@ -121,11 +121,11 @@ namespace for_locals.Repositories
                 {
                     cmd.CommandText = @"
                                         INSERT INTO Business
-                                        (OwnerId, StateControlNum, BusinessName, Phone, Address, Description, Keywords,
+                                        (OwnerKey, StateControlNum, BusinessName, Phone, Address, Description, Keywords,
                                         Industry, ImgUrl, WebUrl, ReviewScore, Verified)
                                         VALUES (@OwnerId, @StateControlNum, @BusinessName, @Phone, @Address, @Description,       @Keywords, @Industry, @ImgUrl, @WebUrl, @ReviewScore, @Verified)
                                         ";
-                    cmd.Parameters.AddWithValue("@OwnerId", business.OwnerId);
+                    cmd.Parameters.AddWithValue("@OwnerKey", business.OwnerKey);
                     cmd.Parameters.AddWithValue("@StateControlNum", business.StateControlNum);
                     cmd.Parameters.AddWithValue("@BusinessName", business.BusinessName);
                     cmd.Parameters.AddWithValue("@Phone", business.Phone);
@@ -153,11 +153,11 @@ namespace for_locals.Repositories
                     cmd.CommandText = @"
                                         UPDATE Business
                                         SET
-                                        OwnerId, StateControlNum, BusinessName, Phone, Address, Description, Keywords,
+                                        OwnerKey, StateControlNum, BusinessName, Phone, Address, Description, Keywords,
                                         Industry, ImgUrl, WebUrl, ReviewScore, Verified
                                         Where BusinessId = @BusinessId
                                         ";
-                    cmd.Parameters.AddWithValue("@OwnerId", business.OwnerId);
+                    cmd.Parameters.AddWithValue("@OwnerKey", business.OwnerKey);
                     cmd.Parameters.AddWithValue("@StateControlNum", business.StateControlNum);
                     cmd.Parameters.AddWithValue("@BusinessName", business.BusinessName);
                     cmd.Parameters.AddWithValue("@Phone", business.Phone);
@@ -191,7 +191,7 @@ namespace for_locals.Repositories
                 }
             }
         }
-        public Business GetBusinessByOwnerId(int OwnerId)
+        public Business GetBusinessByOwnerKey(string OwnerKey)
         {
             using (SqlConnection conn = Connection)
             {
@@ -201,10 +201,10 @@ namespace for_locals.Repositories
                     cmd.CommandText = @"
                                         SELECT *
                                         FROM Business
-                                        WHERE OwnerId = @OwnerId
+                                        WHERE OwnerKey = @OwnerKey
                                         ";
 
-                    cmd.Parameters.AddWithValue("@OwnerId", OwnerId);
+                    cmd.Parameters.AddWithValue("@OwnerKey", OwnerKey);
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -215,7 +215,7 @@ namespace for_locals.Repositories
                             Business business = new Business
                             {
                                 BusinessId = reader.GetInt32(reader.GetOrdinal("BusinessId")),
-                                OwnerId = reader.GetInt32(reader.GetOrdinal("OwnerId")),
+                                OwnerKey = reader.GetString(reader.GetOrdinal("OwnerKey")),
                                 StateControlNum = reader.GetString(reader.GetOrdinal("StateControlNum")),
                                 BusinessName = reader.GetString(reader.GetOrdinal("BusinessName")),
                                 Phone = reader.GetString(reader.GetOrdinal("Phone")),

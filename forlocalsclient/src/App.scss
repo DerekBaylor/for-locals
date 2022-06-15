@@ -205,3 +205,13 @@ $local-green: #6B9749;
     }
   }
 }
+
+.bus-img{
+  max-width: 30%;
+  min-width: 20rem;
+  border-radius: 1.5rem;
+}
+.business-container{
+  display: flex;
+  flex-direction: row;
+}

@@ -71,7 +71,6 @@ namespace for_locals.Controllers
             return Ok(local);
         }
 
-        [Authorize]
         [HttpPatch("edit/{firebasekey}")]
         public IActionResult Put(string firebasekey, Local local)
         {
