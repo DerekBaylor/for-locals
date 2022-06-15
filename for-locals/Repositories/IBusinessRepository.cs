@@ -1,6 +1,4 @@
 ﻿using for_locals.Models;
-using Microsoft.Data.SqlClient;
-using System.Collections.Generic;
 
 namespace for_locals.Repositories
 {

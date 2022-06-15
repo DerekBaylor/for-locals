@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import BusinessCard from "./BusinessCard";
 
 
-export default function SerachBar({data}) {
+export default function SearchBar({data}) {
     const [filteredData, setFilteredData] = useState([]);
     const [searchText, setSearchText] = useState("");
 

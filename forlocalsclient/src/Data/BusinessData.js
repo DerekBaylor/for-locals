@@ -25,14 +25,34 @@ const getAllBusinesses = () =>
       .catch(reject);
   })
 
-  // add business
+  const addBusiness = (obj) => new Promise((resolve, reject) => {
+    axios
+        .post(`${dbUrl}`, obj)
+        .then((response) => resolve(response.data))
+        .catch(reject);
+});
 
- // update business
- 
- // delete business
+ const updateBusiness = (id, obj, key) => new Promise((resolve, reject) => {
+  //  console.warn('Promise Data:', id, obj, key)
+  //  console.warn('Promise dbUrl:', dbUrl)
+  axios
+      .patch(`${dbUrl}/edit/${id}`, obj)
+      .then(() => getBusinessByOwnerKey(key).then(resolve))
+      .catch(reject);
+});
+
+const deleteBusiness = (id) => new Promise((resolve, reject) => {
+  axios
+      .delete(`${dbUrl}/${id}`)
+      .then(() => getAllBusinesses().then(resolve))
+      .catch(reject);
+});
 
   export {
       getAllBusinesses,
       getBusinessById,
       getBusinessByOwnerKey,
+      addBusiness,
+      updateBusiness,
+      deleteBusiness,
   };

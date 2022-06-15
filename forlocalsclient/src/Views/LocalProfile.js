@@ -18,6 +18,14 @@ export default function LocalProfile() {
     console.warn('profile', profile)
   };
 
+  const showForm = () => {
+    if(form === true) {
+      setForm(false)
+  } else {
+    setForm(true);
+  }
+};
+
   return (
     <div className='main-body-div'>
       <div className='navbar-spacing'></div>
@@ -26,11 +34,7 @@ export default function LocalProfile() {
         <LocalProfileCard local={profile} />
       </div>
       <div className='btn-container'>
-        <button className='btn btn-success' onClick={()=> setForm(true) }>Edite Profile</button>
-        <hr />
-        <button className='btn btn-warning' onClick={warn}>
-          Warn
-        </button>
+        <button className='btn btn-success' onClick={showForm}>Edit Profile</button>
       </div>
       <div className='form-container'>
         {
