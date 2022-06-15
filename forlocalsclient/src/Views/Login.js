@@ -1,16 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { signInUser } from '../Data/authManager';
 
 export default function Login() {
     const navigate = useNavigate();
-    const firebaseKey = sessionStorage.getItem("uid")
-
+    
     const handleClick = (e) => {
-        signInUser();
-        // navigate(`/localProfile/${firebaseKey}`);
-        navigate(`/`);
+      signInUser().then(() => {
+        const firebaseKey = sessionStorage.getItem("firebaseKey")
+          navigate(`/localProfile/${firebaseKey}`);
+      });
       }
 
     return (
@@ -28,11 +27,3 @@ export default function Login() {
       </div>
     )
 }
-
-// Login.propTypes = {
-//   local: PropTypes.shape(PropTypes.obj),
-// };
-
-// Login.defaultProps = {
-//   local: null,
-// };

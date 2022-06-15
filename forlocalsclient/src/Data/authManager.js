@@ -3,7 +3,6 @@ import { getAuth, signInWithPopup, GoogleAuthProvider} from 'firebase/auth';
 import { auth } from './apiKeys';
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
-import {addLocal} from './LocalData';
 
 const apiUrl = "https://localhost:7058/api/Local/";
 
@@ -23,17 +22,6 @@ export const signInUser = () => {
   new Promise((resolve, reject) => {
     getAuth().signOut().then(resolve).catch(reject);
   });
-
-const doesUserExist = (firebaseKey) => {
-    return getToken().then((token) =>
-        fetch(`${apiUrl}DoesUserExist/${firebaseKey}`, {
-        method: "GET",
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    }).then(resp => resp.ok));
-};
-
 
 export const getToken = () => {
     const currentUser = firebase.auth().currentUser;

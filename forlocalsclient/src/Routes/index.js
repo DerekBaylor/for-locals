@@ -7,6 +7,7 @@ import Home from '../Views/Home';
 import LocalProfile from '../Views/LocalProfile';
 import Login from '../Views/Login';
 import Search from '../Views/Search';
+import BusinessProfileDetails from '../Views/BusinessProfileDetails';
 
 export default function Routing({ local }){
     return(
@@ -16,8 +17,9 @@ export default function Routing({ local }){
                 <Route path="/search"  element={<Search local={local}/>} />
                 <Route path="/businessDetails/:key"  element={<BusinessDetails local={local}/>} />
                 <Route path="/login"  element={<Login local={local}/>} />
-                <Route path="/businessProfile"  element={<BusinessProfile local={local}/>} />
-                <Route path="/localProfile/:firebaseKey" local={local} element={local ? <LocalProfile /> : <Login />} />           
+                <Route path="/businessProfile/:firebaseKey" element={<BusinessProfile local={local}/>} />
+                <Route path="/localProfile/:firebaseKey" local={local} element={local ? <LocalProfile /> : <Login />} />
+                <Route path="/businessManager/:id" element={<BusinessProfileDetails local={local} />} />           
             </Routes>
         </>
     )

@@ -3,7 +3,7 @@ import FeatureBusinessCard from '../Components/FeatureBusinessCard'
 import { getBusinessById } from "../Data/BusinessData";
 
 export default function Home() {
-  const [featBusiness, setFeatBusiness] = useState([]);
+  const [featBusiness, setFeatBusiness] = useState({});
 
   const busId = 3;
 

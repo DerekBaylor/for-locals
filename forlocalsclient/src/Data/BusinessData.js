@@ -18,9 +18,9 @@ const getAllBusinesses = () =>
       .catch(reject);
   });
 
-  const getBusinessByOwnerId = (ownerId) => new Promise ((resolve, reject) => {
+  const getBusinessByOwnerKey = (ownerKey) => new Promise ((resolve, reject) => {
     axios
-      .get(`${dbUrl}/ownerId/${ownerId}`)
+      .get(`${dbUrl}/ownerKey/${ownerKey}`)
       .then((response) => resolve((response.data)))
       .catch(reject);
   })
@@ -34,5 +34,5 @@ const getAllBusinesses = () =>
   export {
       getAllBusinesses,
       getBusinessById,
-      getBusinessByOwnerId,
+      getBusinessByOwnerKey,
   };

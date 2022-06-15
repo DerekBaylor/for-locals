@@ -17,9 +17,6 @@ export default function BusinessDetails() {
     getReviewsByBusinessId(key).then(setReviews)
   }, []);
 
-
-
-
   return (
     <div className="main-body-div">
       <div className="navbar-spacing"></div>
@@ -47,7 +44,6 @@ export default function BusinessDetails() {
           </div>
         </div>
       </div>
-
     </div> 
   )
 };
