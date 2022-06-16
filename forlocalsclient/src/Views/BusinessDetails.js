@@ -41,7 +41,13 @@ export default function BusinessDetails({ local }) {
       <div className="main-review-div">
         <div className='review-header'>User Reviews</div>
         <hr className='hr'/>
-        <button className='btn btn-outline-success' onClick={showForm}>LEAVE A REVIEW</button>
+        <div>
+          {local ? (
+            <button className='btn btn-outline-success' onClick={showForm}>LEAVE A REVIEW</button>
+          ) : (
+            <div className='hidden-div'>Hidden Div</div>
+          )}
+        </div>
         <div className='form-container'>
         {
           form?   <div><ReviewForm 

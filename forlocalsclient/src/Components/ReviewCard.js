@@ -4,11 +4,15 @@ import BusinessIcon from '../Assets/BusinessIcon.png'
 import { getLocalById } from "../Data/LocalData";
 import { deleteReview, getReviewsByBusinessId } from "../Data/ReviewData";
 
-export default function ReviewCard({ revObj, setEditItem, setReviews, busKey, setForm }) {
+export default function ReviewCard({ local, revObj, setEditItem, setReviews, busKey, setForm }) {
     const [localName, setLocalName] = useState({});
+    const [buttons, setButtons] = useState(false);
 
     useEffect(() => {
-        getLocalById(revObj.userId).then(setLocalName)
+        getLocalById(revObj.userId).then(setLocalName);
+        showButtons();
+        // console.warn('Rev Id',revObj.userId);
+        // console.warn('Local Id', local.id);
     });
 
     const handleClick = (method) => {
@@ -21,6 +25,16 @@ export default function ReviewCard({ revObj, setEditItem, setReviews, busKey, se
       };
     };
 
+    const showButtons = () => {
+      if (local === null) {
+        setButtons(false);
+      } else if  (revObj.userId === local.userId) {
+        setButtons(true);
+      } else {
+        setButtons(false);
+      };
+    };
+
   return (
     <div className='review-card'>
         <img className="review-card-img" src={BusinessIcon} alt="featured business" />
@@ -29,6 +43,7 @@ export default function ReviewCard({ revObj, setEditItem, setReviews, busKey, se
             <h5 className="card-title">{revObj.reviewTitle}</h5>
             <p className="card-text">{revObj.reviewText}</p>
             <p className='card-review-id'>By: {localName.name}</p>
+              {buttons ? (
             <div className="btn-div review-btn-div">
               <button 
                 className='btn btn-dark'
@@ -41,6 +56,9 @@ export default function ReviewCard({ revObj, setEditItem, setReviews, busKey, se
                 >
                 DELETE REVIEW</button>
             </div>
+              ) : (
+                <div className='hidden-div'>Hidden Div</div>
+              )}
         </div>
     </div>
   )
@@ -52,8 +70,10 @@ ReviewCard.propTypes = {
     setEditItem: PropTypes.func.isRequired,
     setReviews: PropTypes.func.isRequired,
     setForm: PropTypes.func.isRequired,
+    local: PropTypes.shape(PropTypes.obj)
   };
 
   ReviewCard.defaultProps = {
     setEditItem: '',
+    local: null,
   }
