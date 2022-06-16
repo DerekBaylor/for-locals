@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import { Form, FormGroup, Button, Input } from 'reactstrap';
-import { addReview, updateReview } from "../Data/ReviewData";
+import { addReview, updateReview, getReviewsByBusinessId } from "../Data/ReviewData";
 
 const initialState = {
   userId: '',
@@ -12,9 +12,9 @@ const initialState = {
   imgUrl: '',
   score: 0,
 };
-export default function ReviewForm({ local, editItem, setReviews, setForm }) {
-    const {id} = useParams();
-    const [formInput, setFormInput] = useState(initialState);
+export default function ReviewForm({ local, editItem, setEditItem, setReviews, setForm }) {
+  const {id} = useParams();
+  const [formInput, setFormInput] = useState(initialState);
 
   const newState = () => {
     const formData = {
@@ -27,7 +27,6 @@ export default function ReviewForm({ local, editItem, setReviews, setForm }) {
     }
     setFormInput(formData)
   };
-  
 
   useEffect(() => {
     if (editItem === null) {
@@ -35,7 +34,9 @@ export default function ReviewForm({ local, editItem, setReviews, setForm }) {
     } else {
       setFormInput(editItem)
     }
-  }, []);
+    getReviewsByBusinessId(id).then(setReviews);
+    console.warn('Form State Update')
+  }, [editItem]);
 
   function handleChange(e) {
     setFormInput((prevState) => ({
@@ -46,6 +47,7 @@ export default function ReviewForm({ local, editItem, setReviews, setForm }) {
 
   const resetForm = () => {
       setFormInput(initialState);
+      setEditItem(null);
       setForm(false);
     };
 
@@ -53,9 +55,11 @@ export default function ReviewForm({ local, editItem, setReviews, setForm }) {
         e.preventDefault();
         if (editItem === null) {
           addReview(formInput, id).then(setReviews);
+          setEditItem(null);
           setForm(false);
         } else if (editItem != null){
-          updateReview(editItem.reviewId, formInput, id).then(setReviews);
+          updateReview(editItem.reviewId, formInput, id).then(setReviews)
+          setEditItem(null);
           setForm(false);
         }
     };
@@ -83,7 +87,7 @@ export default function ReviewForm({ local, editItem, setReviews, setForm }) {
             <Input type="number" name="userId" id="userId" placeholder="userId:" value={formInput.userId} onChange={handleChange} />
         </FormGroup>
       </div>
-      <Button className='btn-success form-btn' onClick={handleSubmit}>Submit Changes</Button>
+      <Button className='btn-success form-btn' onClick={handleSubmit}>{editItem ? 'Submit Changes' : 'Add Review'}</Button>
       <Button className='btn-warn form-btn' onClick={resetForm}>Cancel</Button>
     </Form>
   )
@@ -95,6 +99,8 @@ ReviewForm.propTypes = {
   setEditItem: PropTypes.func.isRequired,
   setReviews: PropTypes.func.isRequired,
   setForm: PropTypes.func.isRequired,
+  formInput: PropTypes.func.isRequired,
+  setFormInput: PropTypes.func.isRequired,
 };
 
 ReviewForm.defaultProps = {
