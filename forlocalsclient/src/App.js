@@ -7,16 +7,7 @@ import { getLocalByFKey } from './Data/LocalData';
 
 
 function App() {
-    const [isAdmin, setIsAdmin] = useState(false);
     const [local, setLocal] = useState({});
-
-    const checkForAdmin = () => {
-        if (local.isAdmin === "Y") {
-            setIsAdmin(true);
-        } else {
-            setIsAdmin(false);
-        }
-    };
 
     useEffect(() => {
       auth.onAuthStateChanged((authed) => {
@@ -28,7 +19,6 @@ function App() {
           });
         } else {
           setLocal(null);
-          setIsAdmin(false);
           sessionStorage.clear();
         }
       });
@@ -37,7 +27,7 @@ function App() {
     return (
         <div>
             <Navigation local={local} />
-            <Routing local={local} admin={isAdmin} />
+            <Routing local={local} />
         </div>
     );
 }

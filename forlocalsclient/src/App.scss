@@ -184,11 +184,14 @@ $local-green: #6B9749;
       }
       .text-input{
         min-height: 4rem;
-
+        
       }
     }
   }
 }
+.owner-key{
+    display: none;
+  }
 
 .review-card-container{
   margin-top: 3rem;
