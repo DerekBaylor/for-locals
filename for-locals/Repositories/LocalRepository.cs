@@ -142,20 +142,76 @@ namespace for_locals.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                                        INSERT INTO Locals ([Name], Email, UserId, ImgUrl, Bio, isAdmin, FirebaseKey)
-                                        OUTPUT INSERTED.ID
-                                        VALUES (@name, @email, @imgurl, @bio, @firebasekey)
+                                        INSERT INTO Locals 
+                                        ([Name], Email, ImgUrl, Bio, IsAdmin, FirebaseKey)
+                                        OUTPUT INSERTED.UserId
+                                        VALUES (@name, @email, @imgUrl, @bio, @isAdmin, @firebaseKey)
                                         ";
-                    cmd.Parameters.AddWithValue("@name", local.Name);
-                    cmd.Parameters.AddWithValue("@email", local.Email);
-                    cmd.Parameters.AddWithValue("@userId", local.UserId);
-                    cmd.Parameters.AddWithValue("@imgurl", local.ImgUrl);
-                    cmd.Parameters.AddWithValue("@bio", local.Bio);
-                    cmd.Parameters.AddWithValue("@isAdmin", local.IsAdmin);
-                    cmd.Parameters.AddWithValue("@firebasekey", local.FirebaseKey);
 
-                    int UserId = (int)cmd.ExecuteScalar();
+                    //cmd.Parameters.AddWithValue("@name", local.Name);
+                    //cmd.Parameters.AddWithValue("@email", local.Email);
+                    //cmd.Parameters.AddWithValue("@imgUrl", local.ImgUrl);
+                    //cmd.Parameters.AddWithValue("@bio", local.Bio);
+                    //cmd.Parameters.AddWithValue("@isAdmin", local.IsAdmin);
+                    //cmd.Parameters.AddWithValue("@firebaseKey", local.FirebaseKey);
 
+
+                    //int uid = (int)cmd.ExecuteScalar();
+
+                    //local.UserId = uid;
+
+                    if (local.Name == null)
+                    {
+                        cmd.Parameters.AddWithValue("@Name", DBNull.Value);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@Name", local.Name);
+                    }
+                    if (local.Email == null)
+                    {
+                        cmd.Parameters.AddWithValue("@Email", DBNull.Value);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@Email", local.Email);
+                    }
+                    if (local.ImgUrl == null)
+                    {
+                        cmd.Parameters.AddWithValue("@Imgurl", "https://zfjepfckphrvbatmvyud.supabase.co/storage/v1/object/sign/for-locals-img/BlankProfileImg.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJmb3ItbG9jYWxzLWltZy9CbGFua1Byb2ZpbGVJbWcucG5nIiwiaWF0IjoxNjU1NDE0NjIyLCJleHAiOjE5NzA3NzQ2MjJ9.HiyaZQqeWZg3qtTB8T5tZki0pV4YRNhwsRU2eBI-wdY");
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@ImgUrl", local.ImgUrl);
+                    }
+                    if (local.Bio == null)
+                    {
+                        cmd.Parameters.AddWithValue("@Bio", "Hi, I'm new here.");
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@Bio", local.Bio);
+                    }
+                    if (local.IsAdmin == null)
+                    {
+                        cmd.Parameters.AddWithValue("@IsAdmin", "N");
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@IsAdmin", local.IsAdmin);
+                    }
+                    if (local.FirebaseKey == null)
+                    {
+                        cmd.Parameters.AddWithValue("@FirebaseKey", DBNull.Value);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@FirebaseKey", local.FirebaseKey);
+                    }
+
+                    int uid = (int)cmd.ExecuteScalar();
+
+                    local.UserId = uid;
                 }
             }
         }
