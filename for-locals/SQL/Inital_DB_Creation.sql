@@ -7,12 +7,12 @@ DROP TABLE Review;
 
 CREATE TABLE Locals (
         UserId INT NOT NULL PRIMARY KEY IDENTITY,
-        [Name] VARCHAR(255) DEFAULT '' NOT NULL,
-        Email VARCHAR(100) Default '' NOT NULL,
-        ImgUrl VARCHAR(500) DEFAULT 'https://zfjepfckphrvbatmvyud.supabase.co/storage/v1/object/sign/for-locals-img/BlankProfileImg.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJmb3ItbG9jYWxzLWltZy9CbGFua1Byb2ZpbGVJbWcucG5nIiwiaWF0IjoxNjU1MTY0ODc5LCJleHAiOjE5NzA1MjQ4Nzl9.tFYCMfkFr2wU3a2by288dXBiVuIeDa7VLW_FO7DN2_U' NOT NULL,
-        Bio VARCHAR(255) DEFAULT 'Hello World' NOT NULL,
-        IsAdmin CHAR(1) DEFAULT 'N' NOT NULL,
-        FirebaseKey VARCHAR(255) NOT NULL,
+        [Name] VARCHAR(255) DEFAULT '',
+        Email VARCHAR(100) Default '',
+        ImgUrl VARCHAR(500) DEFAULT 'https://zfjepfckphrvbatmvyud.supabase.co/storage/v1/object/sign/for-locals-img/BlankProfileImg.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJmb3ItbG9jYWxzLWltZy9CbGFua1Byb2ZpbGVJbWcucG5nIiwiaWF0IjoxNjU1MTY0ODc5LCJleHAiOjE5NzA1MjQ4Nzl9.tFYCMfkFr2wU3a2by288dXBiVuIeDa7VLW_FO7DN2_U',
+        Bio VARCHAR(255) DEFAULT 'Hello World',
+        IsAdmin CHAR(1) DEFAULT 'N',
+        FirebaseKey VARCHAR(255),
 );
 
 CREATE TABLE Business (

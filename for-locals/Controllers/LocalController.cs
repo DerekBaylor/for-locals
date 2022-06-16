@@ -63,12 +63,18 @@ namespace for_locals.Controllers
             return Ok();
         }
 
-        [Authorize]
         [HttpPost]
         public IActionResult AddLocal(Local local)
         {
-            _localRepository.AddLocal(local);
-            return Ok(local);
+            if (local == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                _localRepository.AddLocal(local);
+                return Ok(local);
+            }
         }
 
         [HttpPatch("edit/{firebasekey}")]
