@@ -12,7 +12,7 @@ export default function LocalProfile() {
 
   useEffect(() => {
     getLocalByFKey(firebaseKey).then(setProfile)
-  }, []);
+  }, [profile]);
  
   const warn = () => {
     console.warn('profile', profile)
@@ -38,7 +38,11 @@ export default function LocalProfile() {
       </div>
       <div className='form-container'>
         {
-          form?<div><LocalProfileForm local={profile}/></div>:null
+          form?<div><LocalProfileForm 
+                        local={profile}
+                        setForm={setForm}
+                        />
+              </div>:null
         }
       </div>
     </div>
