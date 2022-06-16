@@ -37,27 +37,14 @@ const addLocal = (local) => new Promise((resolve, reject) => {
     });
 });
 
-const updateLocal = (localObj) => new Promise((resolve, reject) => {
-    return getToken().then((token) => {
+const updateLocal = (localObj, firebaseKey) => new Promise((resolve, reject) => {
         axios
-            .post(`${dbUrl}/edit/${localObj.firebaseKey}`, localObj, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            })
-            .then(() => getLocals().then(resolve))
-            .catch(reject);
-        });
+        .patch(`${dbUrl}/edit/${firebaseKey}`, localObj)
+        .then(() => getLocalByFKey(firebaseKey))
+        .then(resolve)
+        .catch(reject)
+
 });
-
-// const updateLocal = (localObj, firebaseKey) => new Promise((resolve, reject) => {
-//         axios
-//         .get(`${dbUrl}/edit/${firebaseKey}`, localObj)
-//         .then(() => getLocalByFKey(firebaseKey))
-//         .then(resolve)
-//         .catch(reject)
-
-// });
 
 const deleteLocalSqlDB = (local) => new Promise((resolve, reject) => {
     return getToken().then((token) => {

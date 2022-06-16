@@ -42,9 +42,9 @@ const deleteReview = (revId) => new Promise((resolve, reject) => {
   const updateReview = (revId, obj, businessId) => new Promise((resolve, reject) => {
     console.warn('Update Promise Data', revId, obj, businessId)
     axios
-    .patch(`${dbUrl}/api/Review/edit/${revId}`, obj)
-        .then(() => getReviewsByBusinessId(businessId).then(resolve))
-        .catch(reject);
+      .patch(`${dbUrl}/api/Review/edit/${revId}`, obj)
+      .then(() => getReviewsByBusinessId(businessId).then(resolve))
+      .catch(reject);
   });
 
 export {

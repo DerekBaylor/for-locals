@@ -90,7 +90,6 @@ namespace for_locals.Controllers
             }
         }
 
-        [Authorize]
         [HttpDelete("{firebasekey}")]
         public IActionResult Delete(string firebaseKey)
         {
@@ -105,6 +104,8 @@ namespace for_locals.Controllers
                 return NoContent();
             }
         }
+
+        [Authorize]
         [HttpGet("Auth")]
         public async Task<IActionResult> GetLocalAuthStatus()
         {

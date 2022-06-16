@@ -170,13 +170,20 @@ namespace for_locals.Repositories
                     cmd.CommandText = @"
                                         UPDATE Locals
                                         SET
-                                        [Name], Email, ImgUrl, Bio,
-                                        Where FirebaseKey = @firebasekey
+                                        Name = @Name, 
+                                        Email = @Email, 
+                                        ImgUrl = @ImgUrl, 
+                                        Bio = @Bio,
+                                        IsAdmin = @IsAdmin
+                                        WHERE FirebaseKey = @Firebasekey
                                         ";
-                    cmd.Parameters.AddWithValue("@name", local.Name);
-                    cmd.Parameters.AddWithValue("@email", local.Email);
-                    cmd.Parameters.AddWithValue("@imgurl", local.ImgUrl);
-                    cmd.Parameters.AddWithValue("@bio", local.Bio);
+                    cmd.Parameters.AddWithValue("@Name", local.Name);
+                    cmd.Parameters.AddWithValue("@Email", local.Email);
+                    cmd.Parameters.AddWithValue("@Imgurl", local.ImgUrl);
+                    cmd.Parameters.AddWithValue("@Bio", local.Bio);
+                    cmd.Parameters.AddWithValue("@UserId", local.UserId);
+                    cmd.Parameters.AddWithValue("@IsAdmin", local.IsAdmin);
+                    cmd.Parameters.AddWithValue("@FirebaseKey", local.FirebaseKey);
 
                     cmd.ExecuteNonQuery();
 
