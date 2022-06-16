@@ -11,8 +11,6 @@ export default function ReviewCard({ local, revObj, setEditItem, setReviews, bus
     useEffect(() => {
         getLocalById(revObj.userId).then(setLocalName);
         showButtons();
-        // console.warn('Rev Id',revObj.userId);
-        // console.warn('Local Id', local.id);
     });
 
     const handleClick = (method) => {

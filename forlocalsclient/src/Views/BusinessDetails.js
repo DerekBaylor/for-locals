@@ -55,6 +55,7 @@ export default function BusinessDetails({ local }) {
                     editItem = {editItem}
                     setEditItem = {setEditItem}
                     setReviews = {setReviews}
+                    setForm = {setForm}
                     />  
                   </div>:null
         }
