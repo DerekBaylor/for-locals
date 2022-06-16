@@ -22,7 +22,7 @@ namespace for_locals.Controllers
             return _reviewRepository.GetAllReviews();
         }
 
-        [HttpGet("/busId/{BusinessId}")]
+        [HttpGet("/review/{BusinessId}")]
         public List<Review> GetReviewsByBusinessId(int BusinessId)
         {
             return _reviewRepository.GetReviewsByBusinessId(BusinessId);
@@ -66,5 +66,26 @@ namespace for_locals.Controllers
                 return NoContent();
             }
         }
+
+        [HttpPatch("edit/{reviewId}")]
+        public IActionResult Put(int reviewId, Review review)
+        {
+            if (reviewId != review.ReviewId)
+            {
+                return BadRequest();
+            }
+            var currentReview = _reviewRepository.GetReviewById(reviewId);
+            if (currentReview == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                _reviewRepository.UpdateReview(review);
+                return NoContent();
+            }
+            
+        }
+
     }
 }

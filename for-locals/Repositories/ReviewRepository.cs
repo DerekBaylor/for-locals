@@ -118,8 +118,9 @@ namespace for_locals.Repositories
                 {
                     cmd.CommandText = @"
                                         INSERT INTO Review 
-                                        (ReviewId, UserId, BusinessId, ReviewTitle, ReviewText, ImgUrl, Score)
-                                        VALUES (@UserId, @BusinessId, @ReviewText, @ImgUrl, @Score)
+                                        (UserId, BusinessId, ReviewTitle, ReviewText, ImgUrl, Score)
+                                        OUTPUT INSERTED.BusinessId
+                                        VALUES (@UserId, @BusinessId, @ReviewTitle, @ReviewText, @ImgUrl, @Score)
                                         ";
                     cmd.Parameters.AddWithValue("@ReviewId", review.ReviewId);
                     cmd.Parameters.AddWithValue("@UserId", review.UserId);
@@ -129,7 +130,9 @@ namespace for_locals.Repositories
                     cmd.Parameters.AddWithValue("@ImgUrl", review.ImgUrl);
                     cmd.Parameters.AddWithValue("@Score", review.Score);
 
-                    cmd.ExecuteNonQuery();
+                    int newlyCreatedId = (int)cmd.ExecuteScalar();
+
+                    review.ReviewId = newlyCreatedId;
                 }
             }
         }
@@ -194,6 +197,38 @@ namespace for_locals.Repositories
                             return reviews;
                     }
                 }   
+            }
+        }
+
+        public void UpdateReview(Review review)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                                        UPDATE Review
+                                        SET
+                                        UserId = @UserId
+                                        BusinessId = @BusinessId
+                                        ReviewTitle = @ReviewTitle
+                                        ReviewText = ReviewText
+                                        ImgUrl = @ImgUrl
+                                        Score = @Score
+                                        WHERE ReviewId = @ReviewId
+                                        ";
+                    cmd.Parameters.AddWithValue("@UserId", review.UserId);
+                    cmd.Parameters.AddWithValue("@BusinessId", review.BusinessId);
+                    cmd.Parameters.AddWithValue("@ReviewTitle", review.ReviewTitle);
+                    cmd.Parameters.AddWithValue("@ReviewText", review.ReviewText);
+                    cmd.Parameters.AddWithValue("@ImgUrl", review.ImgUrl);
+                    cmd.Parameters.AddWithValue("@Score", review.Score);
+                    cmd.Parameters.AddWithValue("@ReviewId", review.ReviewId);
+
+                    cmd.ExecuteNonQuery();
+                }
+
             }
         }
     }

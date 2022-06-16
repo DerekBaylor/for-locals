@@ -1,27 +1,55 @@
 import axios from "axios";
 
 const dbUrl = "https://localhost:7058";
-// const dbUrl = "https://localhost:7058/api/Review";
 
-const getReviewsByBusinessId = (businessId) =>
-    new Promise ((resolve, reject) => {
+const getAllReviews = () =>
+  new Promise((resolve, reject) => {
+    axios
+      .get(`${dbUrl}/api/Review`)
+      .then((response) => resolve(Object.values(response.data)))
+      .catch(reject);
+  })
+
+const getReviewsByBusinessId = (businessId) => new Promise ((resolve, reject) => {
         axios
-            .get(`${dbUrl}/busId/${businessId}`)
+            .get(`${dbUrl}/review/${businessId}`)
             .then((response) => resolve(Object.values(response.data)))
             .catch(reject);
     });
 
-const addReview = (obj) =>
-    new Promise ((resolve, reject) => {
+const addReview = (obj, revId) => new Promise ((resolve, reject) => {
         axios
-            .post(`${dbUrl}`, obj).then(resolve).catch(reject);
-    });
+        .post(`${dbUrl}/api/${revId}`, obj)
+        .then((response) => resolve(response.data))
+        .catch(reject);
+});
 
-//get review by id
+const getReviewById = (revId) => new Promise((resolve, reject) => {
+  axios
+    .get(`${dbUrl}/id/${revId}`)
+    .then((response) => resolve((response.data)))
+    .catch(reject);
+});
 
-//delete review
+const deleteReview = (revId) => new Promise((resolve, reject) => {
+    axios
+        .delete(`${dbUrl}/api/Review/${revId}`)
+        .then(() => getAllReviews().then(resolve))
+        .catch(reject);
+  });
+
+  const updateReview = (revId, obj, businessId) => new Promise((resolve, reject) => {
+    axios
+        .patch(`${dbUrl}api/Review/edit/${revId}`, obj)
+        .then(() => getReviewsByBusinessId(businessId).then(resolve))
+        .catch(reject);
+  });
 
 export {
+    getAllReviews,
     getReviewsByBusinessId,
     addReview,
+    getReviewById,
+    deleteReview,
+    updateReview,
 };
