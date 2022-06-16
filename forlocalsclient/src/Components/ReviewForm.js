@@ -12,7 +12,7 @@ const initialState = {
   imgUrl: '',
   score: 0,
 };
-export default function ReviewForm({ local, editItem, setReviews }) {
+export default function ReviewForm({ local, editItem, setReviews, setForm }) {
     const {id} = useParams();
     const [formInput, setFormInput] = useState(initialState);
 
@@ -20,9 +20,9 @@ export default function ReviewForm({ local, editItem, setReviews }) {
     const formData = {
       userId: local.userId,
       businessId: id,
-      reviewTitle: 'test',
-      reviewText: 'test',
-      imgUrl: 'test',
+      reviewTitle: '',
+      reviewText: '',
+      imgUrl: '',
       score: 0,
     }
     setFormInput(formData)
@@ -30,34 +30,33 @@ export default function ReviewForm({ local, editItem, setReviews }) {
   
 
   useEffect(() => {
-    if (editItem.reviewId) {
-      setFormInput(editItem)
-      console.warn('Edit Item Set')
-    } else {
+    if (editItem === null) {
       newState();
-      console.warn("New State")
+    } else {
+      setFormInput(editItem)
     }
   }, []);
 
-  const handleChange = (e) => {
+  function handleChange(e) {
     setFormInput((prevState) => ({
-        ...prevState,
-        [e.target.id]: e.target.value,
+      ...prevState,
+      [e.target.id]: e.target.value,
     }));
-  };
+  }
 
   const resetForm = () => {
-      setFormInput(newState);
+      setFormInput(initialState);
+      setForm(false);
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (editItem.reviewId) {
+        if (editItem === null) {
+          addReview(formInput, id).then(setReviews);
+          setForm(false);
+        } else if (editItem != null){
           updateReview(editItem.reviewId, formInput, id).then(setReviews);
-        } else {
-          addReview(formInput, id).then(() => {
-            console.warn('Review Sent');
-          })
+          setForm(false);
         }
     };
 
@@ -76,24 +75,26 @@ export default function ReviewForm({ local, editItem, setReviews }) {
       <FormGroup className='form-group'>
           <Input type="text" name="reviewText" id="reviewText" placeholder="Review:" value={formInput.reviewText || ""} onChange={handleChange} />
       </FormGroup>
-      <FormGroup className='form-group'>
-          <Input type="number" name="businessId" id="businessId" placeholder="businessId:" value={formInput.businessId} onChange={handleChange} />
-      </FormGroup>
-      <FormGroup className='form-group'>
-          <Input type="number" name="userId" id="userId" placeholder="userId:" value={formInput.userId} onChange={handleChange} />
-      </FormGroup>
+      <div className='hidden-div'>
+        <FormGroup className='form-group'>
+            <Input type="number" name="businessId" id="businessId" placeholder="businessId:" value={formInput.businessId} onChange={handleChange} />
+        </FormGroup>
+        <FormGroup className='form-group'>
+            <Input type="number" name="userId" id="userId" placeholder="userId:" value={formInput.userId} onChange={handleChange} />
+        </FormGroup>
+      </div>
       <Button className='btn-success form-btn' onClick={handleSubmit}>Submit Changes</Button>
-      <Button className='btn-warn form-btn' onClick={resetForm}>Clear Form</Button>
+      <Button className='btn-warn form-btn' onClick={resetForm}>Cancel</Button>
     </Form>
   )
 }
 
 ReviewForm.propTypes = {
   local: PropTypes.shape(PropTypes.obj).isRequired,
-  revObj: PropTypes.shape(PropTypes.obj).isRequired,
   editItem: PropTypes.shape(PropTypes.obj),
   setEditItem: PropTypes.func.isRequired,
   setReviews: PropTypes.func.isRequired,
+  setForm: PropTypes.func.isRequired,
 };
 
 ReviewForm.defaultProps = {

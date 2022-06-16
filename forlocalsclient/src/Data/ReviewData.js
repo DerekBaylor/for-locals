@@ -17,10 +17,11 @@ const getReviewsByBusinessId = (businessId) => new Promise ((resolve, reject) =>
             .catch(reject);
     });
 
-const addReview = (obj) => new Promise ((resolve, reject) => {
+const addReview = (obj, businessId) => new Promise ((resolve, reject) => {
         axios
         .post(`${dbUrl}/api/Review`, obj)
-        .then((response) => resolve(response.data))
+        .then(() => getReviewsByBusinessId(businessId).then(resolve))
+        // .then((response) => resolve(response.data))
         .catch(reject);
 });
 
