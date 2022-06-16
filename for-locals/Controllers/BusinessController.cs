@@ -23,13 +23,6 @@ namespace for_locals.Controllers
             return _businessRepository.GetAllBusiness();
         }
 
-        //[HttpGet("ownerKey/{OwnerKey}")]
-        //public List<Business> GetBusinessByOwnerKey(string OwnerKey)
-        //{
-        //    return _businessRepository.GetBusinessByOwnerKey(OwnerKey);
-
-        //}
-
         [HttpGet("id/{BusinessId}")]
         public IActionResult Get(int BusinessId)
         {

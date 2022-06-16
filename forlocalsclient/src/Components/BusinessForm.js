@@ -17,7 +17,7 @@ const initialState = {
     ownerKey: '',
     reviewScore: 0,
     verified: '',
-} 
+}; 
 export default function BusinessForm({ bus }) {
   const [formInput, setFormInput] = useState(initialState);
   const {id} = useParams();
@@ -111,24 +111,19 @@ const warn = () => {
       <FormGroup>
           <Input type="text" name="description" id="description" placeholder="Description:" value={formInput.description || ""} onChange={handleChange} />
       </FormGroup>
-        <FormGroup >
-        {/* <FormGroup className='hidden owner-key' > */}
+        <FormGroup className='hidden owner-key' >
             <Input type="text" name="ownerKey" id="ownerKey" placeholder="Owner Key:" value={formInput.ownerKey} onChange={handleChange} />
         </FormGroup>
-        <FormGroup >
-        {/* <FormGroup className='hidden owner-key' > */}
+        <FormGroup className='hidden owner-key' >
             <Input type="text" name="reviewScore" id="reviewScore" placeholder="Review Score:" value={formInput.reviewScore} onChange={handleChange} />
         </FormGroup>
-        <FormGroup >
-        {/* <FormGroup className='hidden owner-key' > */}
+        <FormGroup className='hidden owner-key' >
             <Input type="text" name="verified" id="verified" placeholder="Verified:" value={formInput.verified} onChange={handleChange} />
         </FormGroup>
-        <FormGroup >
-        {/* <FormGroup className='hidden owner-key' > */}
+        <FormGroup className='hidden owner-key' >
             <Input type="text" name="logo" id="logo" placeholder="Logo:" value={formInput.logo} onChange={handleChange} />
         </FormGroup>
       <Button className='btn-success form-btn' onClick={handleSubmit}>{id ? 'Submit Changes' : 'Create Business'}</Button>
-      <Button className='btn btn-warning' onClick={warn}>Bus Info</Button>
     </Form>
   )
 }
