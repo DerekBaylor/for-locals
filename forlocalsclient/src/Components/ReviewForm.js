@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { addReview } from "../Data/ReviewData";
 
 const initialState = {
-    userId: '', //pull from user token
-    businessId: '', // pull from obj
+    userId: '', 
+    businessId: '', 
     reviewTitle: '',
     reviewText: '',
     imgUrl: '',

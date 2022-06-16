@@ -26,7 +26,6 @@ const getAllBusinesses = () =>
   })
 
   const addBusiness = (obj, ownerKey) => new Promise((resolve, reject) => {
-    console.warn('Promise Data', obj)
     axios
         .post(`${dbUrl}/add/${ownerKey}`, obj)
         .then((response) => resolve(response.data))

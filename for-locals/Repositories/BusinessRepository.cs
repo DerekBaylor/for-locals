@@ -61,48 +61,6 @@ namespace for_locals.Repositories
                 }
             }
         }
-        //public List <Business> GetBusinessByOwnerKey(string OwnerKey)
-        //{
-        //    using (SqlConnection conn = Connection)
-        //    {
-        //        conn.Open();
-        //        using (SqlCommand cmd = conn.CreateCommand())
-        //        {
-        //            cmd.CommandText = @"
-        //                                SELECT *
-        //                                FROM Business
-        //                                WHERE OwnerKey = @OwnerKey
-        //                                ";
-
-        //            SqlDataReader reader = cmd.ExecuteReader();
-
-        //                List<Business> businesses = new List<Business>();
-        //                while (reader.Read())
-        //                {
-        //                    Business business = new Business
-        //                    {
-        //                        BusinessId = reader.GetInt32(reader.GetOrdinal("BusinessId")),
-        //                        OwnerKey = reader.GetString(reader.GetOrdinal("OwnerKey")),
-        //                        StateControlNum = reader.GetString(reader.GetOrdinal("StateControlNum")),
-        //                        BusinessName = reader.GetString(reader.GetOrdinal("BusinessName")),
-        //                        Phone = reader.GetString(reader.GetOrdinal("Phone")),
-        //                        Address = reader.GetString(reader.GetOrdinal("Address")),
-        //                        Description = reader.GetString(reader.GetOrdinal("Description")),
-        //                        Keywords = reader.GetString(reader.GetOrdinal("Keywords")),
-        //                        Industry = reader.GetString(reader.GetOrdinal("Industry")),
-        //                        Logo = reader.GetString(reader.GetOrdinal("Logo")),
-        //                        ImgUrl = reader.GetString(reader.GetOrdinal("ImgUrl")),
-        //                        WebUrl = reader.GetString(reader.GetOrdinal("WebUrl")),
-        //                        ReviewScore = reader.GetInt32(reader.GetOrdinal("ReviewScore")),
-        //                        Verified = reader.GetString(reader.GetOrdinal("Verified")),
-        //                    };
-        //                    businesses.Add(business);
-        //                }
-        //                reader.Close();
-        //                return businesses;
-        //        }
-        //    }
-        ////}
 
         public Business GetBusinessById(int BusinessId)
         {
@@ -210,7 +168,7 @@ namespace for_locals.Repositories
                                         WebUrl = @WebUrl, 
                                         ReviewScore = @ReviewScore, 
                                         Verified = @Verified
-                                        Where BusinessId = @BusinessId
+                                        WHERE BusinessId = @BusinessId
                                         ";
                     cmd.Parameters.AddWithValue("@OwnerKey", business.OwnerKey);
                     cmd.Parameters.AddWithValue("@StateControlNum", business.StateControlNum);

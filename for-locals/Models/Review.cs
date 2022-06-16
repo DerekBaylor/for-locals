@@ -7,7 +7,7 @@
         public int BusinessId { get; set; }
         public string ReviewTitle { get; set; }
         public string ReviewText { get; set; }
-        public string ImgUrl { get; set; }
+        public string? ImgUrl { get; set; }
         public int Score { get; set; }
     }
 }
