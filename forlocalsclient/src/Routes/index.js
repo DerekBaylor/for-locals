@@ -21,7 +21,7 @@ export default function Routing({ local }){
                 <Route path="/businessProfile/:firebaseKey" element={<BusinessProfile local={local}/>} />
                 <Route path="/localProfile/:firebaseKey"  element={local ? <LocalProfile local={local}/> : <Login /> } />
                 <Route path="/businessManager/:id" element={<BusinessProfileDetails local={local} />} />
-                <Route path="registerBusiness" element={local ? <AddBusiness local={local} /> : <Login />} />           
+                <Route path="registerBusiness/:firebaseKey" element={local ? <AddBusiness local={local} /> : <Login />} />           
             </Routes>
         </>
     )

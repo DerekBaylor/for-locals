@@ -8,7 +8,7 @@ namespace for_locals.Repositories
         Business GetBusinessById(int BusinessId);
         void AddBusiness(Business business);
         void UpdateBusiness(Business business);
-        void DeleteBusiness(int BusinessId);
+        void DeleteBusiness(int businessId);
         Business GetBusinessByOwnerKey(string OwnerKey);
     }
 }

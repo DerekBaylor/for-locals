@@ -25,16 +25,15 @@ const getAllBusinesses = () =>
       .catch(reject);
   })
 
-  const addBusiness = (obj) => new Promise((resolve, reject) => {
+  const addBusiness = (obj, ownerKey) => new Promise((resolve, reject) => {
+    console.warn('Promise Data', obj)
     axios
-        .post(`${dbUrl}`, obj)
+        .post(`${dbUrl}/add/${ownerKey}`, obj)
         .then((response) => resolve(response.data))
         .catch(reject);
 });
 
  const updateBusiness = (id, obj, key) => new Promise((resolve, reject) => {
-  //  console.warn('Promise Data:', id, obj, key)
-  //  console.warn('Promise dbUrl:', dbUrl)
   axios
       .patch(`${dbUrl}/edit/${id}`, obj)
       .then(() => getBusinessByOwnerKey(key).then(resolve))

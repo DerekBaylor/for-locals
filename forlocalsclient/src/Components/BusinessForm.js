@@ -14,19 +14,42 @@ const initialState = {
     description: '',
     imgUrl: '',
     stateControlNum: '',
+    ownerKey: '',
+    reviewScore: 0,
+    verified: '',
 } 
-
 export default function BusinessForm({ bus }) {
   const [formInput, setFormInput] = useState(initialState);
   const {id} = useParams();
+  const {firebaseKey} = useParams();
   const [key, setKey] = useState();
+  
+  const addKey = () => {
+    const State = {
+      businessName: '',
+      phone: '',
+      address: '',
+      webUrl: '',
+      industry: '',
+      keywords: '',
+      description: '',
+      imgUrl: '',
+      stateControlNum: '',
+      ownerKey: firebaseKey,
+      reviewScore: 0,
+      verified: 'N',
+      logo: '',
+    }
+    console.warn('state', State)
+    setFormInput(State)
+  }
 
   useEffect(() => {
-    if(bus.businessId != null){
+    if(id){
       setKey(bus.ownerKey);
       setFormInput(bus);
     } else {
-      setFormInput(initialState)
+      addKey();
     }
 }, []);
 
@@ -44,16 +67,13 @@ const resetForm = () => {
 const handleSubmit = (e) => {
   e.preventDefault();
   if(id) {
-    console.warn('Submitted Data:', id, formInput, key);
     updateBusiness(id, formInput, key).then(() => {
         resetForm(); 
       })
-      console.warn('Busienss Updated')
   } else  {
-    addBusiness({ ...formInput }).then(() => {
+    addBusiness(formInput, firebaseKey).then(() => {
       resetForm();
     })
-    console.warn("Business Added");
   }
 };
 
@@ -61,7 +81,6 @@ const warn = () => {
   console.warn('bus', bus)
   console.warn('key', key)
 };
-
 
   return (
     <Form>
@@ -90,13 +109,25 @@ const warn = () => {
           <Input type="text" name="keywords" id="keywords" placeholder="Keywords:" value={formInput.keywords || ""} onChange={handleChange} />
       </FormGroup>
       <FormGroup>
-          <Input type="text" name="stateControlNum" id="stateControlNum" placeholder="State Control Number:" value={formInput.address || ""} onChange={handleChange} />
-      </FormGroup>
-      <FormGroup>
           <Input type="text" name="description" id="description" placeholder="Description:" value={formInput.description || ""} onChange={handleChange} />
       </FormGroup>
+        <FormGroup >
+        {/* <FormGroup className='hidden owner-key' > */}
+            <Input type="text" name="ownerKey" id="ownerKey" placeholder="Owner Key:" value={formInput.ownerKey} onChange={handleChange} />
+        </FormGroup>
+        <FormGroup >
+        {/* <FormGroup className='hidden owner-key' > */}
+            <Input type="text" name="reviewScore" id="reviewScore" placeholder="Review Score:" value={formInput.reviewScore} onChange={handleChange} />
+        </FormGroup>
+        <FormGroup >
+        {/* <FormGroup className='hidden owner-key' > */}
+            <Input type="text" name="verified" id="verified" placeholder="Verified:" value={formInput.verified} onChange={handleChange} />
+        </FormGroup>
+        <FormGroup >
+        {/* <FormGroup className='hidden owner-key' > */}
+            <Input type="text" name="logo" id="logo" placeholder="Logo:" value={formInput.logo} onChange={handleChange} />
+        </FormGroup>
       <Button className='btn-success form-btn' onClick={handleSubmit}>{id ? 'Submit Changes' : 'Create Business'}</Button>
-
       <Button className='btn btn-warning' onClick={warn}>Bus Info</Button>
     </Form>
   )

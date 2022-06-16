@@ -23,6 +23,13 @@ namespace for_locals.Controllers
             return _businessRepository.GetAllBusiness();
         }
 
+        //[HttpGet("ownerKey/{OwnerKey}")]
+        //public List<Business> GetBusinessByOwnerKey(string OwnerKey)
+        //{
+        //    return _businessRepository.GetBusinessByOwnerKey(OwnerKey);
+
+        //}
+
         [HttpGet("id/{BusinessId}")]
         public IActionResult Get(int BusinessId)
         {
@@ -37,11 +44,19 @@ namespace for_locals.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPost("add/{OwnerKey}")]
         public IActionResult AddBusiness(Business business)
         {
+            if (business == null)
+            {
+                return BadRequest();
+            } 
+            else
+            {
             _businessRepository.AddBusiness(business);
             return Ok(business);
+
+            }
         }
 
         [HttpPatch("edit/{businessId}")]
@@ -63,7 +78,7 @@ namespace for_locals.Controllers
             }
         }
 
-        [HttpDelete("{BusinessId}")]
+        [HttpDelete("{businessId}")]
         public IActionResult Delete(int businessId)
         { 
             var currentBusiness = _businessRepository.GetBusinessById(businessId);
@@ -73,7 +88,7 @@ namespace for_locals.Controllers
             }
             else
             {
-                _businessRepository.DeleteBusiness(currentBusiness.BusinessId);
+                _businessRepository.DeleteBusiness(businessId);
                 return NoContent();
             }
         }
