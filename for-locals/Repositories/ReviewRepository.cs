@@ -210,11 +210,11 @@ namespace for_locals.Repositories
                     cmd.CommandText = @"
                                         UPDATE Review
                                         SET
-                                        UserId = @UserId
-                                        BusinessId = @BusinessId
-                                        ReviewTitle = @ReviewTitle
-                                        ReviewText = ReviewText
-                                        ImgUrl = @ImgUrl
+                                        UserId = @UserId,
+                                        BusinessId = @BusinessId,
+                                        ReviewTitle = @ReviewTitle,
+                                        ReviewText = @ReviewText,
+                                        ImgUrl = @ImgUrl,
                                         Score = @Score
                                         WHERE ReviewId = @ReviewId
                                         ";
@@ -228,7 +228,6 @@ namespace for_locals.Repositories
 
                     cmd.ExecuteNonQuery();
                 }
-
             }
         }
     }

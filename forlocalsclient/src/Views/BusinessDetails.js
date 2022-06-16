@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import PropTypes from 'prop-types';
 import BusinessIcon from '../Assets/BusinessIcon.png'
 import { getBusinessById } from '../Data/BusinessData';
 import { useParams } from 'react-router-dom';
@@ -7,15 +8,25 @@ import ReviewForm from '../Components/ReviewForm';
 import ReviewCard from '../Components/ReviewCard';
 import { getReviewsByBusinessId } from '../Data/ReviewData';
 
-export default function BusinessDetails() {
+export default function BusinessDetails({ local }) {
+  const {id} = useParams();
   const [business, setBusiness] = useState({});
   const [reviews, setReviews] = useState([]);
-  const {key} = useParams();
+  const [form, setForm] = useState(false);
+  const [editItem, setEditItem] = useState();
   
   useEffect(() => {
-    getBusinessById(key).then(setBusiness)
-    getReviewsByBusinessId(key).then(setReviews)
+    getBusinessById(id).then(setBusiness)
+    getReviewsByBusinessId(id).then(setReviews)
   }, []);
+
+  const showForm = () => {
+    if(form === true) {
+      setForm(false)
+  } else {
+    setForm(true);
+  }
+};
 
   return (
     <div className="main-body-div">
@@ -30,14 +41,30 @@ export default function BusinessDetails() {
       <div className="main-review-div">
         <div className='review-header'>User Reviews</div>
         <hr className='hr'/>
+        <button className='btn btn-outline-success' onClick={showForm}>LEAVE A REVIEW</button>
+        <div className='form-container'>
+        {
+          form?   <div><ReviewForm 
+                    local = {local}
+                    editItem = {editItem}
+                    setEditItem = {setEditItem}
+                    setReviews = {setReviews}
+                    />  
+                  </div>:null
+        }
+      </div>
         <div className="reivew-card-div">
-          <ReviewForm busObj={business} />
           <div className='review-card-container'>
-            {reviews.map((rev) => {
+            {reviews.map((revObj) => {
               return (
                 <ReviewCard 
-                reviewObj={rev} 
-                key = {rev.reviewId}
+                key={revObj.reviewId}
+                revObj={revObj} 
+                busKey = {id}
+                local = {local}
+                setEditItem = {setEditItem}
+                setReviews = {setReviews}
+                setForm = {setForm}
                 />
               )
             })}
@@ -46,5 +73,13 @@ export default function BusinessDetails() {
       </div>
     </div> 
   )
+};
+
+BusinessDetails.propTypes = {
+  local: PropTypes.shape(PropTypes.obj),
+};
+
+BusinessDetails.defaultProps = {
+  local: null,
 };
 
