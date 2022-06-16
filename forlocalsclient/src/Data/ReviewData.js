@@ -11,6 +11,7 @@ const getAllReviews = () =>
   })
 
 const getReviewsByBusinessId = (businessId) => new Promise ((resolve, reject) => {
+  console.warn('Get By Bus Id Promise Called')
         axios
             .get(`${dbUrl}/review/${businessId}`)
             .then((response) => resolve(Object.values(response.data)))
@@ -18,11 +19,10 @@ const getReviewsByBusinessId = (businessId) => new Promise ((resolve, reject) =>
     });
 
 const addReview = (obj, businessId) => new Promise ((resolve, reject) => {
-        axios
-        .post(`${dbUrl}/api/Review`, obj)
-        .then(() => getReviewsByBusinessId(businessId).then(resolve))
-        // .then((response) => resolve(response.data))
-        .catch(reject);
+    axios
+      .post(`${dbUrl}/api/Review`, obj)
+      .then(() => getReviewsByBusinessId(businessId).then(resolve))
+      .catch(reject);
 });
 
 const getReviewById = (revId) => new Promise((resolve, reject) => {

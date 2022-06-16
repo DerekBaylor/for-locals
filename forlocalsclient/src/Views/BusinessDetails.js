@@ -14,11 +14,12 @@ export default function BusinessDetails({ local }) {
   const [reviews, setReviews] = useState([]);
   const [form, setForm] = useState(false);
   const [editItem, setEditItem] = useState();
-  
+
   useEffect(() => {
-    getBusinessById(id).then(setBusiness)
-    getReviewsByBusinessId(id).then(setReviews)
-  }, []);
+    getBusinessById(id).then(setBusiness);
+    getReviewsByBusinessId(id).then(setReviews);
+    console.warn('View State Updated')
+  }, [editItem, id]);
 
   const showForm = () => {
     if(form === true) {
