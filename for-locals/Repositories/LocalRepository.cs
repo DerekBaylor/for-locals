@@ -170,7 +170,7 @@ namespace for_locals.Repositories
                     }
                     if (local.Email == null)
                     {
-                        cmd.Parameters.AddWithValue("@Email", DBNull.Value);
+                        cmd.Parameters.AddWithValue("@Email", "null");
                     }
                     else
                     {

@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FirebaseAdmin.Auth;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using for_locals.Models;
 using for_locals.Repositories;
 
@@ -119,19 +121,18 @@ namespace for_locals.Controllers
             bool localexists = _localRepository.LocalExists(firebaseKey);
             if (!localexists)
             {
-                Local localfromtoken = new Local()
+                Local localFromToken = new()
                 {
                     Name = User.Identity.Name,
-                    Email = 
                     FirebaseKey = firebaseKey,
-                    
                 };
 
-                _localRepository.AddLocal(localfromtoken);
+                _localRepository.AddLocal(localFromToken);
                 return Ok();
+                //return NotFound();
             }
-            Local existingAgent = _localRepository.GetLocalByFirebaseKey(firebaseKey);
-            return Ok(existingAgent);
+            Local existingLocal = _localRepository.GetLocalByFirebaseKey(firebaseKey);
+            return Ok(existingLocal);
         }
     }
 }
