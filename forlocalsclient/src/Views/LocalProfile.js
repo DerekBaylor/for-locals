@@ -40,6 +40,7 @@ export default function LocalProfile() {
         {
           form?<div><LocalProfileForm 
                         local={profile}
+                        form={form}
                         setForm={setForm}
                         />
               </div>:null
