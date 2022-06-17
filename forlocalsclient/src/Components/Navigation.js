@@ -1,10 +1,19 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ForLocalsLogo from '../Assets/ForLocalsLogo.png';
-import { signOutUser } from "../Data/authManager";
+import { signInUser, signOutUser } from "../Data/authManager";
 
 export default function Navigation({ local }) {
+    const navigate = useNavigate();
+    
+    const handleClick = (e) => {
+        signInUser().then(() => {
+            const firebaseKey = sessionStorage.getItem("firebaseKey")
+              navigate(`/localProfile/${firebaseKey}`);
+          });
+      }
+
   return (
     <nav className="navbar fixed-top navbar-light">
         <ul className="navbar-nav nav-ul">
@@ -36,22 +45,23 @@ export default function Navigation({ local }) {
                                 BUSINESS
                             </Link>
                         </li>
-                        <Link 
+                        <button 
                             className="btn nav-btn btn-outline-success"
                             onClick={signOutUser}
                             to="/"
                             >
                             LOG OUT
-                        </Link>
+                        </button>
                     </ul>
                 </div>
             ) : ( 
-                <Link 
+                <button 
                     className="btn nav-btn btn-outline-success"
-                    to="/login"
-                >
-                    LOGIN
-                </Link>
+                    onClick={(e) => handleClick(e)}
+                    local={local}
+                    >
+                    Login
+                </button>
             )}
         </div>
     </nav>

@@ -122,7 +122,9 @@ namespace for_locals.Controllers
                 Local localfromtoken = new Local()
                 {
                     Name = User.Identity.Name,
+                    Email = 
                     FirebaseKey = firebaseKey,
+                    
                 };
 
                 _localRepository.AddLocal(localfromtoken);
