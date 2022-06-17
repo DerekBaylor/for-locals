@@ -2,8 +2,7 @@ import axios from "axios";
 
 const dbUrl = "https://localhost:7058";
 
-const getAllReviews = () =>
-  new Promise((resolve, reject) => {
+const getAllReviews = () => new Promise((resolve, reject) => {
     axios
       .get(`${dbUrl}/api/Review`)
       .then((response) => resolve(Object.values(response.data)))
@@ -11,7 +10,6 @@ const getAllReviews = () =>
   })
 
 const getReviewsByBusinessId = (businessId) => new Promise ((resolve, reject) => {
-  console.warn('Get By Bus Id Promise Called')
         axios
             .get(`${dbUrl}/review/${businessId}`)
             .then((response) => resolve(Object.values(response.data)))
@@ -40,7 +38,6 @@ const deleteReview = (revId) => new Promise((resolve, reject) => {
   });
 
   const updateReview = (revId, obj, businessId) => new Promise((resolve, reject) => {
-    console.warn('Update Promise Data', revId, obj, businessId)
     axios
       .patch(`${dbUrl}/api/Review/edit/${revId}`, obj)
       .then(() => getReviewsByBusinessId(businessId).then(resolve))
