@@ -10,11 +10,13 @@ const initialState = {
   reviewTitle: '',
   reviewText: '',
   imgUrl: '',
-  score: 0,
+  score: '',
 };
-export default function ReviewForm({ local, editItem, setEditItem, setReviews, setForm }) {
+export default function ReviewForm({ local, editItem, setEditItem, setReviews, setForm, setUpdateScore }) {
   const {id} = useParams();
   const [formInput, setFormInput] = useState(initialState);
+  const [formErrors, setFormErrors] = useState({});
+  const [isSubmit, setIsSubmit] = useState(false);
 
   const newState = () => {
     const formData = {
@@ -23,7 +25,7 @@ export default function ReviewForm({ local, editItem, setEditItem, setReviews, s
       reviewTitle: '',
       reviewText: '',
       imgUrl: '',
-      score: 0,
+      score: '',
     }
     setFormInput(formData)
   };
@@ -35,8 +37,12 @@ export default function ReviewForm({ local, editItem, setEditItem, setReviews, s
       setFormInput(editItem)
     }
     getReviewsByBusinessId(id).then(setReviews);
-    console.warn('Form State Update')
   }, [editItem]);
+
+  useEffect(() => {
+    if(Object.keys(formErrors).length === 0 && isSubmit) {
+    }
+  },[formErrors, isSubmit]);
 
   function handleChange(e) {
     setFormInput((prevState) => ({
@@ -46,36 +52,64 @@ export default function ReviewForm({ local, editItem, setEditItem, setReviews, s
   }
 
   const resetForm = () => {
-      setFormInput(initialState);
-      setEditItem(null);
-      setForm(false);
-    };
+    setFormInput(initialState);
+    setEditItem(null);
+    setForm(false);
+  };  
+    
+  const min = 1;
+  const max = 5;
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (editItem === null) {
-          addReview(formInput, id).then(setReviews);
-          setEditItem(null);
-          setForm(false);
-        } else if (editItem != null){
-          updateReview(editItem.reviewId, formInput, id).then(setReviews)
-          setEditItem(null);
-          setForm(false);
-        }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setFormErrors(validate(formInput));
+    setIsSubmit(true);
+    if(formInput.score > max){
+      formInput.score = max;
+    } else if (formInput.score < min) {
+      formInput.score = min;
     };
+    
+    if (editItem === null) {
+      addReview(formInput, id).then(setReviews);
+    } else if (editItem != null){
+      updateReview(editItem.reviewId, formInput, id).then(setReviews)
+    };
+    setEditItem(null);
+    if (!isSubmit) {
+      setForm(false);
+    }
+  };
+
+  const validate = (formInput) => {
+    const errors = {}
+    if (!formInput.score) {
+      errors.score = "Please enter a review score between 1 and 5."
+    }
+    if (!formInput.reviewTitle) {
+      errors.reviewTitle = "Please add a title to your review."
+    }
+    if (!formInput.reviewText) {
+      errors.reviewText = "Please tell us of your experience."
+    }
+    return errors;
+  };
 
   return (
     <Form className='form form-container'>
       <FormGroup className='form-group'>
-          <Input type="number" name="score" id="score" placeholder="Score: (0-5)" 
-          value={formInput.score || 0} onChange={handleChange} />
+       <p className="validation-text">{formErrors.score}</p>
+          <Input type="number" name="score" id="score" placeholder="Score: (1-5)" 
+          value={formInput.score} min="1" max="5" onChange={handleChange} />
       </FormGroup>
       <FormGroup className='form-group'>
           <Input type="url" name="imgUrl" id="imgUrl" placeholder="Add Image By Url:" value={formInput.imgUrl || ""} onChange={handleChange} />
       </FormGroup>
+      <p className="validation-text">{formErrors.reviewTitle}</p>
       <FormGroup className='form-group'>
           <Input type="text" name="reviewTitle" id="reviewTitle" placeholder="Title:" value={formInput.reviewTitle || ""} onChange={handleChange} />
       </FormGroup>
+      <p className="validation-text">{formErrors.reviewText}</p>
       <FormGroup className='form-group'>
           <Input type="text" name="reviewText" id="reviewText" placeholder="Review:" value={formInput.reviewText || ""} onChange={handleChange} />
       </FormGroup>
@@ -101,6 +135,7 @@ ReviewForm.propTypes = {
   setForm: PropTypes.func.isRequired,
   formInput: PropTypes.func.isRequired,
   setFormInput: PropTypes.func.isRequired,
+  setUpdateScore: PropTypes.func.isRequired,
 };
 
 ReviewForm.defaultProps = {

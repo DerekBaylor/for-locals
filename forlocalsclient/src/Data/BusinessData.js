@@ -10,8 +10,7 @@ const getAllBusinesses = () =>
       .catch(reject);
   });
 
-  const getBusinessById = (busId) =>
-  new Promise((resolve, reject) => {
+  const getBusinessById = (busId) => new Promise((resolve, reject) => {
     axios
       .get(`${dbUrl}/id/${busId}`)
       .then((response) => resolve((response.data)))
@@ -39,6 +38,14 @@ const getAllBusinesses = () =>
       .catch(reject);
 });
 
+const updateBusinessScore = (id, obj) => new Promise((resolve, reject) => {
+  console.warn('****UPDATE SCORE PROMISE****')
+  axios
+      .patch(`${dbUrl}/edit/${id}`, obj)
+      .then(() => getBusinessById(id).then(resolve))
+      .catch(reject);
+});
+
 const deleteBusiness = (id) => new Promise((resolve, reject) => {
   axios
       .delete(`${dbUrl}/${id}`)
@@ -52,5 +59,6 @@ const deleteBusiness = (id) => new Promise((resolve, reject) => {
       getBusinessByOwnerKey,
       addBusiness,
       updateBusiness,
+      updateBusinessScore,
       deleteBusiness,
   };

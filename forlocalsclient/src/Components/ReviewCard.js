@@ -4,23 +4,25 @@ import BusinessIcon from '../Assets/BusinessIcon.png'
 import { getLocalById } from "../Data/LocalData";
 import { deleteReview, getReviewsByBusinessId } from "../Data/ReviewData";
 
-export default function ReviewCard({ local, revObj, setEditItem, setReviews, busKey, setForm }) {
+export default function ReviewCard({ local, revObj, setEditItem, setReviews, busKey, setForm, updateScore, setUpdateScore, getScore }) {
     const [localName, setLocalName] = useState({});
     const [buttons, setButtons] = useState(false);
 
     useEffect(() => {
-        getLocalById(revObj.userId).then(setLocalName);
-        showButtons();
-    });
+      console.warn('Review Card useEffect Called')
+      getLocalById(revObj.userId).then(setLocalName);
+      showButtons();
+    }, []);
 
     const handleClick = (method) => {
       if (method === 'delete') {
         deleteReview(revObj.reviewId).then(() =>
-         getReviewsByBusinessId(busKey).then(setReviews));
+        getReviewsByBusinessId(busKey).then(setReviews));
       } else if (method === 'edit') {
         setEditItem(revObj);
         setForm(true);
       };
+      setUpdateScore(updateScore + 1);
     };
 
     const showButtons = () => {
@@ -68,7 +70,10 @@ ReviewCard.propTypes = {
     setEditItem: PropTypes.func.isRequired,
     setReviews: PropTypes.func.isRequired,
     setForm: PropTypes.func.isRequired,
-    local: PropTypes.shape(PropTypes.obj)
+    local: PropTypes.shape(PropTypes.obj),
+    updateScore: PropTypes.number.isRequired,
+    setUpdateScore: PropTypes.func.isRequired,
+    getScore: PropTypes.func.isRequired,
   };
 
   ReviewCard.defaultProps = {
