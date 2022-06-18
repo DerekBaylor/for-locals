@@ -4,12 +4,11 @@ import BusinessIcon from '../Assets/BusinessIcon.png'
 import { getLocalById } from "../Data/LocalData";
 import { deleteReview, getReviewsByBusinessId } from "../Data/ReviewData";
 
-export default function ReviewCard({ local, revObj, setEditItem, setReviews, busKey, setForm, updateScore, setUpdateScore, getScore }) {
+export default function ReviewCard({ local, revObj, setEditItem, setReviews, busKey, setForm }) {
     const [localName, setLocalName] = useState({});
     const [buttons, setButtons] = useState(false);
 
     useEffect(() => {
-      console.warn('Review Card useEffect Called')
       getLocalById(revObj.userId).then(setLocalName);
       showButtons();
     }, []);
@@ -22,7 +21,6 @@ export default function ReviewCard({ local, revObj, setEditItem, setReviews, bus
         setEditItem(revObj);
         setForm(true);
       };
-      setUpdateScore(updateScore + 1);
     };
 
     const showButtons = () => {
@@ -71,9 +69,6 @@ ReviewCard.propTypes = {
     setReviews: PropTypes.func.isRequired,
     setForm: PropTypes.func.isRequired,
     local: PropTypes.shape(PropTypes.obj),
-    updateScore: PropTypes.number.isRequired,
-    setUpdateScore: PropTypes.func.isRequired,
-    getScore: PropTypes.func.isRequired,
   };
 
   ReviewCard.defaultProps = {

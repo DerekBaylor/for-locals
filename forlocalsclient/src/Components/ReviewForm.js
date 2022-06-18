@@ -12,7 +12,7 @@ const initialState = {
   imgUrl: '',
   score: '',
 };
-export default function ReviewForm({ local, editItem, setEditItem, setReviews, setForm, setUpdateScore }) {
+export default function ReviewForm({ local, editItem, setEditItem, setReviews, setForm }) {
   const {id} = useParams();
   const [formInput, setFormInput] = useState(initialState);
   const [formErrors, setFormErrors] = useState({});
@@ -40,9 +40,10 @@ export default function ReviewForm({ local, editItem, setEditItem, setReviews, s
   }, [editItem]);
 
   useEffect(() => {
+    console.warn('useEffect', formErrors)
     if(Object.keys(formErrors).length === 0 && isSubmit) {
     }
-  },[formErrors, isSubmit]);
+  },[formErrors]);
 
   function handleChange(e) {
     setFormInput((prevState) => ({
@@ -62,8 +63,10 @@ export default function ReviewForm({ local, editItem, setEditItem, setReviews, s
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     setFormErrors(validate(formInput));
     setIsSubmit(true);
+
     if(formInput.score > max){
       formInput.score = max;
     } else if (formInput.score < min) {
@@ -78,10 +81,11 @@ export default function ReviewForm({ local, editItem, setEditItem, setReviews, s
     setEditItem(null);
     if (!isSubmit) {
       setForm(false);
-    }
+    };
   };
 
   const validate = (formInput) => {
+    console.warn('validate', formInput)
     const errors = {}
     if (!formInput.score) {
       errors.score = "Please enter a review score between 1 and 5."
@@ -100,7 +104,7 @@ export default function ReviewForm({ local, editItem, setEditItem, setReviews, s
       <FormGroup className='form-group'>
        <p className="validation-text">{formErrors.score}</p>
           <Input type="number" name="score" id="score" placeholder="Score: (1-5)" 
-          value={formInput.score} min="1" max="5" onChange={handleChange} />
+          value={formInput.score} max="5" onChange={handleChange} />
       </FormGroup>
       <FormGroup className='form-group'>
           <Input type="url" name="imgUrl" id="imgUrl" placeholder="Add Image By Url:" value={formInput.imgUrl || ""} onChange={handleChange} />
@@ -135,7 +139,6 @@ ReviewForm.propTypes = {
   setForm: PropTypes.func.isRequired,
   formInput: PropTypes.func.isRequired,
   setFormInput: PropTypes.func.isRequired,
-  setUpdateScore: PropTypes.func.isRequired,
 };
 
 ReviewForm.defaultProps = {

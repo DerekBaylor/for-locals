@@ -21,12 +21,12 @@ CREATE TABLE Business (
         BusinessName VARCHAR(255) NOT NULL,
         Phone VARCHAR(55) DEFAULT '',
         [Address] VARCHAR(255) NOT NULL,
-        [Description] VARCHAR(255) DEFAULT 'Hello World' NOT NULL,
-        Keywords VARCHAR(255) NOT NULL,
+        [Description] VARCHAR(5000) DEFAULT 'Hello World' NOT NULL,
+        Keywords VARCHAR(1000) NOT NULL,
         Industry VARCHAR(255) NOT NULL,
-        Logo VARCHAR(255) DEFAULT '',
+        Logo VARCHAR(500) DEFAULT '',
         ImgURL VARCHAR(500) DEFAULT 'https://zfjepfckphrvbatmvyud.supabase.co/storage/v1/object/sign/for-locals-img/BusinessIcon.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJmb3ItbG9jYWxzLWltZy9CdXNpbmVzc0ljb24ucG5nIiwiaWF0IjoxNjU1MjQ3ODQyLCJleHAiOjE5NzA2MDc4NDJ9.aNICkDp-Px5nCOUZE_VbjxScRmsgZjx4peKc-7uT3Og',
-        WebUrl VARCHAR(255) DEFAULT '',
+        WebUrl VARCHAR(500) DEFAULT '',
         ReviewScore INT DEFAULT 0, 
         Verified CHAR(1) DEFAULT 'N' NOT NULL,
         OwnerKey VARCHAR(255) NOT NULL, 
@@ -36,7 +36,7 @@ CREATE TABLE Review (
         ReviewId INT NOT NULL PRIMARY KEY IDENTITY,
         ReviewTitle VARCHAR(100) NOT NULL,
         ReviewText VARCHAR(255) NOT NULL,
-        ImgUrl VARCHAR(255) DEFAULT '',
+        ImgUrl VARCHAR(255) DEFAULT 'https://zfjepfckphrvbatmvyud.supabase.co/storage/v1/object/sign/for-locals-img/ReviewIcon.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJmb3ItbG9jYWxzLWltZy9SZXZpZXdJY29uLnBuZyIsImlhdCI6MTY1NTU1ODA5NCwiZXhwIjoxOTcwOTE4MDk0fQ.phspICuNYjbQisR_WkhL9PfFikqgDCBhMmXlAt4_HQc',
         Score INTEGER NOT NULL,
         UserId INT NOT NULL,
         BusinessId INT NOT NULL,
@@ -67,7 +67,23 @@ INSERT INTO Locals ([Name], Email, Bio, FirebaseKey) VALUES ('Meg Raj', 'meg@for
 -- Mock Business Data
 INSERT INTO Business (StateControlNum, BusinessName, [Address], Keywords, Industry,Verified, OwnerKey) VALUES ('000607957', 'Pick Tennessee Conference','6290 McDaniel Rd. College Grove, TN 37046', 'Agriculture, Farming', 'Agriculture', 'Y', '3BmdIm3F9GZmm0UBnH2ADGNljhu2');
 INSERT INTO Business (StateControlNum, BusinessName, [Address], Keywords, Industry,Verified, OwnerKey, WebUrl) VALUES ('000485847', 'Arrington Vineyards','6211 Patton Rd Arrington, TN 37014', 'Winery', 'Food & Beverage', 'Y', '7vUgp5uOGoQYIAcqQlUMx1E6RbC2','https://arringtonvineyards.com/');
-INSERT INTO Business (StateControlNum, BusinessName, [Address], Keywords, Industry,Verified, OwnerKey, WebUrl) VALUES ('000664303', 'Parnassus Books','3900 Hillsboro Pike Nashville, TN 37215', 'Book, Authors', 'Books', 'Y', 'HRQXSE97G5N1KrvyTEjkkdDbv3G3','https://www.OwnerFKey.net/');
+
+INSERT INTO Business (StateControlNum, BusinessName, [Address], Keywords, Industry, Verified, OwnerKey, WebUrl, imgUrl, Logo, [Description], Phone) 
+VALUES 
+('000664303', 
+'Parnassus Books',
+'3900 Hillsboro Pike Nashville, TN 37215', 
+'Book, Authors, Book Store, Books, Read, Reading', 
+'Retail', 
+'Y', 
+'HRQXSE97G5N1KrvyTEjkkdDbv3G3',
+'https://www.parnassusbooks.net/',
+'https://zfjepfckphrvbatmvyud.supabase.co/storage/v1/object/sign/for-locals-img/ParnassuesBooks.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJmb3ItbG9jYWxzLWltZy9QYXJuYXNzdWVzQm9va3MucG5nIiwiaWF0IjoxNjU1NTU4MjQwLCJleHAiOjE5NzA5MTgyNDB9.Vz_bpmraPsKJ16sglqijbyggmk8MPp5jT-LZxf5WprI',
+'https://zfjepfckphrvbatmvyud.supabase.co/storage/v1/object/sign/for-locals-img/ParnassusLogo.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJmb3ItbG9jYWxzLWltZy9QYXJuYXNzdXNMb2dvLnBuZyIsImlhdCI6MTY1NTU1ODIyNywiZXhwIjoxOTcwOTE4MjI3fQ.DaXulfs2gRasbO7oO9zyH2Xd-Y2F4LCSkKQVFgE2ypg',
+'Parnassus Books is the independent bookstore for independent people located in Nashville, Tennessee. Our shop has been co-owned by novelist Ann Patchett and her business partner, Karen Hayes, since it opened in 2011. Parnassus stocks an extensive and exciting selection of books including fiction, non-fiction, children’s, local interests, and the arts. The store also boasts an extensive local author section.',
+'615-953-2243'
+);
+
 INSERT INTO Business (StateControlNum, BusinessName, [Address], Keywords, Industry,Verified, OwnerKey, WebUrl) VALUES ('000342696', 'Gabbys Burgers & Fries','493 Humphreys St Nashville, TN 37203', 'Hamburger, French Fries, American', 'Food & Beverage', 'Y', 'WVsOfVUcQVXoCHs0TXBJMthdbdV2', 'https://www.gabbysburgersandfries.com/');
 INSERT INTO Business (StateControlNum, BusinessName, [Address], Keywords, Industry,Verified, OwnerKey, WebUrl) VALUES('100000004', 'Phoenix Massage Therapy','106 Misson Ct STE 801 Franklin, TN 37067', 'Massage', 'Health & Wellness', 'Y', 'u8aMHDzCyAXb9G9xl81EEPbk3sC2', 'https://phoenixlmt.com/');
 INSERT INTO Business (StateControlNum, BusinessName, [Address], Keywords, Industry,Verified, OwnerKey, WebUrl) VALUES ('001146585', 'The Game Keepe','3952 Lebanon Pike Hermitage, TN 37076', 'Comics, Trading Card, Books, Board Games', 'Books', 'Y', '72qLtEPpmSP0TRdVX6GTwqU29zl2', 'https://www.facebook.com/thegamekeep/');
