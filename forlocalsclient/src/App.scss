@@ -41,6 +41,9 @@ $local-green: #6B9749;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  max-height: fit-content;
+  margin-bottom: 5rem;
   .navbar-spacing{
     height: 5rem;
   }
@@ -48,45 +51,53 @@ $local-green: #6B9749;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
     margin-top: 3rem;
     gap: 1rem;
   }
 }
 
+.home-view-container{
+  .home-title{
+    max-width: 90%;
+    font-family: Montserrat;
+    font-weight: 400;
+    font-size: 2rem;
+    color: $local-green;
+  }
+}
+
 .featured-business-card{
-  border: 3px, solid;
-  border-radius: 1.5rem;
-  max-width: 70%;
-  max-height: 20.5rem;
-  .card-div-two{
+  max-width: 150rem;
+  .featBus-card-div{
     border: none;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     .featured-card-img{
-      max-width: 50%;
+      max-width: 60rem;
       border-radius: 1.5rem;
     }
     .card-body{
-      max-height: 20.5rem;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      align-items: center;
       .card-title{
         font-family: Montserrat;
         font-weight: 800;
         margin-bottom: 1rem;
+        font-size: 2rem;
       }
       .card-text{
-        overflow: hidden;
+        max-width: 30rem;
       }
       .card-btn-div{
         margin-top: 4rem;
-        max-width: 5rem;
         align-self: center;
         .card-btn{
           background-color: $local-green;
           border-color: $local-green;
-          max-width: 7rem;
         }
       }
     }

@@ -9,14 +9,14 @@ export default function ReviewCard({ local, revObj, setEditItem, setReviews, bus
     const [buttons, setButtons] = useState(false);
 
     useEffect(() => {
-        getLocalById(revObj.userId).then(setLocalName);
-        showButtons();
-    });
+      getLocalById(revObj.userId).then(setLocalName);
+      showButtons();
+    }, []);
 
     const handleClick = (method) => {
       if (method === 'delete') {
         deleteReview(revObj.reviewId).then(() =>
-         getReviewsByBusinessId(busKey).then(setReviews));
+        getReviewsByBusinessId(busKey).then(setReviews));
       } else if (method === 'edit') {
         setEditItem(revObj);
         setForm(true);
@@ -68,7 +68,7 @@ ReviewCard.propTypes = {
     setEditItem: PropTypes.func.isRequired,
     setReviews: PropTypes.func.isRequired,
     setForm: PropTypes.func.isRequired,
-    local: PropTypes.shape(PropTypes.obj)
+    local: PropTypes.shape(PropTypes.obj),
   };
 
   ReviewCard.defaultProps = {

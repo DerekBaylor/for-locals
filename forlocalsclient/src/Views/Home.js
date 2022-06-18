@@ -12,10 +12,11 @@ export default function Home() {
   }, []);
 
   return (
-    <div className='main-body-div'>
+    <div className='main-body-div home-view-container'>
       <div className='navbar-spacing'></div>
+      <div className="home-title">OUR FEATURED BUSINESS</div>
       <div className='featured-card-div card-div'>
-      <FeatureBusinessCard featBus={featBusiness} /> 
+        <FeatureBusinessCard featBus={featBusiness} /> 
     </div>
   </div>
   )

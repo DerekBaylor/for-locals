@@ -18,8 +18,22 @@ export default function BusinessDetails({ local }) {
   useEffect(() => {
     getBusinessById(id).then(setBusiness);
     getReviewsByBusinessId(id).then(setReviews);
-    console.warn('View State Updated')
   }, [editItem, id]);
+
+
+
+//   const getScore = () => {
+//     console.warn('getScore called');
+//     getReviewsByBusinessId(id).then(setReviews);
+//     const [...revScore] = reviews.map((card) => card.score);
+//     const scoreTotal = revScore.reduce((a, b) => a + b, 0);
+//     const finalTotal = (scoreTotal / reviews.length);
+//     setReviewScore(finalTotal);
+//     business.reviewScore = finalTotal;
+//     updateBusinessScore(id, business).then(() => {
+//       setUpdateScore(updateScore + 1);
+//   });
+// };
 
   const showForm = () => {
     if(form === true) {
