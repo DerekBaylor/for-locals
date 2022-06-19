@@ -126,6 +126,14 @@ namespace for_locals.Repositories
                                         OUTPUT INSERTED.BusinessId
                                         VALUES (@OwnerKey, @StateControlNum, @BusinessName, @Phone, @Address, @Description, @Keywords, @Industry, @ImgUrl, @WebUrl, @ReviewScore, @Verified)
                                         ";
+                    if (business.ImgUrl == "")
+                    {
+                        cmd.Parameters.AddWithValue("@Imgurl", "https://zfjepfckphrvbatmvyud.supabase.co/storage/v1/object/sign/for-locals-img/BusinessIcon.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJmb3ItbG9jYWxzLWltZy9CdXNpbmVzc0ljb24ucG5nIiwiaWF0IjoxNjU1MjQ3ODQyLCJleHAiOjE5NzA2MDc4NDJ9.aNICkDp-Px5nCOUZE_VbjxScRmsgZjx4peKc-7uT3Og");
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@ImgUrl", business.ImgUrl);
+                    }
                     cmd.Parameters.AddWithValue("@OwnerKey", business.OwnerKey);
                     cmd.Parameters.AddWithValue("@StateControlNum", business.StateControlNum);
                     cmd.Parameters.AddWithValue("@BusinessName", business.BusinessName);
@@ -134,7 +142,6 @@ namespace for_locals.Repositories
                     cmd.Parameters.AddWithValue("@Description", business.Description);
                     cmd.Parameters.AddWithValue("@Keywords", business.Keywords);
                     cmd.Parameters.AddWithValue("@Industry", business.Industry);
-                    cmd.Parameters.AddWithValue("@ImgUrl", business.ImgUrl);
                     cmd.Parameters.AddWithValue("@WebUrl", business.WebUrl);
                     cmd.Parameters.AddWithValue("@ReviewScore", business.ReviewScore);
                     cmd.Parameters.AddWithValue("@Verified", business.Verified);
@@ -170,6 +177,14 @@ namespace for_locals.Repositories
                                         Verified = @Verified
                                         WHERE BusinessId = @BusinessId
                                         ";
+                    if (business.ImgUrl == "")
+                    {
+                        cmd.Parameters.AddWithValue("@Imgurl", "https://zfjepfckphrvbatmvyud.supabase.co/storage/v1/object/sign/for-locals-img/BusinessIcon.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJmb3ItbG9jYWxzLWltZy9CdXNpbmVzc0ljb24ucG5nIiwiaWF0IjoxNjU1MjQ3ODQyLCJleHAiOjE5NzA2MDc4NDJ9.aNICkDp-Px5nCOUZE_VbjxScRmsgZjx4peKc-7uT3Og");
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@ImgUrl", business.ImgUrl);
+                    }
                     cmd.Parameters.AddWithValue("@OwnerKey", business.OwnerKey);
                     cmd.Parameters.AddWithValue("@StateControlNum", business.StateControlNum);
                     cmd.Parameters.AddWithValue("@BusinessName", business.BusinessName);
@@ -178,7 +193,6 @@ namespace for_locals.Repositories
                     cmd.Parameters.AddWithValue("@Description", business.Description);
                     cmd.Parameters.AddWithValue("@Keywords", business.Keywords);
                     cmd.Parameters.AddWithValue("@Industry", business.Industry);
-                    cmd.Parameters.AddWithValue("@ImgUrl", business.ImgUrl);
                     cmd.Parameters.AddWithValue("@WebUrl", business.WebUrl);
                     cmd.Parameters.AddWithValue("@ReviewScore", business.ReviewScore);
                     cmd.Parameters.AddWithValue("@Verified", business.Verified);

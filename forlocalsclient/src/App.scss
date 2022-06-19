@@ -27,12 +27,16 @@ $fav-green: #6B9749;
     justify-content: flex-end;
     margin-left: 33%;
     margin-top: .2rem;
-    .btn-outline-success{
+    .nav-btn{
       max-width: 6.7rem;
       min-width: fit-content;
       height: 3rem;
       color: $fav-green;
       border-color: $fav-green;
+    }
+    .nav-btn:hover{
+      background-color: $fav-green;
+      color: white;
     }
   }
 }
@@ -108,12 +112,10 @@ $fav-green: #6B9749;
 }
 
 .search-view-container{
-  // background-color: aqua;
   .search-bar-div{
     display: flex;
     justify-content: center;
     width: 85%;
-    // background-color: green;
     .main-search-bar-div{
       display: flex;
       flex-direction: column;
@@ -179,7 +181,6 @@ $fav-green: #6B9749;
   }
 }
 
-
 .business-body-div{
   display: flex;
   flex-direction: row;
@@ -204,30 +205,7 @@ $fav-green: #6B9749;
   }
 }
 
-.main-review-div{
-  .review-header{
-    font-weight: 800;
-  }
-  .hr{
-    width: 80%;
-    border: .05rem solid black;
-    margin: .3rem;
-  }
-  .form-container{
-    .form-group{
-      display: flex;
-      flex-direction: column;
-      .form-input{
-        min-width: 18rem;
-        max-width: 90%;
-      }
-      .text-input{
-        min-height: 4rem;
-        
-      }
-    }
-  }
-}
+
 .owner-key{
     display: none;
   }
@@ -236,21 +214,159 @@ $fav-green: #6B9749;
   display: none;
 }
 
-.review-card-container{
-  margin-top: 3rem;
-  .review-card{
+.business-details-container{
+  .business-body-div{
     display: flex;
     flex-direction: row;
-    border-radius: 3rem;
-    margin: 1rem;
-    max-width: 90%;
-    .review-card-img{
-      max-width: 20%;
-      min-width: 20rem;
-      border-radius: 3rem;
+    .business-details-img{
+      padding: 1rem;
+      max-width: 45%;
+    }
+    .business-details-card-conatiner{
+      max-width: 45%;
+      padding: 1rem;
+      .business-card-body{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        max-height: 28.5rem;
+        .bus-detail{
+          padding: .2rem;
+          font-family: Montserrat;
+        }
+        .business-name{
+          font-weight: 400;
+          font-size: 2rem;
+        }
+        .business-text{
+          text-align: start;
+        }
+      }
+    }
+
+  }
+  .main-review-div{
+  .form-container{
+    max-width: 50%;
+    .form-group{
+      display: flex;
+      flex-direction: column;
+      .form-input{
+        min-width: 18rem;
+        max-width: 90%;
+      }
+      .rev-form-review-text{
+        min-height: 5rem;
+        overflow-wrap: break-word;
+      }
+    }
+    .rev-form-btns{
+      margin: .2rem;
+    }
+    .submit-rev-form-btn{
+      color: $fav-green;
+      border-color: $fav-green;
+      background-color: white;
+    }
+    .submit-rev-form-btn:hover{
+      background-color: $fav-green;
+      color:white;
+    }
+    .cancel-rev-form-btn{
+      background-color: $fav-green;
+      // color: $fav-green;
+      border-color: $fav-green;
+    }
+    .cancel-rev-form-btn:hover{
+      background-color: white;
+      color: $fav-green;
     }
   }
 }
+  .main-review-div{
+    width: 90%;
+    .review-header{
+      text-align: left;
+      font-size: 2rem;
+      font-weight: 400;
+    }
+    .hr{
+      width: 100%;
+      border: .05rem solid black;
+      margin: .3rem;
+    }
+    .form-call-btn-div{
+      display: flex;
+      align-items: flex-start;
+    }
+    .review-card-container{
+      width: 100%;
+      font-family: Montserrat;
+      margin-top: 3rem;
+      .review-card{
+      display: flex;
+      flex-direction: row;
+      border-radius: 3rem;
+      margin: 1rem;
+      max-width: 90%;
+      border: .2rem solid $fav-green;
+      .review-card-img{
+        margin-right: 1rem;
+        max-width: 25rem;
+        max-height: 20rem;
+        border-radius: 3rem;
+      }
+      .review-card-body{
+        position: relative;
+        width: 75%;
+        height: 22rem;  
+        text-align: left;
+        .review-card-title{
+          font-size: 2rem;
+          font-weight: 400;
+        }
+        .review-card-local-name{
+          font-weight: 800;
+          position: absolute;
+          bottom: 1.5rem;
+          right: 13px;
+        }   
+        .review-card-text{
+          height: 58%;
+        }
+        .review-btn-div{
+          position: absolute;
+          bottom: .2rem;
+          right: .2rem;
+          .review-btn{
+            margin-right: .5rem;
+          }
+          .rev-edit-btn{
+            border-color: $fav-green;
+            background-color: $fav-green;
+          }
+          .rev-edit-btn:hover{
+            border-color: $fav-green;
+            color: $fav-green;
+            background-color: white;
+          }
+          .rev-del-btn{
+            border-color: $fav-green;
+            color: $fav-green;
+          }
+          .rev-del-btn:hover{
+            border-color: $fav-green;
+            color: white;
+            background-color: $fav-green;
+          }
+        }
+      }
+    }
+  }
+}
+
+}
+
 
 .bus-img{
   max-width: 30%;

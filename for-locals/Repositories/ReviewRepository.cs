@@ -122,12 +122,20 @@ namespace for_locals.Repositories
                                         OUTPUT INSERTED.BusinessId
                                         VALUES (@UserId, @BusinessId, @ReviewTitle, @ReviewText, @ImgUrl, @Score)
                                         ";
+
+                    if (review.ImgUrl == "")
+                    {
+                        cmd.Parameters.AddWithValue("@Imgurl", "https://zfjepfckphrvbatmvyud.supabase.co/storage/v1/object/sign/for-locals-img/ReviewIcon.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJmb3ItbG9jYWxzLWltZy9SZXZpZXdJY29uLnBuZyIsImlhdCI6MTY1NTU1ODA5NCwiZXhwIjoxOTcwOTE4MDk0fQ.phspICuNYjbQisR_WkhL9PfFikqgDCBhMmXlAt4_HQc");
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@ImgUrl", review.ImgUrl);
+                    }
                     cmd.Parameters.AddWithValue("@ReviewId", review.ReviewId);
                     cmd.Parameters.AddWithValue("@UserId", review.UserId);
                     cmd.Parameters.AddWithValue("@BusinessId", review.BusinessId);
                     cmd.Parameters.AddWithValue("@ReviewTitle", review.ReviewTitle);
                     cmd.Parameters.AddWithValue("@ReviewText", review.ReviewText);
-                    cmd.Parameters.AddWithValue("@ImgUrl", review.ImgUrl);
                     cmd.Parameters.AddWithValue("@Score", review.Score);
 
                     int newlyCreatedId = (int)cmd.ExecuteScalar();
@@ -218,11 +226,18 @@ namespace for_locals.Repositories
                                         Score = @Score
                                         WHERE ReviewId = @ReviewId
                                         ";
+                    if (review.ImgUrl == "")
+                    {
+                        cmd.Parameters.AddWithValue("@Imgurl", "https://zfjepfckphrvbatmvyud.supabase.co/storage/v1/object/sign/for-locals-img/ReviewIcon.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJmb3ItbG9jYWxzLWltZy9SZXZpZXdJY29uLnBuZyIsImlhdCI6MTY1NTU1ODA5NCwiZXhwIjoxOTcwOTE4MDk0fQ.phspICuNYjbQisR_WkhL9PfFikqgDCBhMmXlAt4_HQc");
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@ImgUrl", review.ImgUrl);
+                    }
                     cmd.Parameters.AddWithValue("@UserId", review.UserId);
                     cmd.Parameters.AddWithValue("@BusinessId", review.BusinessId);
                     cmd.Parameters.AddWithValue("@ReviewTitle", review.ReviewTitle);
                     cmd.Parameters.AddWithValue("@ReviewText", review.ReviewText);
-                    cmd.Parameters.AddWithValue("@ImgUrl", review.ImgUrl);
                     cmd.Parameters.AddWithValue("@Score", review.Score);
                     cmd.Parameters.AddWithValue("@ReviewId", review.ReviewId);
 
