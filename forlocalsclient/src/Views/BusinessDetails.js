@@ -59,7 +59,7 @@ export default function BusinessDetails({ local }) {
     };
   };
 
-  const showForm = () => {
+  const showFormAndBtn = () => {
     if(showRevBtn === true) {
       setShowRevBtn(false)
   } else {
@@ -86,7 +86,7 @@ export default function BusinessDetails({ local }) {
         <hr className='hr'/>
         <div className='form-call-btn-div'>
           {local && showRevBtn ? (
-            <button className='btn btn-outline-success' onClick={showForm}>LEAVE A REVIEW</button>
+            <button className='btn btn-outline-success' onClick={showFormAndBtn}>LEAVE A REVIEW</button>
           ) : (null)
           }
         </div>

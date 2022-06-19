@@ -13,20 +13,8 @@ const initialState = {
     userId: '',
 } 
 
-export default function LocalProfileForm({ local, form, setForm }) {
+export default function LocalProfileForm({ local, form, setForm, setPgBreak }) {
     const [formInput, setFormInput] = useState(initialState)
-
-    // const newFormState = () => {
-    //     const state = {
-    //         bio: '',
-    //         email: local.email,
-    //         firebaseKey: local.firebaseKey,
-    //         imgUrl: '',
-    //         isAdmin: local.isAdmin,
-    //         name: '',
-    //         userId: local.userId,
-    //     }
-    // }
 
     useEffect(() => {
         if(local.userId){
@@ -47,24 +35,23 @@ export default function LocalProfileForm({ local, form, setForm }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.warn('FORM OBJ', formInput)
-        console.warn('fKey', local.firebaseKey)
         updateLocal(formInput, local.firebaseKey).then(() => {
             resetForm();
         })
         setForm(false);
+        setPgBreak(false);
     }
 
     return (
-        <Form>
+        <Form className='main-local-form-div'>
             <FormGroup>
-                <Input type="text" name="name" id="name" placeholder="Name:" value={formInput.name || ""} onChange={handleChange} />
+                <Input className='local-form-name' type="text" name="name" id="name" placeholder="Name:" value={formInput.name || ""} onChange={handleChange} />
             </FormGroup>
             <FormGroup>
-                <Input type="url" name="imgUrl" id="imgUrl" placeholder="Img Url:" value={formInput.imgUrl || ""} onChange={handleChange} />
+                <Input className='local-form-url' type="url" name="imgUrl" id="imgUrl" placeholder="Img Url:" value={formInput.imgUrl || ""} onChange={handleChange} />
             </FormGroup>
             <FormGroup>
-                <Input type="text" name="bio" id="bio" placeholder="Bio:" value={formInput.bio || ""} onChange={handleChange} />
+                <Input className='local-form-bio' type="textarea" name="bio" id="bio" placeholder="Bio:" value={formInput.bio || ""} onChange={handleChange} />
             </FormGroup>
             <div className='hidden-div'>
                 <FormGroup>
@@ -80,7 +67,7 @@ export default function LocalProfileForm({ local, form, setForm }) {
                     <Input type="text" name="isAdmin" id="isAdmin" placeholder="Is Admin:" value={formInput.isAdmin} onChange={handleChange} />
                 </FormGroup>
             </div>
-            <Button className='btn-success form-btn' onClick={handleSubmit}>Submit</Button>
+            <Button className='btn-success local-form-btn' onClick={handleSubmit}>SUBMIT</Button>
         </Form>
     );
 }
@@ -89,4 +76,5 @@ LocalProfileForm.propTypes = {
     local: PropTypes.shape(PropTypes.obj).isRequired,
     form: PropTypes.bool.isRequired,
     setForm: PropTypes.func.isRequired,
+    setPgBreak: PropTypes.func.isRequired,
     };
