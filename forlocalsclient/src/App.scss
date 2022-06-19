@@ -1,20 +1,21 @@
-$local-green: #6B9749;
+$fav-green: #6B9749;
 
-.navbar{
-  background-color: white;
+.nav-container{
+  max-width: 100%;
+  min-width: fit-content;
   .navbar-logo{
     max-width: 10rem;
   }
-  .nav-ul{
-    height: fit-content;
+  .nav-div{
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     align-items: flex-start;
     .nav-item{
       margin-right: 1.5rem;
       margin-left: 1.5rem;
       .nav-link{
-        color: $local-green;
+        color: $fav-green;
         font-family: Montserrat;
         font-size: 2rem;
         font-weight:400;
@@ -22,21 +23,22 @@ $local-green: #6B9749;
     }
   }
   .nav-btn-div{
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 33%;
+    margin-top: .2rem;
     .btn-outline-success{
-      margin-right: 1.5rem;
-      margin-left: 1.5rem;
-      color: $local-green;
-      border-color: $local-green;
-    }
-    .btn-success{
-      margin-right: 13.5rem;
-      margin-left: 1.5rem;
-      background-color: $local-green;
+      max-width: 6.7rem;
+      min-width: fit-content;
+      height: 3rem;
+      color: $fav-green;
+      border-color: $fav-green;
     }
   }
 }
 
 .main-body-div{
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -45,7 +47,7 @@ $local-green: #6B9749;
   max-height: fit-content;
   margin-bottom: 5rem;
   .navbar-spacing{
-    height: 5rem;
+    height: 2rem;
   }
   .card-div{
     display: flex;
@@ -63,7 +65,7 @@ $local-green: #6B9749;
     font-family: Montserrat;
     font-weight: 400;
     font-size: 2rem;
-    color: $local-green;
+    color: $fav-green;
   }
 }
 
@@ -74,10 +76,11 @@ $local-green: #6B9749;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    .featured-card-img{
-      max-width: 60rem;
-      border-radius: 1.5rem;
-    }
+      .featured-card-img{
+        max-width: 60%;
+        height: 50%;
+        border-radius: 1.5rem;
+      }
     .card-body{
       display: flex;
       flex-direction: column;
@@ -96,61 +99,86 @@ $local-green: #6B9749;
         margin-top: 4rem;
         align-self: center;
         .card-btn{
-          background-color: $local-green;
-          border-color: $local-green;
+          background-color: $fav-green;
+          border-color: $fav-green;
         }
       }
     }
   }
 }
 
-.search-bar-div{
-  display: flex;
-  justify-content: center;
-  .main-search-bar-div{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    .search-bar{
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      .search-inputs{
-        font-size: 1.2rem;
-        .input-field{
-          max-width: 150rem;
-          min-width: fit-content(10rem);
-        }
-      }
-      .search-btn-div{
-        margin-left: 1rem;
-        .clear-btn{
-          background-color: $local-green;
-          border-color: $local-green;
-          max-width: 8rem;
-        }
-      }
-    }
-  }
-}
-
-.business-card{
-  max-width: 22%;
-  min-width: 9.5rem;
-  border-width: .19rem;
-  border-style: solid;
-  border-color: $local-green;
-  border-radius: 9%;
-  .card-btn-div{
+.search-view-container{
+  // background-color: aqua;
+  .search-bar-div{
     display: flex;
     justify-content: center;
-    .card-btn{
-      background-color: $local-green;
-      border-color: $local-green;
-      max-width: 7rem;
+    width: 85%;
+    // background-color: green;
+    .main-search-bar-div{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      .search-bar{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 70%;
+        .search-inputs{
+          font-size: 1.2rem;
+          width: 70%;
+          margin-top: .1rem;
+          .input-field{
+            width: 100%;
+          }
+        }
+        .search-btn-div{
+          margin-left: 1rem;
+          .clear-btn{
+            background-color: $fav-green;
+            border-color: $fav-green;
+            max-width: 8rem;
+          }
+        }
+      }
     }
   }
+  .search-card-div{
+    width: 100%;
+    gap: 4rem;
+    .business-card{
+      max-width: 30%;
+      min-width: 9.5rem;
+      border-width: .19rem;
+      border-style: solid;
+      border-color: $fav-green;
+      border-radius: 1rem;
+      .card-img{
+        max-width: 100%;
+        border-radius: .8rem .8rem 0 0;
+      }
+      .card-text{
+        width: fit-content;
+        max-width: 100%;
+        overflow: hidden;
+        display: inline-block;
+        text-overflow: ellipsis;
+        max-height: 5rem;
+        white-space: nowrap;
+      }
+      .card-btn-div{
+        display: flex;
+        justify-content: center;
+        .card-btn{
+          background-color: $fav-green;
+          border-color: $fav-green;
+          max-width: 7rem;
+        }
+      }
+    }   
+  }
 }
+
 
 .business-body-div{
   display: flex;

@@ -1,64 +1,96 @@
-import React from "react";
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
 import PropTypes from 'prop-types';
 import ForLocalsLogo from '../Assets/ForLocalsLogo.png';
 import { signInUser, signOutUser } from "../Data/authManager";
+import {
+    Collapse,
+    Navbar,
+    NavbarToggler,
+    NavbarBrand,
+    Nav,
+    NavItem,
+    NavLink,
+    ButtonGroup,
+  } from "reactstrap";
 
-export default function Navigation({ local }) {
+export default function Navigation({ local }){
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggle = () => setIsOpen(!isOpen);
 
 
-  return (
-    <nav className="navbar fixed-top navbar-light">
-        <ul className="navbar-nav nav-ul">
-        <Link to="/">
-            <img src={ForLocalsLogo} alt='logo' className="navbar-logo nav-item" />
-        </Link>
-            <li className="nav-item">
-                <Link className="nav-link" to="/">
-                    HOME
-                </Link>
-            </li>
-            <li className="nav-item">
-                <Link className="nav-link" to="/search">
-                    SEARCH
-                </Link>
-            </li>
-        </ul>
-        <div className="nav-btn-div">
-            {local ? ( 
-                <div className="hidden-buttons">
-                    <ul className="navbar-nav nav-ul">
-                        <li className="nav-item">
-                            <Link className="nav-link" to={`/localProfile/${local.firebaseKey}`}>
-                                PROFILE
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to={`/businessProfile/${local.firebaseKey}`}>
-                                BUSINESS
-                            </Link>
-                        </li>
-                        <button 
-                            className="btn nav-btn btn-outline-success"
-                            onClick={signOutUser}
-                            >
-                            LOG OUT
-                        </button>
-                    </ul>
-                </div>
-            ) : ( 
-                <button 
-                    className="btn nav-btn btn-outline-success"
-                    onClick={signInUser}
-                    local={local}
+
+    return(
+        <Navbar className='navbar nav-container' expand='md' light>
+            <NavbarBrand className='navbrand-style img-container' href='/'>
+                <img src={ForLocalsLogo} alt='logo' className="navbar-logo nav-item img-fluid" />
+            </NavbarBrand>
+            <NavbarToggler onClick={toggle} />
+            <Collapse className={`collapse-isOpen-${isOpen}`} isOpen={isOpen} navbar>
+            <Nav className={`container-fluid`} navbar>
+                <div className='nav-div'>
+                  <li>
+                    <NavItem className='nav-item'>
+                        <NavLink className='nav-link' onClick={isOpen} href='/'>
+                        HOME
+                      </NavLink>
+                    </NavItem>
+                  </li>
+                  <li>
+                    <NavItem className='nav-item'>
+                      <NavLink onClick={isOpen} href='/search'>
+                        SEARCH
+                      </NavLink>
+                    </NavItem>
+                  </li>
+                    {local ? (
+                        <div className='nav-div'>
+                            <li>
+                                <NavItem className='nav-item'>
+                                    <NavLink className='nav-link' onClick={isOpen} href={`/localProfile/${local.firebaseKey}`}>
+                                        PROFILE
+                                    </NavLink>
+                                </NavItem>
+                            </li>
+                            <li>
+                                <NavItem className='nav-item'>
+                                    <NavLink className='nav-link' onClick={isOpen} href={`/businessProfile/${local.firebaseKey}`}>
+                                     BUSINESS
+                                    </NavLink>
+                                </NavItem>
+                            </li>
+                        </div>
+                    ) : (null)
+                    }
+                  </div>
+
+                  <ButtonGroup className='nav-item nav-btn-div'>
+                    {local ? (
+                    <button
+                        type='button'
+                        className='btn btn-outline-success'
+                        onClick={signOutUser}
                     >
-                    Login
-                </button>
-            )}
-        </div>
-    </nav>
-  )
-}
+                        LOG OUT
+                    </button>
+                    ) : (
+                        <button
+                        type='button'
+                        className='btn btn-outline-success'
+                        onClick={signInUser}
+                        local={local}
+                    >
+                        LOGIN
+                    </button>
+                    )}
+                    </ButtonGroup>
+
+            </Nav>
+          </Collapse>
+      </Navbar>
+    );
+};
+
 
 Navigation.propTypes = {
     local: PropTypes.shape(PropTypes.obj),
