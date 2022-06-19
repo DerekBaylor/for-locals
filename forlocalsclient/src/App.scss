@@ -81,7 +81,7 @@ $fav-green: #6B9749;
     flex-direction: row;
     flex-wrap: wrap;
       .featured-card-img{
-        max-width: 60%;
+        max-width: 55%;
         height: 50%;
         border-radius: 1.5rem;
       }
@@ -326,8 +326,8 @@ $fav-green: #6B9749;
           font-weight: 400;
         }
         .review-card-local-name{
-          font-weight: 800;
           position: absolute;
+          font-weight: 800;
           bottom: 1.5rem;
           right: 13px;
         }   
@@ -367,6 +367,101 @@ $fav-green: #6B9749;
 
 }
 
+.profile-view-container{
+  font-family: Montserrat;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  flex-wrap: wrap;
+  .profile-div-1{
+    width: 45%;
+    margin-left: 5rem;
+  }
+  .profile-card-container{
+    width: 100%;
+    .local-card{
+      display: flex;
+      text-align: left;
+      .local-card-body{
+        .local-card-img{
+          border-radius: 50%;
+          max-width: 30rem;
+        }
+        .local-card-title{
+          font-weight: 600;
+          margin-top: 1rem;
+          margin-bottom: 1rem;
+          font-size: 2rem;
+        }
+        .local-card-description{
+          width: 35rem;
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+  .profile-btn-container{
+    display: flex;
+    justify-content: left;
+    margin-top: 1rem;
+    .edit-profile-btn{
+      background-color: $fav-green;
+      border-color: $fav-green;
+    }
+    .edit-profile-btn:hover{
+      background-color: white;
+      color: $fav-green;
+    }
+  } 
+  .profile-div-2{
+    width: 45%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .profile-verticle-break1{
+      margin: 5rem;
+      height: 30rem;
+      width: .05rem;
+      border-left: .05rem solid black;
+    }
+    .profile-verticle-break2{
+      margin: 5rem;
+      height: 30rem;
+      width: .05rem;
+      border-left: .05rem solid white;
+    }
+    .profile-form-container{
+      width: 35rem;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      .local-form-div{
+        width:100%;
+      }
+      .main-local-form-div{
+        width: 100%;
+        .local-form-name{
+          width: 100%
+        }
+        .local-form-url{
+          width: 100%
+        }
+        .local-form-bio{
+          height: 18rem;
+          width: 100%
+        }
+      }
+      .local-form-btn{
+        background-color: $fav-green;
+        border-color: $fav-green;
+      }
+      .local-form-btn:hover{
+        background-color: white;
+        color: $fav-green;
+      }
+    }
+  }
+}
 
 .bus-img{
   max-width: 30%;
