@@ -9,11 +9,11 @@ export default function BusinessCard({ card }) {
         <div className="card-body">
             <h5 className="card-title">{card.businessName}</h5>
             <p className="card-text">{card.description}</p>
-        <div className="card-btn-div">
-          <Link  to={`/businessDetails/${card.businessId}`} className='btn btn-success card-btn'>
-            Details
-          </Link>
-        </div>  
+            <div className="card-btn-div">
+              <Link  to={`/businessDetails/${card.businessId}`} className='btn btn-success card-btn'>
+                Details
+              </Link>
+            </div>  
         </div>
     </div>
   )

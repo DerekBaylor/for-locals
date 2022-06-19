@@ -7,29 +7,29 @@ import { getLocalByFKey } from './Data/LocalData';
 
 
 function App() {
-    const [local, setLocal] = useState({});
+  const [local, setLocal] = useState({});
 
-    useEffect(() => {
-      auth.onAuthStateChanged((authed) => {
-        if(authed) {
-          sessionStorage.setItem("token", authed.accessToken);
-          sessionStorage.setItem("firebaseKey", authed.uid);
-          doesLocalExist(authed.accessToken).then(() => {
-            getLocalByFKey(authed.uid).then(setLocal)
-          });
-        } else {
-          setLocal(null);
-          sessionStorage.clear();
-        }
-      });
-    }, []);
+  useEffect(() => {
+    auth.onAuthStateChanged((authed) => {
+      if(authed) {
+        sessionStorage.setItem("token", authed.accessToken);
+        sessionStorage.setItem("firebaseKey", authed.uid);
+        doesLocalExist(authed.accessToken).then(() => {
+          getLocalByFKey(authed.uid).then(setLocal)
+        });
+      } else {
+        setLocal(null);
+        sessionStorage.clear();
+      }
+    });
+  }, []);
     
-    return (
-        <div>
-            <Navigation local={local} />
-            <Routing local={local} />
-        </div>
-    );
+  return (
+      <div>
+          <Navigation local={local} />
+          <Routing local={local} />
+      </div>
+  );
 }
 
 export default App;

@@ -47,7 +47,7 @@ export default function SearchBar({data}) {
                 <button className="btn btn-success clear-btn" onClick ={ClearInput}>Clear Search</button>
               </div>
           </div>
-          <div className="card-div">
+          <div className="card-div search-card-div">
             {filteredData.map((card) => {
               return (
                 <BusinessCard 

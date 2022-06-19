@@ -11,8 +11,7 @@ export default function Search() {
 
   
   return (
-    <div className='main-body-div'>
-    <div className='navbar-spacing'></div>
+    <div className='main-body-div search-view-container'>
     <div className='navbar-spacing'></div>
     <div className='search-bar-div'>
       <SearchBar data={businessData} />
