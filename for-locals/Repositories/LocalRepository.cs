@@ -148,18 +148,6 @@ namespace for_locals.Repositories
                                         VALUES (@name, @email, @imgUrl, @bio, @isAdmin, @firebaseKey)
                                         ";
 
-                    //cmd.Parameters.AddWithValue("@name", local.Name);
-                    //cmd.Parameters.AddWithValue("@email", local.Email);
-                    //cmd.Parameters.AddWithValue("@imgUrl", local.ImgUrl);
-                    //cmd.Parameters.AddWithValue("@bio", local.Bio);
-                    //cmd.Parameters.AddWithValue("@isAdmin", local.IsAdmin);
-                    //cmd.Parameters.AddWithValue("@firebaseKey", local.FirebaseKey);
-
-
-                    //int uid = (int)cmd.ExecuteScalar();
-
-                    //local.UserId = uid;
-
                     if (local.Name == null)
                     {
                         cmd.Parameters.AddWithValue("@Name", DBNull.Value);
@@ -233,9 +221,16 @@ namespace for_locals.Repositories
                                         IsAdmin = @IsAdmin
                                         WHERE FirebaseKey = @Firebasekey
                                         ";
+                    if (local.ImgUrl == "")
+                    {
+                        cmd.Parameters.AddWithValue("@Imgurl", "https://zfjepfckphrvbatmvyud.supabase.co/storage/v1/object/sign/for-locals-img/BlankProfileImg.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJmb3ItbG9jYWxzLWltZy9CbGFua1Byb2ZpbGVJbWcucG5nIiwiaWF0IjoxNjU1NDE0NjIyLCJleHAiOjE5NzA3NzQ2MjJ9.HiyaZQqeWZg3qtTB8T5tZki0pV4YRNhwsRU2eBI-wdY");
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@ImgUrl", local.ImgUrl);
+                    }
                     cmd.Parameters.AddWithValue("@Name", local.Name);
                     cmd.Parameters.AddWithValue("@Email", local.Email);
-                    cmd.Parameters.AddWithValue("@Imgurl", local.ImgUrl);
                     cmd.Parameters.AddWithValue("@Bio", local.Bio);
                     cmd.Parameters.AddWithValue("@UserId", local.UserId);
                     cmd.Parameters.AddWithValue("@IsAdmin", local.IsAdmin);

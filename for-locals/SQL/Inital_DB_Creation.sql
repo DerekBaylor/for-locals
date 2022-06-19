@@ -35,8 +35,8 @@ CREATE TABLE Business (
 CREATE TABLE Review (
         ReviewId INT NOT NULL PRIMARY KEY IDENTITY,
         ReviewTitle VARCHAR(100) NOT NULL,
-        ReviewText VARCHAR(255) NOT NULL,
-        ImgUrl VARCHAR(255) DEFAULT 'https://zfjepfckphrvbatmvyud.supabase.co/storage/v1/object/sign/for-locals-img/ReviewIcon.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJmb3ItbG9jYWxzLWltZy9SZXZpZXdJY29uLnBuZyIsImlhdCI6MTY1NTU1ODA5NCwiZXhwIjoxOTcwOTE4MDk0fQ.phspICuNYjbQisR_WkhL9PfFikqgDCBhMmXlAt4_HQc',
+        ReviewText VARCHAR(1000) NOT NULL,
+        ImgUrl VARCHAR(500) DEFAULT 'https://zfjepfckphrvbatmvyud.supabase.co/storage/v1/object/sign/for-locals-img/ReviewIcon.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJmb3ItbG9jYWxzLWltZy9SZXZpZXdJY29uLnBuZyIsImlhdCI6MTY1NTU1ODA5NCwiZXhwIjoxOTcwOTE4MDk0fQ.phspICuNYjbQisR_WkhL9PfFikqgDCBhMmXlAt4_HQc',
         Score INTEGER NOT NULL,
         UserId INT NOT NULL,
         BusinessId INT NOT NULL,

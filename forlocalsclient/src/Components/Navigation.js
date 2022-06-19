@@ -29,36 +29,28 @@ export default function Navigation({ local }){
             <Collapse className={`collapse-isOpen-${isOpen}`} isOpen={isOpen} navbar>
             <Nav className={`container-fluid`} navbar>
                 <div className='nav-div'>
-                  <li>
                     <NavItem className='nav-item'>
-                        <NavLink className='nav-link' onClick={isOpen} href='/'>
+                        <NavLink className='nav-link' onClick={toggle} href='/'>
                         HOME
                       </NavLink>
                     </NavItem>
-                  </li>
-                  <li>
                     <NavItem className='nav-item'>
-                      <NavLink onClick={isOpen} href='/search'>
+                      <NavLink onClick={toggle} href='/search'>
                         SEARCH
                       </NavLink>
                     </NavItem>
-                  </li>
                     {local ? (
                         <div className='nav-div'>
-                            <li>
                                 <NavItem className='nav-item'>
-                                    <NavLink className='nav-link' onClick={isOpen} href={`/localProfile/${local.firebaseKey}`}>
+                                    <NavLink className='nav-link' onClick={toggle} href={`/localProfile/${local.firebaseKey}`}>
                                         PROFILE
                                     </NavLink>
                                 </NavItem>
-                            </li>
-                            <li>
                                 <NavItem className='nav-item'>
-                                    <NavLink className='nav-link' onClick={isOpen} href={`/businessProfile/${local.firebaseKey}`}>
+                                    <NavLink className='nav-link' onClick={toggle} href={`/businessProfile/${local.firebaseKey}`}>
                                      BUSINESS
                                     </NavLink>
                                 </NavItem>
-                            </li>
                         </div>
                     ) : (null)
                     }
@@ -68,7 +60,7 @@ export default function Navigation({ local }){
                     {local ? (
                     <button
                         type='button'
-                        className='btn btn-outline-success'
+                        className='btn btn-outline-success nav-btn'
                         onClick={signOutUser}
                     >
                         LOG OUT
@@ -76,7 +68,7 @@ export default function Navigation({ local }){
                     ) : (
                         <button
                         type='button'
-                        className='btn btn-outline-success'
+                        className='btn btn-outline-success nav-btn'
                         onClick={signInUser}
                         local={local}
                     >

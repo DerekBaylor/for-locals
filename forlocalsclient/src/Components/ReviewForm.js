@@ -12,7 +12,7 @@ const initialState = {
   imgUrl: '',
   score: '',
 };
-export default function ReviewForm({ local, editItem, setEditItem, setReviews, setForm }) {
+export default function ReviewForm({ local, editItem, setEditItem, setReviews, setForm, setShowRevBtn }) {
   const {id} = useParams();
   const [formInput, setFormInput] = useState(initialState);
   const [formErrors, setFormErrors] = useState({});
@@ -56,6 +56,7 @@ export default function ReviewForm({ local, editItem, setEditItem, setReviews, s
     setFormInput(initialState);
     setEditItem(null);
     setForm(false);
+    setShowRevBtn(true);
   };  
     
   const min = 1;
@@ -82,6 +83,7 @@ export default function ReviewForm({ local, editItem, setEditItem, setReviews, s
     if (!isSubmit) {
       setForm(false);
     };
+    setShowRevBtn(true);
   };
 
   const validate = (formInput) => {
@@ -103,19 +105,19 @@ export default function ReviewForm({ local, editItem, setEditItem, setReviews, s
     <Form className='form form-container'>
       <FormGroup className='form-group'>
        <p className="validation-text">{formErrors.score}</p>
-          <Input type="number" name="score" id="score" placeholder="Score: (1-5)" 
+          <Input className='rev-form-score' type="number" name="score" id="score" placeholder="Score: (1-5)" 
           value={formInput.score} max="5" onChange={handleChange} />
       </FormGroup>
       <FormGroup className='form-group'>
-          <Input type="url" name="imgUrl" id="imgUrl" placeholder="Add Image By Url:" value={formInput.imgUrl || ""} onChange={handleChange} />
+          <Input className='rev-form-imgUrl' type="url" name="imgUrl" id="imgUrl" placeholder="Add Image By Url:" value={formInput.imgUrl || ""} onChange={handleChange} />
       </FormGroup>
       <p className="validation-text">{formErrors.reviewTitle}</p>
       <FormGroup className='form-group'>
-          <Input type="text" name="reviewTitle" id="reviewTitle" placeholder="Title:" value={formInput.reviewTitle || ""} onChange={handleChange} />
+          <Input className='rev-form-reviewTitle' type="text" name="reviewTitle" id="reviewTitle" placeholder="Title:" value={formInput.reviewTitle || ""} onChange={handleChange} />
       </FormGroup>
       <p className="validation-text">{formErrors.reviewText}</p>
       <FormGroup className='form-group'>
-          <Input type="text" name="reviewText" id="reviewText" placeholder="Review:" value={formInput.reviewText || ""} onChange={handleChange} />
+          <Input className='rev-form-review-text' type="textarea" name="reviewText" id="reviewText" placeholder="Review:" value={formInput.reviewText || ""} onChange={handleChange} />
       </FormGroup>
       <div className='hidden-div'>
         <FormGroup className='form-group'>
@@ -125,8 +127,9 @@ export default function ReviewForm({ local, editItem, setEditItem, setReviews, s
             <Input type="number" name="userId" id="userId" placeholder="userId:" value={formInput.userId} onChange={handleChange} />
         </FormGroup>
       </div>
-      <Button className='btn-success form-btn' onClick={handleSubmit}>{editItem ? 'Submit Changes' : 'Add Review'}</Button>
-      <Button className='btn-warn form-btn' onClick={resetForm}>Cancel</Button>
+      <Button className='btn-outline-success submit-rev-form-btn
+      rev-form-btns' onClick={handleSubmit}>{editItem ? 'SUBMIT CHANGES' : 'ADD REVIEW'}</Button>
+      <Button className='btn-success cancel-rev-form-btn rev-form-btns' onClick={resetForm}>CANCEL</Button>
     </Form>
   )
 }
@@ -139,6 +142,7 @@ ReviewForm.propTypes = {
   setForm: PropTypes.func.isRequired,
   formInput: PropTypes.func.isRequired,
   setFormInput: PropTypes.func.isRequired,
+  setShowRevBtn: PropTypes.func.isRequired,
 };
 
 ReviewForm.defaultProps = {
