@@ -18,7 +18,7 @@ const initialState = {
     reviewScore: 0,
     verified: '',
 }; 
-export default function BusinessForm({ bus }) {
+export default function BusinessForm({ bus, setForm, setPgBreak }) {
   const [formInput, setFormInput] = useState(initialState);
   const {id} = useParams();
   const {firebaseKey} = useParams();
@@ -39,10 +39,10 @@ export default function BusinessForm({ bus }) {
       reviewScore: 0,
       verified: 'N',
       logo: '',
-    }
+    };
     console.warn('state', State)
     setFormInput(State)
-  }
+  };
 
   useEffect(() => {
     if(id){
@@ -50,7 +50,7 @@ export default function BusinessForm({ bus }) {
       setFormInput(bus);
     } else {
       addKey();
-    }
+    };
 }, []);
 
 const handleChange = (e) => {
@@ -62,6 +62,7 @@ const handleChange = (e) => {
 
 const resetForm = () => {
   setFormInput(initialState)
+
 };
 
 const handleSubmit = (e) => {
@@ -75,41 +76,39 @@ const handleSubmit = (e) => {
       resetForm();
     })
   }
-};
-
-const warn = () => {
-  console.warn('bus', bus)
-  console.warn('key', key)
+  setForm(false);
+  setPgBreak(false);
+  console.warn('HS');
 };
 
   return (
-    <Form>
+    <Form className='bus-profile-form'>
       <FormGroup>
-          <Input type="url" name="imgUrl" id="imgUrl" placeholder="Img Url:" value={formInput.imgUrl || ""} onChange={handleChange} />
+          <Input className='bus-prof-url' type="url" name="imgUrl" id="imgUrl" placeholder="Img Url:" value={formInput.imgUrl || ""} onChange={handleChange} />
       </FormGroup>
       <FormGroup>
-          <Input type="text" name="stateControlNum" id="stateControlNum" placeholder="state Control Number:" value={formInput.stateControlNum || ""} onChange={handleChange} />
+          <Input className='bus-prof-businessName' type="text" name="businessName" id="businessName" placeholder="Business Name:" value={formInput.businessName || ""} onChange={handleChange} />
       </FormGroup>
       <FormGroup>
-          <Input type="text" name="businessName" id="businessName" placeholder="Business Name:" value={formInput.businessName || ""} onChange={handleChange} />
+          <Input className='bus-prof-stateControlNum' type="text" name="stateControlNum" id="stateControlNum" placeholder="state Control Number:" value={formInput.stateControlNum || ""} onChange={handleChange} />
       </FormGroup>
       <FormGroup>
-          <Input type="text" name="phone" id="phone" placeholder="Phone:" value={formInput.phone || ""} onChange={handleChange} />
+          <Input className='bus-prof-phone' type="text" name="phone" id="phone" placeholder="Phone:" value={formInput.phone || ""} onChange={handleChange} />
       </FormGroup>
       <FormGroup>
-          <Input type="text" name="address" id="address" placeholder="Address:" value={formInput.address || ""} onChange={handleChange} />
+          <Input className='bus-prof-address' type="text" name="address" id="address" placeholder="Address:" value={formInput.address || ""} onChange={handleChange} />
       </FormGroup>
       <FormGroup>
-          <Input type="url" name="webUrl" id="webUrl" placeholder="Website:" value={formInput.webUrl || ""} onChange={handleChange} />
+          <Input className='bus-prof-webUrl' type="url" name="webUrl" id="webUrl" placeholder="Website:" value={formInput.webUrl || ""} onChange={handleChange} />
       </FormGroup>
       <FormGroup>
-          <Input type="text" name="industry" id="industry" placeholder="Industry:" value={formInput.industry || ""} onChange={handleChange} />
+          <Input className='bus-prof-industry' type="text" name="industry" id="industry" placeholder="Industry:" value={formInput.industry || ""} onChange={handleChange} />
       </FormGroup>
       <FormGroup>
-          <Input type="text" name="keywords" id="keywords" placeholder="Keywords:" value={formInput.keywords || ""} onChange={handleChange} />
+          <Input className='bus-prof-keywords' type="text" name="keywords" id="keywords" placeholder="Keywords:" value={formInput.keywords || ""} onChange={handleChange} />
       </FormGroup>
       <FormGroup>
-          <Input type="text" name="description" id="description" placeholder="Description:" value={formInput.description || ""} onChange={handleChange} />
+          <Input className='bus-prof-description' type="textarea" name="description" id="description" placeholder="Description:" value={formInput.description || ""} onChange={handleChange} />
       </FormGroup>
         <FormGroup className='hidden owner-key' >
             <Input type="text" name="ownerKey" id="ownerKey" placeholder="Owner Key:" value={formInput.ownerKey} onChange={handleChange} />
@@ -123,13 +122,15 @@ const warn = () => {
         <FormGroup className='hidden owner-key' >
             <Input type="text" name="logo" id="logo" placeholder="Logo:" value={formInput.logo} onChange={handleChange} />
         </FormGroup>
-      <Button className='btn-success form-btn' onClick={handleSubmit}>{id ? 'Submit Changes' : 'Create Business'}</Button>
+      <Button className='btn-success form-btn bus-prof-form-btn' onClick={handleSubmit}>{id ? 'Submit Changes' : 'Create Business'}</Button>
     </Form>
   )
 }
 
 BusinessForm.propTypes = {
   bus: PropTypes.shape(PropTypes.obj),
+  setForm: PropTypes.func.isRequired,
+  setPgBreak: PropTypes.func.isRequired,
 };
 
 BusinessForm.defaultProps = {

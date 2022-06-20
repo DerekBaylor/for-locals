@@ -5,38 +5,32 @@ import { getBusinessByOwnerKey } from '../Data/BusinessData';
 import BusinessManagerCard from '../Components/BusinessManagerCard';
 
 export default function BusinessProfile() {
-  const [businessData, setBusinessData] = useState([]);
+  const [businessData, setBusinessData] = useState({});
   const { firebaseKey } = useParams();
 
   useEffect(() => {
     getBusinessByOwnerKey(firebaseKey).then(setBusinessData);
   },[]);
 
-  
-  const warn = () => {
-    console.warn('Business Data',businessData )
-  };
-
   return (
-    <div className='main-body-div'>
-      <div className='navbar-spacing'></div>
-      <div className='navbar-spacing'></div>
+    <div className='main-body-div business-profile-container'>
       <div className='view-container'>
-        <div className='card-div'>
+        <div className='business-profile-card-container'>
           <BusinessManagerCard  
-            card={businessData}
+            busData={businessData}
             />
         </div>
-        <div className='btn-container'>
+        { !businessData ? (
+          <div className='btn-container'>
           <Link 
-              className="btn nav-btn btn-success"
+              className="btn nav-btn btn-success reg-bus-btn"
               to={`/registerBusiness/${firebaseKey}`}
               >
-                  REGISTER
+              REGISTER
             </Link>
         </div>
+        ): (null)}
       </div>
-      <button className='btn btn-warning' onClick={warn}>Warn</button>
     </div>
   )
 }

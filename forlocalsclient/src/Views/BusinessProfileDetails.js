@@ -7,49 +7,65 @@ export default function BusinessProfileDetails() {
     const [business, setBusiness] = useState({});
     const {id} = useParams();
     const [form, setForm] = useState(false);
+    const [pgBreak, setPgBreak] =useState(false);
 
-    useEffect(() => {
-        getBusinessById(id).then(setBusiness)
-      }, []);
+  useEffect(() => {
+      getBusinessById(id).then(setBusiness);
+      console.warn('Bus Prof UE', form, pgBreak);
+    }, [id, form, pgBreak]);
 
-      const showForm = () => {
-        if(form === true) {
-          setForm(false)
-      } else {
-        setForm(true);
-      }
-    };
-
-    const warn = () => {
-      console.warn('Owner', business)
-    };
+  const showFormAndBreak = () => {
+    if(form === true) {
+      setForm(false)
+  } else {
+    setForm(true);
+  }
+  if(pgBreak === true) {
+    setPgBreak(false)
+  } else {
+    setPgBreak(true);
+  }
+};
 
   return (
-    <div className='main-body-div'>
-        <div className='navbar-spacing'></div>
-        <div className='navbar-spacing'></div>
-        <div className='business-container'>
-            <img className="bus-img" src={business.imgUrl} alt="a business" />
-            <div className='business-info'>
-                <p className='b-text text'>{business.stateControlNum}</p>
-                <p className='b-title'>{business.businessName}</p>
-                <p className='b-text'>{business.phone || 'Add Phone'}</p>
+    <div className='main-body-div business-profile-details-container'>
+        <div className='business-profile-container'>
+            <div className='business-profile-info'>
+                <p className='b-text b-title'>{business.businessName}</p>
+                <p className='b-text'>{business.stateControlNum}</p>
+                <p className='b-text'>{business.phone}</p>
                 <p className='b-text'>{business.address}</p>
-                <p className='b-text'>{business.webUrl}</p>
+                <p className='b-text card-link'>{business.webUrl}</p>
                 <p className='b-text'>{business.industry}</p>
                 <p className='b-text'>{business.keywords}</p>
-                <p className='b-text text'>{business.description}</p>
+                <div>
+                  <img className="bus-img" src={business.imgUrl} alt="a business" />
+                </div>
+                <p className='b-text b-description'>{business.description}</p>
+            </div>
+            <div className='bus-profile-btn-container'>
+              <button className='btn btn-success bus-prof-btn' onClick={showFormAndBreak}>
+                EDIT BUSINESS
+              </button>
             </div>
         </div>
-        <div className='btn-container'>
-          <button className='btn btn-success' onClick={showForm}>Edit Business</button>
+        <div className='form-break-container'>
+            { pgBreak ? (
+              <hr className='bus-profile-verticle-break1'></hr>
+              ) : ( <hr className='bus-profile-verticle-break2'></hr> )
+            }
+            <div className='bus-profile-form-container'>
+            { form ? (  <div>
+                          <BusinessForm 
+                            bus={business} 
+                            form={form} 
+                            setForm={setForm} 
+                            setPgBreak={setPgBreak} 
+                            />
+                        </div> ) : ( null )
+            }
+            </div>
         </div>
-        <div className='form-container'>
-        {
-          form?<div><BusinessForm bus={business} /></div>:null
-        }
-      </div>
-      <button className='btn btn-warning' onClick={warn}>Warn</button>
     </div>
   )
 }
