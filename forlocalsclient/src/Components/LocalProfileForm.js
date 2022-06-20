@@ -13,14 +13,14 @@ const initialState = {
     userId: '',
 } 
 
-export default function LocalProfileForm({ local, form, setForm, setPgBreak }) {
+export default function LocalProfileForm({ local, setForm, setPgBreak }) {
     const [formInput, setFormInput] = useState(initialState)
 
     useEffect(() => {
         if(local.userId){
             setFormInput(local);
-        }
-    }, [form]);
+        };
+    }, []);
 
     const handleChange = (e) => {
         setFormInput((prevState) => ({
@@ -40,7 +40,7 @@ export default function LocalProfileForm({ local, form, setForm, setPgBreak }) {
         })
         setForm(false);
         setPgBreak(false);
-    }
+    };
 
     return (
         <Form className='main-local-form-div'>
@@ -74,7 +74,6 @@ export default function LocalProfileForm({ local, form, setForm, setPgBreak }) {
 
 LocalProfileForm.propTypes = {
     local: PropTypes.shape(PropTypes.obj).isRequired,
-    form: PropTypes.bool.isRequired,
     setForm: PropTypes.func.isRequired,
     setPgBreak: PropTypes.func.isRequired,
     };

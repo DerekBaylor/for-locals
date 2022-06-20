@@ -221,6 +221,7 @@ $fav-green: #6B9749;
     .business-details-img{
       padding: 1rem;
       max-width: 45%;
+      border-radius: 3rem;
     }
     .business-details-card-conatiner{
       max-width: 45%;
@@ -248,6 +249,10 @@ $fav-green: #6B9749;
   .main-review-div{
   .form-container{
     max-width: 50%;
+    Input{
+      border: 2px solid $fav-green;
+      box-shadow: 0 0 3px $fav-green;
+    }
     .form-group{
       display: flex;
       flex-direction: column;
@@ -258,6 +263,8 @@ $fav-green: #6B9749;
       .rev-form-review-text{
         min-height: 5rem;
         overflow-wrap: break-word;
+        border: 2px solid $fav-green;
+        box-shadow: 0 0 3px $fav-green;
       }
     }
     .rev-form-btns{
@@ -274,7 +281,6 @@ $fav-green: #6B9749;
     }
     .cancel-rev-form-btn{
       background-color: $fav-green;
-      // color: $fav-green;
       border-color: $fav-green;
     }
     .cancel-rev-form-btn:hover{
@@ -419,13 +425,13 @@ $fav-green: #6B9749;
     flex-direction: row;
     align-items: center;
     .profile-verticle-break1{
-      margin: 5rem;
+      margin-right: 5rem;
       height: 30rem;
       width: .05rem;
       border-left: .05rem solid black;
     }
     .profile-verticle-break2{
-      margin: 5rem;
+      margin-right: 5rem;
       height: 30rem;
       width: .05rem;
       border-left: .05rem solid white;
@@ -439,6 +445,10 @@ $fav-green: #6B9749;
         width:100%;
       }
       .main-local-form-div{
+        Input{
+          border: 2px solid $fav-green;
+          box-shadow: 0 0 3px $fav-green;
+        }
         width: 100%;
         .local-form-name{
           width: 100%
@@ -448,7 +458,9 @@ $fav-green: #6B9749;
         }
         .local-form-bio{
           height: 18rem;
-          width: 100%
+          width: 100%;
+          border: 2px solid $fav-green;
+          box-shadow: 0 0 3px $fav-green;
         }
       }
       .local-form-btn{
@@ -463,12 +475,126 @@ $fav-green: #6B9749;
   }
 }
 
-.bus-img{
-  max-width: 30%;
-  min-width: 20rem;
-  border-radius: 1.5rem;
+.business-profile-container{
+  .reg-bus-btn{
+    background-color: $fav-green;
+    border-color: $fav-green;
+  }
+  .reg-bus-btn:hover{
+    background-color: white;
+    border-color: $fav-green;
+    color: $fav-green;
+  }
+  .business-profile-card{
+    .business-profile-img{
+      max-width: 30%;
+      min-width: 20rem;
+      border-radius: 1.5rem;
+    }
+    .bus-profile-card-title{
+      font-size: 2rem;
+      font-weight: 400;
+    }
+    .bus-details-btn{
+      background-color: $fav-green;
+      border-color: $fav-green;
+    }
+    .bus-details-btn:hover{
+      background-color: white;
+      border-color: $fav-green;
+      color: $fav-green;
+    }
+  }
 }
-.business-container{
+
+.business-profile-details-container{
+  font-family: Montserrat;
   display: flex;
   flex-direction: row;
+  justify-content: left;
+  .business-profile-container{
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    align-self: flex-start;
+    margin-left: 1rem;
+    .business-profile-info{
+      position: relative;
+      .b-text{
+        margin: 1.5rem;
+        font-size: 1.2rem;
+      }
+      .b-title{
+        font-weight: 400;
+        font-size: 2rem;
+      }
+
+      .bus-img{
+        position: absolute;
+        top:1rem;
+        right:1rem;
+        max-width: 35%;
+        min-width: 20rem;
+        border-radius: 1.5rem;
+      }      
+      .b-description{
+          max-width: 90%;
+        }
+      }
+      .bus-prof-btn{
+        margin: 1.5rem;
+        background-color: $fav-green;
+        border-color: $fav-green;
+      }
+      .bus-prof-btn:hover{
+        margin: 1.5rem;
+        background-color: white;
+        border-color: $fav-green;
+        color: $fav-green;
+      }
+  }
+  .form-break-container{
+    width: 45%;
+    display: flex;
+    flex-direction: row;
+    .bus-profile-verticle-break1{
+      height: 45rem;
+      // height: fit-content;
+      width: .05rem;
+      margin-left: 2rem;
+      margin-right: 5rem;
+      border-left: .05rem solid black;
+    }
+    .bus-profile-verticle-break2{
+      height: 30rem;
+      width: .05rem;
+      margin-left: 2rem;
+      margin-right: 5rem;
+      border-left: .5rem solid white;
+    }
+    .bus-profile-form-container{
+      width: 70%;
+      .bus-profile-form{
+        Input{
+          border: 2px solid $fav-green;
+          box-shadow: 0 0 3px $fav-green;
+        }
+        .bus-prof-description{
+          border: 2px solid $fav-green;
+          box-shadow: 0 0 3px $fav-green;
+          height: 16rem;
+        }
+        .bus-prof-form-btn{
+          background-color: $fav-green;
+          border-color: $fav-green;
+        }
+        .bus-prof-form-btn:hover{
+          background-color: white;
+          border-color: $fav-green;
+          color: $fav-green;
+        }
+      }
+  }
+  }
 }

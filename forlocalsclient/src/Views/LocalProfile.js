@@ -42,20 +42,20 @@ export default function LocalProfile() {
       <div className='profile-div-2'>
         { pgBreak ? (
             <hr className='profile-verticle-break1'></hr>
-          ):<hr className='profile-verticle-break2'></hr>
+          ) : ( <hr className='profile-verticle-break2'></hr> )
         }
         <div>
           {
-            form?<div className='profile-form-container'>
+            form ? ( <div className='profile-form-container'>
                     <div className='local-form-div'>
-                      <LocalProfileForm S
-                                  local={profile}
-                                  form={form}
-                                  setForm={setForm}
-                                  setPgBreak={setPgBreak}
-                                  />
+                      <LocalProfileForm 
+                        local={profile}
+                        form={form}
+                        setForm={setForm}
+                        setPgBreak={setPgBreak}
+                        />
                     </div>
-                </div>:null
+                </div> ) : ( null )
           }
         </div>
       </div>

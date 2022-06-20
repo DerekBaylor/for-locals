@@ -2,16 +2,16 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-export default function BusinessManagerCard({ card }) {
+export default function BusinessManagerCard({ busData }) {
     return (
-        <div className="business-card">
-            <img className="card-img" src={card.imgUrl} alt="a business" />
+        <div className="business-profile-card">
+            <img className="business-profile-img" src={busData.imgUrl} alt="a business" />
             <div className="card-body">
-                <h5 className="card-title">{card.businessName}</h5>
-                <p className="card-text">{card.description}</p>
+                <h5 className="bus-profile-card-title">{busData.businessName}</h5>
+                <p className="card-text">{busData.description}</p>
             <div className="card-btn-div">
-              <Link  to={`/businessManager/${card.businessId}`} className='btn btn-success card-btn'>
-                Details
+              <Link  to={`/businessManager/${busData.businessId}`} className='btn btn-success card-btn bus-details-btn'>
+                DETAILS
               </Link>
             </div>  
             </div>
@@ -20,5 +20,5 @@ export default function BusinessManagerCard({ card }) {
     };
     
     BusinessManagerCard.propTypes = {
-      card: PropTypes.shape(PropTypes.obj).isRequired,
+      busData: PropTypes.shape(PropTypes.obj).isRequired,
     };
