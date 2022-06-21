@@ -17,7 +17,7 @@ export default function BusinessProfile() {
     setBusinessData({});
   }, [count])
 
-  const handleClick = (method) => {
+  const handleClick = () => {
       deleteBusiness(businessData.businessId).then(() =>
       getBusinessByOwnerKey(firebaseKey).then(setBusinessData)); 
       setcount(count+1);
@@ -46,7 +46,7 @@ export default function BusinessProfile() {
         </div>
         ): (
           <div className='btn-container'>
-            <button className='btn btn-outline-success' onClick={handleClick}>DELETE BUSINESS</button>
+            <button className='btn btn-outline-success del-bus-btn' onClick={handleClick}>DELETE BUSINESS</button>
           </div>
         )}
       </div>

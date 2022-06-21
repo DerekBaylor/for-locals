@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Form, FormGroup, Button, Input } from 'reactstrap';
 import PropTypes from 'prop-types';
-import { addBusiness, updateBusiness } from '../Data/BusinessData';
-import { useParams } from 'react-router-dom';
+import { addBusiness,getBusinessById, updateBusiness } from '../Data/BusinessData';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const initialState = {
     businessName: '',
@@ -18,11 +18,12 @@ const initialState = {
     reviewScore: 0,
     verified: '',
 }; 
-export default function BusinessForm({ bus, setForm, setPgBreak, count, setcount }) {
+export default function BusinessForm({ bus, setBus, setForm, setPgBreak, count, setcount }) {
   const [formInput, setFormInput] = useState(initialState);
   const {id} = useParams();
   const {firebaseKey} = useParams();
   const [key, setKey] = useState();
+  let navigate = useNavigate();
   
   const addKey = () => {
     const State = {
@@ -69,10 +70,12 @@ const handleSubmit = (e) => {
   if(id) {
     updateBusiness(id, formInput, key).then(() => {
         resetForm(); 
+        getBusinessById(id).then(setBus);
       })
   } else  {
     addBusiness(formInput, firebaseKey).then(() => {
       resetForm();
+      navigate(-1);
     })
   }
   setForm(false);
@@ -128,6 +131,7 @@ const handleSubmit = (e) => {
 
 BusinessForm.propTypes = {
   bus: PropTypes.shape(PropTypes.obj),
+  setBus: PropTypes.func.isRequired,
   setForm: PropTypes.func.isRequired,
   setPgBreak: PropTypes.func.isRequired,
   count: PropTypes.number.isRequired,

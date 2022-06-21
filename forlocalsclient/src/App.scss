@@ -484,7 +484,16 @@ $fav-green: #6B9749;
     background-color: white;
     border-color: $fav-green;
     color: $fav-green;
-  }
+  }    
+  .del-bus-btn{
+      border-color: $fav-green;
+      color: $fav-green;
+    }
+    .del-bus-btn:hover{
+      border-color: $fav-green;
+      background-color: $fav-green;
+      color: white;
+    }
   .business-profile-card{
     .business-profile-img{
       max-width: 30%;
@@ -504,6 +513,7 @@ $fav-green: #6B9749;
       border-color: $fav-green;
       color: $fav-green;
     }
+
   }
 }
 
@@ -595,6 +605,38 @@ $fav-green: #6B9749;
           color: $fav-green;
         }
       }
-  }
+   }
   }
 }
+
+.add-business-container{
+  font-family: Montserrat;
+  .add-bus-title{
+    font-size: 2rem;
+    color: $fav-green;
+  }
+  .add-bus-form-container{
+    width: 35%;
+  }
+  .bus-profile-form{
+    Input{
+      border: 2px solid $fav-green;
+      box-shadow: 0 0 3px $fav-green;
+    }
+    .bus-prof-description{
+      border: 2px solid $fav-green;
+      box-shadow: 0 0 3px $fav-green;
+      height: 16rem;
+    }
+    .bus-prof-form-btn{
+      background-color: $fav-green;
+      border-color: $fav-green;
+    }
+    .bus-prof-form-btn:hover{
+      background-color: white;
+      border-color: $fav-green;
+      color: $fav-green;
+    }
+  }
+}
+
