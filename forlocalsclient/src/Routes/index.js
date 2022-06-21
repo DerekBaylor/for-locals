@@ -13,11 +13,11 @@ export default function Routing({ local }){
     return(
         <>
             <Routes>
-                <Route path="/"  element={<Home local={local}/>} />
-                <Route path="/search"  element={<Search local={local}/>} />
-                <Route path="/businessDetails/:id"  element={<BusinessDetails local={local}/>} />
+                <Route path="/" element={<Home local={local}/>} />
+                <Route path="/search" element={<Search local={local}/>} />
+                <Route path="/businessDetails/:id" element={<BusinessDetails local={local}/>} />
                 <Route path="/businessProfile/:firebaseKey" element={<BusinessProfile local={local}/>} />
-                <Route path="/localProfile/:firebaseKey"  element={local ? <LocalProfile local={local}/> : <Home /> } />
+                <Route path="/localProfile/:firebaseKey" element={local ? <LocalProfile local={local}/> : <Home /> } />
                 <Route path="/businessManager/:id" element={<BusinessProfileDetails local={local} />} />
                 <Route path="registerBusiness/:firebaseKey" element={local ? <AddBusiness local={local} /> : <Home />} />           
             </Routes>
