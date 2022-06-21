@@ -13,7 +13,7 @@ const initialState = {
     userId: '',
 } 
 
-export default function LocalProfileForm({ local, setForm, setPgBreak }) {
+export default function LocalProfileForm({ local, setLocal, setForm, setPgBreak, profCount, setProfCount }) {
     const [formInput, setFormInput] = useState(initialState)
 
     useEffect(() => {
@@ -38,8 +38,10 @@ export default function LocalProfileForm({ local, setForm, setPgBreak }) {
         updateLocal(formInput, local.firebaseKey).then(() => {
             resetForm();
         })
+        setLocal(formInput);
         setForm(false);
         setPgBreak(false);
+        setProfCount(profCount+1);
     };
 
     return (
@@ -74,6 +76,9 @@ export default function LocalProfileForm({ local, setForm, setPgBreak }) {
 
 LocalProfileForm.propTypes = {
     local: PropTypes.shape(PropTypes.obj).isRequired,
+    setLocal: PropTypes.func.isRequired,
     setForm: PropTypes.func.isRequired,
     setPgBreak: PropTypes.func.isRequired,
+    profCount: PropTypes.number.isRequired,
+    setProfCount: PropTypes.func.isRequired,
     };
