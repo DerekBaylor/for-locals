@@ -10,8 +10,8 @@ export default function BusinessProfileDetails() {
     const [pgBreak, setPgBreak] =useState(false);
 
   useEffect(() => {
+    console.warn('BusProfDet - UE');
       getBusinessById(id).then(setBusiness);
-      console.warn('Bus Prof UE', form, pgBreak);
     }, [id, form, pgBreak]);
 
   const showFormAndBreak = () => {
@@ -58,6 +58,7 @@ export default function BusinessProfileDetails() {
             { form ? (  <div>
                           <BusinessForm 
                             bus={business} 
+                            setBus={setBusiness}
                             form={form} 
                             setForm={setForm} 
                             setPgBreak={setPgBreak} 

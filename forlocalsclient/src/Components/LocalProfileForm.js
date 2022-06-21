@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Form, FormGroup, Button, Input } from 'reactstrap';
+import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { updateLocal } from '../Data/LocalData';
+import { Form, FormGroup, Button, Input } from 'reactstrap';
+import { updateLocal, getLocalByFKey } from '../Data/LocalData';
 
 const initialState = {
     bio: '',
@@ -14,6 +15,7 @@ const initialState = {
 } 
 
 export default function LocalProfileForm({ local, setLocal, setForm, setPgBreak, profCount, setProfCount }) {
+    const { firebaseKey } = useParams();
     const [formInput, setFormInput] = useState(initialState)
 
     useEffect(() => {
@@ -38,7 +40,7 @@ export default function LocalProfileForm({ local, setLocal, setForm, setPgBreak,
         updateLocal(formInput, local.firebaseKey).then(() => {
             resetForm();
         })
-        setLocal(formInput);
+        getLocalByFKey(firebaseKey).then(setLocal);
         setForm(false);
         setPgBreak(false);
         setProfCount(profCount+1);
