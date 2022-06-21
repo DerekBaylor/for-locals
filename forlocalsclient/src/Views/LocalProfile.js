@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import LocalProfileCard from '../Components/LocalProfileCard';
 import { getLocalByFKey } from '../Data/LocalData';
@@ -10,10 +10,15 @@ export default function LocalProfile() {
   const { firebaseKey } = useParams();
   const [form, setForm] = useState(false);
   const [pgBreak, setPgBreak] =useState(false);
+  const [profCount, setProfCount] = useState(0);
 
   useEffect(() => {
-    getLocalByFKey(firebaseKey).then(setProfile)
-  }, [form]);
+    getLocalByFKey(firebaseKey).then(setProfile);
+  }, [form, profCount]);
+
+  useLayoutEffect(() => {
+    getLocalByFKey(firebaseKey).then(setProfile);
+  }, [form, profCount]);
 
   const showFormAndBreak = () => {
     if(form === true) {
@@ -50,9 +55,12 @@ export default function LocalProfile() {
                     <div className='local-form-div'>
                       <LocalProfileForm 
                         local={profile}
+                        setLocal={setProfile}
                         form={form}
                         setForm={setForm}
                         setPgBreak={setPgBreak}
+                        profCount={profCount}
+                        setProfCount={setProfCount}
                         />
                     </div>
                 </div> ) : ( null )
