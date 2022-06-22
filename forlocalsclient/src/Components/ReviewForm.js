@@ -12,11 +12,9 @@ const initialState = {
   imgUrl: '',
   score: '',
 };
-export default function ReviewForm({ local, editItem, setEditItem, setReviews, setForm, setShowRevBtn }) {
+export default function ReviewForm({ local, editItem, setEditItem, setReviews, form, setForm, setShowRevBtn }) {
   const {id} = useParams();
   const [formInput, setFormInput] = useState(initialState);
-  const [formErrors, setFormErrors] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
 
   const newState = () => {
     const formData = {
@@ -37,13 +35,8 @@ export default function ReviewForm({ local, editItem, setEditItem, setReviews, s
       setFormInput(editItem)
     }
     getReviewsByBusinessId(id).then(setReviews);
-  }, [editItem]);
+  }, [editItem, form]);
 
-  useEffect(() => {
-    console.warn('useEffect', formErrors)
-    if(Object.keys(formErrors).length === 0 && isSubmit) {
-    }
-  },[formErrors]);
 
   function handleChange(e) {
     setFormInput((prevState) => ({
@@ -65,9 +58,6 @@ export default function ReviewForm({ local, editItem, setEditItem, setReviews, s
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setFormErrors(validate(formInput));
-    setIsSubmit(true);
-
     if(formInput.score > max){
       formInput.score = max;
     } else if (formInput.score < min) {
@@ -76,46 +66,28 @@ export default function ReviewForm({ local, editItem, setEditItem, setReviews, s
     
     if (editItem === null) {
       addReview(formInput, id).then(setReviews);
+      setEditItem(null);
     } else if (editItem != null){
       updateReview(editItem.reviewId, formInput, id).then(setReviews)
+      setEditItem(null);
     };
+    setForm(false);
     setEditItem(null);
-    if (!isSubmit) {
-      setForm(false);
-    };
     setShowRevBtn(true);
-  };
-
-  const validate = (formInput) => {
-    console.warn('validate', formInput)
-    const errors = {}
-    if (!formInput.score) {
-      errors.score = "Please enter a review score between 1 and 5."
-    }
-    if (!formInput.reviewTitle) {
-      errors.reviewTitle = "Please add a title to your review."
-    }
-    if (!formInput.reviewText) {
-      errors.reviewText = "Please tell us of your experience."
-    }
-    return errors;
   };
 
   return (
     <Form className='form form-container'>
       <FormGroup className='form-group'>
-       <p className="validation-text">{formErrors.score}</p>
           <Input className='rev-form-score' type="number" name="score" id="score" placeholder="Score: (1-5)" 
           value={formInput.score} max="5" onChange={handleChange} />
       </FormGroup>
       <FormGroup className='form-group'>
           <Input className='rev-form-imgUrl' type="url" name="imgUrl" id="imgUrl" placeholder="Add Image By Url:" value={formInput.imgUrl || ""} onChange={handleChange} />
       </FormGroup>
-      <p className="validation-text">{formErrors.reviewTitle}</p>
       <FormGroup className='form-group'>
           <Input className='rev-form-reviewTitle' type="text" name="reviewTitle" id="reviewTitle" placeholder="Title:" value={formInput.reviewTitle || ""} onChange={handleChange} />
       </FormGroup>
-      <p className="validation-text">{formErrors.reviewText}</p>
       <FormGroup className='form-group'>
           <Input className='rev-form-review-text' type="textarea" name="reviewText" id="reviewText" placeholder="Review:" value={formInput.reviewText || ""} onChange={handleChange} />
       </FormGroup>
@@ -139,6 +111,7 @@ ReviewForm.propTypes = {
   editItem: PropTypes.shape(PropTypes.obj),
   setEditItem: PropTypes.func.isRequired,
   setReviews: PropTypes.func.isRequired,
+  form: PropTypes.bool.isRequired,
   setForm: PropTypes.func.isRequired,
   formInput: PropTypes.func.isRequired,
   setFormInput: PropTypes.func.isRequired,

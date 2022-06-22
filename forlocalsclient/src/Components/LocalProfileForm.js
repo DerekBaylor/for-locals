@@ -39,7 +39,7 @@ export default function LocalProfileForm({ local, setLocal, setForm, setPgBreak,
         e.preventDefault();
         updateLocal(formInput, local.firebaseKey).then(() => {
             resetForm();
-        })
+        });
         getLocalByFKey(firebaseKey).then(setLocal);
         setForm(false);
         setPgBreak(false);

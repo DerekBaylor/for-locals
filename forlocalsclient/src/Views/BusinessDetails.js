@@ -7,7 +7,7 @@ import ReviewForm from '../Components/ReviewForm';
 import ReviewCard from '../Components/ReviewCard';
 import { getReviewsByBusinessId } from '../Data/ReviewData';
 import { getLocalByFKey } from '../Data/LocalData';
-// import { updateBusinessScore } from '../Data/BusinessData';
+import { updateBusinessScore } from '../Data/BusinessData';
 
 export default function BusinessDetails({ local }) {
   const {id} = useParams();
@@ -17,47 +17,52 @@ export default function BusinessDetails({ local }) {
   const [form, setForm] = useState(false);
   const [showRevBtn, setShowRevBtn] = useState(false);
   const [editItem, setEditItem] = useState();
-  // const [reviewScore, setReviewScore] = useState();
-  // const [updateScore, setUpdateScore] = useState();
 
   useLayoutEffect(() => {
+    console.log('BusDet - ULE')
     getBusinessById(id).then(setBusiness);
     setShowRevBtn(true);
-  }, [id])
-
-  useEffect(() => {
     getReviewsByBusinessId(id).then(setReviews);
-    // if (reviews) {
-    //   getScore();
-    // }
-
+  }, [id, form])
+  
+  useEffect(() => {
+    console.log('BusDet UE')
     if (business.ownerKey){
       getLocalByFKey(business.ownerKey).then(setOwner)
     };
-  },[business]);
+    getReviewsByBusinessId(id).then(setReviews);
+  },[form]);
+
+  useEffect(() => {
+    updateReviewScore();
+  }, [reviews]);
   
+  const updateReviewScore = () => {
+    console.log('reviewScore1', business.reviewScore)
 
-//   const getScore = () => {
-//     console.warn('getScore called');
-//     // getReviewsByBusinessId(id).then(setReviews);
-//     const [...revScore] = reviews.map((card) => card.score);
-//     const scoreTotal = revScore.reduce((a, b) => a + b, 0);
-//     const finalTotal = (scoreTotal / reviews.length);
-//     setReviewScore(finalTotal);
-//     business.reviewScore = finalTotal;
-//     updateBusinessScore(id, business).then(() => {
-//       setUpdateScore(updateScore + 1);
-//   });
-//   console.warn('GET SCORE: update Score', updateScore)
-// };
+    if (reviews.length === 0){
+      console.log('reviewScore2', business.reviewScore)
+          business.reviewScore = 0;
 
-  const showButton = () => {
-    if(showRevBtn === true) {
-        setShowRevBtn(false)
+    } else if (reviews.length === 0 && business.reviewScore === 1){
+      console.log('reviewScore3', business.reviewScore)
+      business.reviewScore = 0;
+
     } else {
-      setShowRevBtn(true);
+      console.log('reviewScore4', business.reviewScore)
+      const [...revScore] = reviews.map((card) => card.score);
+      console.log('reviewScore5', business.reviewScore)
+      const scoreTotal = revScore.reduce((a, b) => a + b, 0);
+      console.log('reviewScore6', business.reviewScore)
+      const finalTotal = (scoreTotal / reviews.length);
+      console.log('reviewScore5', business.reviewScore)
+      const roundTotal = Math.round(finalTotal)
+      console.log('reviewScore7', business.reviewScore)
+      business.reviewScore = roundTotal;
+      console.log('reviewScore8', business.reviewScore)
+      updateBusinessScore(id, business).then(setBusiness);
     };
-  };
+};
 
   const showFormAndBtn = () => {
     if(showRevBtn === true) {
@@ -97,6 +102,7 @@ export default function BusinessDetails({ local }) {
                     editItem = {editItem}
                     setEditItem = {setEditItem}
                     setReviews = {setReviews}
+                    form = {form}
                     setForm = {setForm}
                     setShowRevBtn = {setShowRevBtn}
                     />  
