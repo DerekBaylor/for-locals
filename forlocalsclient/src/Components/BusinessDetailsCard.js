@@ -5,7 +5,7 @@ export default function BusinessDetailsCard({ busObj, owner }) {
 
   return (
     <div className="business-card-body">
-        <div className='business-score bus-detail'>{busObj.reviewScore} Stars</div>
+        {/* <div className='business-score bus-detail'>{busObj.reviewScore} Stars</div> */}
         <div className="business-name bus-detail">{busObj.businessName}</div>
         <div  className="business-url bus-detail">{busObj.webUrl}</div>
         <div className="business-owner bus-detail">{owner.name}</div>
