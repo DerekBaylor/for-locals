@@ -10,8 +10,8 @@ export default function AddBusiness(count, setcount) {
       <div className='add-bus-title'>ADD YOUR BUSINESS</div>
       <div className='add-bus-form-container'>
         <BusinessForm 
-          count={count}
-          setcount={setcount}
+          // count={count}
+          // setcount={setcount}
         />
       </div>
     </div>
@@ -19,6 +19,11 @@ export default function AddBusiness(count, setcount) {
 }
 
 AddBusiness.propTypes = {
-  count: PropTypes.number.isRequired,
-  setcount: PropTypes.func.isRequired,
+  count: PropTypes.number,
+  setcount: PropTypes.func,
+};
+
+AddBusiness.defaultProps = {
+  count: null,
+  setcount: null,
 };

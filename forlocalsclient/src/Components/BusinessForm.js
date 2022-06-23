@@ -18,7 +18,7 @@ const initialState = {
     reviewScore: 0,
     verified: '',
 }; 
-export default function BusinessForm({ bus, setBus, setForm, setPgBreak, count, setcount }) {
+export default function BusinessForm({ bus, setBus, setForm, setPgBreak }) {
   const [formInput, setFormInput] = useState(initialState);
   const {id} = useParams();
   const {firebaseKey} = useParams();
@@ -62,7 +62,6 @@ const handleChange = (e) => {
 
 const resetForm = () => {
   setFormInput(initialState)
-
 };
 
 const handleSubmit = (e) => {
@@ -80,7 +79,6 @@ const handleSubmit = (e) => {
   }
   setForm(false);
   setPgBreak(false);
-  setcount(count+1);
 };
 
   return (
@@ -131,13 +129,14 @@ const handleSubmit = (e) => {
 
 BusinessForm.propTypes = {
   bus: PropTypes.shape(PropTypes.obj),
-  setBus: PropTypes.func.isRequired,
-  setForm: PropTypes.func.isRequired,
-  setPgBreak: PropTypes.func.isRequired,
-  count: PropTypes.number.isRequired,
-  setcount:PropTypes.func.isRequired,
+  setBus: PropTypes.func,
+  setForm: PropTypes.func,
+  setPgBreak: PropTypes.func,
 };
 
 BusinessForm.defaultProps = {
   bus: null,
+  setBus: null,
+  setForm: null,
+  setPgBreak: null,
 };

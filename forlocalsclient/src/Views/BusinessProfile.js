@@ -7,7 +7,7 @@ import BusinessManagerCard from '../Components/BusinessManagerCard';
 export default function BusinessProfile() {
   const [businessData, setBusinessData] = useState({});
   const { firebaseKey } = useParams();
-  const [count, setcount ] = useState(0)
+  const [tick, setTick ] = useState(0)
 
   useEffect(() => {
     getBusinessByOwnerKey(firebaseKey).then(setBusinessData);
@@ -15,12 +15,12 @@ export default function BusinessProfile() {
 
   useEffect(() => {
     setBusinessData({});
-  }, [count])
+  }, [tick])
 
   const handleClick = () => {
       deleteBusiness(businessData.businessId).then(() =>
       getBusinessByOwnerKey(firebaseKey).then(setBusinessData)); 
-      setcount(count+1);
+      setTick(tick+1);
   };
 
   return (
@@ -38,8 +38,6 @@ export default function BusinessProfile() {
           <Link 
               className="btn nav-btn btn-success reg-bus-btn"
               to={`/registerBusiness/${firebaseKey}`}
-              count={count}
-              setcount={setcount}
               >
               REGISTER
             </Link>

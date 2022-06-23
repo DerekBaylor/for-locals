@@ -58,13 +58,14 @@ export default function Navigation({ local }){
 
                   <ButtonGroup className='nav-item nav-btn-div'>
                     {local ? (
-                    <button
+                    <NavLink
                         type='button'
                         className='btn btn-outline-success nav-btn'
                         onClick={signOutUser}
+                        href='/'
                     >
                         LOG OUT
-                    </button>
+                    </NavLink>
                     ) : (
                         <button
                         type='button'

@@ -39,7 +39,6 @@ const getAllBusinesses = () =>
 });
 
 const updateBusinessScore = (id, obj) => new Promise((resolve, reject) => {
-  console.warn('****UPDATE SCORE PROMISE****')
   axios
       .patch(`${dbUrl}/edit/${id}`, obj)
       .then(() => getBusinessById(id).then(resolve))

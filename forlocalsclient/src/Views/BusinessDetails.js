@@ -7,7 +7,6 @@ import ReviewForm from '../Components/ReviewForm';
 import ReviewCard from '../Components/ReviewCard';
 import { getReviewsByBusinessId } from '../Data/ReviewData';
 import { getLocalByFKey } from '../Data/LocalData';
-// import { updateBusinessScore } from '../Data/BusinessData';
 
 export default function BusinessDetails({ local }) {
   const {id} = useParams();
@@ -17,47 +16,19 @@ export default function BusinessDetails({ local }) {
   const [form, setForm] = useState(false);
   const [showRevBtn, setShowRevBtn] = useState(false);
   const [editItem, setEditItem] = useState();
-  // const [reviewScore, setReviewScore] = useState();
-  // const [updateScore, setUpdateScore] = useState();
 
   useLayoutEffect(() => {
     getBusinessById(id).then(setBusiness);
     setShowRevBtn(true);
-  }, [id])
-
-  useEffect(() => {
     getReviewsByBusinessId(id).then(setReviews);
-    // if (reviews) {
-    //   getScore();
-    // }
-
+  }, [id, form])
+  
+  useEffect(() => {
     if (business.ownerKey){
       getLocalByFKey(business.ownerKey).then(setOwner)
     };
-  },[business]);
-  
-
-//   const getScore = () => {
-//     console.warn('getScore called');
-//     // getReviewsByBusinessId(id).then(setReviews);
-//     const [...revScore] = reviews.map((card) => card.score);
-//     const scoreTotal = revScore.reduce((a, b) => a + b, 0);
-//     const finalTotal = (scoreTotal / reviews.length);
-//     setReviewScore(finalTotal);
-//     business.reviewScore = finalTotal;
-//     updateBusinessScore(id, business).then(() => {
-//       setUpdateScore(updateScore + 1);
-//   });
-//   console.warn('GET SCORE: update Score', updateScore)
-// };
-
-  const showButton = () => {
-    if(showRevBtn === true) {
-        setShowRevBtn(false)
-    } else {
-      setShowRevBtn(true);
-    };
-  };
+    getReviewsByBusinessId(id).then(setReviews);
+  },[form]);
 
   const showFormAndBtn = () => {
     if(showRevBtn === true) {
@@ -97,6 +68,7 @@ export default function BusinessDetails({ local }) {
                     editItem = {editItem}
                     setEditItem = {setEditItem}
                     setReviews = {setReviews}
+                    form = {form}
                     setForm = {setForm}
                     setShowRevBtn = {setShowRevBtn}
                     />  
