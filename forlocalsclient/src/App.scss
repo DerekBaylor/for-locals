@@ -392,6 +392,7 @@ $fav-green: #6B9749;
         .local-card-img{
           border-radius: 50%;
           max-width: 30rem;
+          border: .1rem solid $fav-green
         }
         .local-card-title{
           font-weight: 600;

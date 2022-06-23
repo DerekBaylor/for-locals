@@ -7,7 +7,6 @@ import ReviewForm from '../Components/ReviewForm';
 import ReviewCard from '../Components/ReviewCard';
 import { getReviewsByBusinessId } from '../Data/ReviewData';
 import { getLocalByFKey } from '../Data/LocalData';
-import { updateBusinessScore } from '../Data/BusinessData';
 
 export default function BusinessDetails({ local }) {
   const {id} = useParams();
@@ -19,50 +18,17 @@ export default function BusinessDetails({ local }) {
   const [editItem, setEditItem] = useState();
 
   useLayoutEffect(() => {
-    console.log('BusDet - ULE')
     getBusinessById(id).then(setBusiness);
     setShowRevBtn(true);
     getReviewsByBusinessId(id).then(setReviews);
   }, [id, form])
   
   useEffect(() => {
-    console.log('BusDet UE')
     if (business.ownerKey){
       getLocalByFKey(business.ownerKey).then(setOwner)
     };
     getReviewsByBusinessId(id).then(setReviews);
   },[form]);
-
-  useEffect(() => {
-    updateReviewScore();
-  }, [reviews]);
-  
-  const updateReviewScore = () => {
-    console.log('reviewScore1', business.reviewScore)
-
-    if (reviews.length === 0){
-      console.log('reviewScore2', business.reviewScore)
-          business.reviewScore = 0;
-
-    } else if (reviews.length === 0 && business.reviewScore === 1){
-      console.log('reviewScore3', business.reviewScore)
-      business.reviewScore = 0;
-
-    } else {
-      console.log('reviewScore4', business.reviewScore)
-      const [...revScore] = reviews.map((card) => card.score);
-      console.log('reviewScore5', business.reviewScore)
-      const scoreTotal = revScore.reduce((a, b) => a + b, 0);
-      console.log('reviewScore6', business.reviewScore)
-      const finalTotal = (scoreTotal / reviews.length);
-      console.log('reviewScore5', business.reviewScore)
-      const roundTotal = Math.round(finalTotal)
-      console.log('reviewScore7', business.reviewScore)
-      business.reviewScore = roundTotal;
-      console.log('reviewScore8', business.reviewScore)
-      updateBusinessScore(id, business).then(setBusiness);
-    };
-};
 
   const showFormAndBtn = () => {
     if(showRevBtn === true) {

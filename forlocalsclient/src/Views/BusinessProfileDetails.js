@@ -10,7 +10,6 @@ export default function BusinessProfileDetails() {
     const [pgBreak, setPgBreak] =useState(false);
 
   useEffect(() => {
-    console.warn('BusProfDet - UE');
       getBusinessById(id).then(setBusiness);
     }, [id, form, pgBreak]);
 
