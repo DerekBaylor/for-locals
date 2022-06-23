@@ -1,70 +1,34 @@
-# Getting Started with Create React App
+## User Stories
+I created this app to help people be able to find local businesses. Users are able to search for businesses by location, industry, keywords, and name. If the create a profile they are also able to leave reviews about the businesses and list their own business for other users to find. 
+## Home View with a Featured Business
+<img width="1000" alt="Application Home Screen" src="https://zfjepfckphrvbatmvyud.supabase.co/storage/v1/object/sign/readme/FeatureBusView.PNG?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJyZWFkbWUvRmVhdHVyZUJ1c1ZpZXcuUE5HIiwiaWF0IjoxNjU1OTQ0NDU5LCJleHAiOjE5NzEzMDQ0NTl9.WAYgXdZClRsjvdkNN6utbAP6qgT6W275s25m1mUeo6c">
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Search View
+<img width="1000" alt="Application Search Screen" src="https://zfjepfckphrvbatmvyud.supabase.co/storage/v1/object/sign/readme/NashSearch.PNG?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJyZWFkbWUvTmFzaFNlYXJjaC5QTkciLCJpYXQiOjE2NTU5NDQ0NzgsImV4cCI6MTk3MTMwNDQ3OH0.JnNFDBmjOvCOS3M33jHXoFBrndWPo051qi348lD5DAA">
 
-## Available Scripts
+## User Profile
+<img width="1000" alt="Application Profile Screen" src="https://zfjepfckphrvbatmvyud.supabase.co/storage/v1/object/sign/readme/ProfileView.PNG?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJyZWFkbWUvUHJvZmlsZVZpZXcuUE5HIiwiaWF0IjoxNjU1OTQ0NDkxLCJleHAiOjE5NzEzMDQ0OTF9.1G63tR_XxSuxC_jiDWixoHPwlqexdtrMuUCanofdJBg">
 
-In the project directory, you can run:
+## Business Profile
+<img width="1000" alt="Application Business Screen" src="https://zfjepfckphrvbatmvyud.supabase.co/storage/v1/object/sign/readme/BusinessView.PNG?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJyZWFkbWUvQnVzaW5lc3NWaWV3LlBORyIsImlhdCI6MTY1NTk0NDU0NCwiZXhwIjoxOTcxMzA0NTQ0fQ.UhRCIPA5VV-2ZkP1nAMJEyP2_xfX3Z14jRu6sbMLwXM">
 
-### `npm start`
+## ERD
+<img width="1000" alt="Application ERD" src="https://zfjepfckphrvbatmvyud.supabase.co/storage/v1/object/sign/readme/ForLocals.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJyZWFkbWUvRm9yTG9jYWxzLnBuZyIsImlhdCI6MTY1NTk0NDU5OCwiZXhwIjoxOTcxMzA0NTk4fQ.54gD09GSHqVLsvbYJDHVsrwp6aOL2gingDYWr90vKOg">
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Technologies Use
+- ReactJS
+- C#
+- .Net6
+- SQL 
+- Bootstrap
+- Reactstrap
+- Flexbox
+- CSS3
+- HTML5
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Features
+- Users can search for businesses by name, location, keywords, and their industry.
+- Registered users can leave reviews and add a business to the site. 
+  ## Contributors
+- [Derek Baylor](https://github.com/DerekBaylor)
+- [Derek Baylor Home Page](https://derek-baylor.netlify.app/)
